@@ -51,35 +51,51 @@ struct EmailContentRenderer: View {
 struct HTMLContentView: UIViewRepresentable {
     let htmlContent: String
     @Binding var height: CGFloat
-    
+
     func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView()
+        let configuration = WKWebViewConfiguration()
+        configuration.preferences.javaScriptEnabled = false
+        configuration.defaultWebpagePreferences.allowsContentJavaScript = false
+
+        let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.navigationDelegate = context.coordinator
         webView.scrollView.isScrollEnabled = false
         webView.scrollView.bounces = false
         webView.isOpaque = false
         webView.backgroundColor = UIColor.clear
-        
+        webView.scrollView.backgroundColor = UIColor.clear
+
+        return webView
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {
         let css = """
         <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 16px;
             line-height: 1.5;
             margin: 0;
             padding: 16px;
-            background-color: transparent;
-            color: black;
+            background-color: transparent !important;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            -webkit-text-size-adjust: none;
         }
         img {
             max-width: 100% !important;
             height: auto !important;
             border-radius: 8px;
             margin: 8px 0;
+            display: block;
         }
         a {
-            color: #007AFF;
+            color: #007AFF !important;
             text-decoration: none;
+            word-break: break-all;
         }
         a:hover {
             text-decoration: underline;
@@ -91,59 +107,84 @@ struct HTMLContentView: UIViewRepresentable {
             color: #666;
             font-style: italic;
         }
-        pre {
+        pre, code {
             background-color: #f5f5f5;
-            padding: 12px;
-            border-radius: 6px;
-            overflow-x: auto;
-            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-        }
-        code {
-            background-color: #f5f5f5;
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-            font-size: 14px;
+            padding: 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+            white-space: pre-wrap;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 16px 0;
+            table-layout: fixed;
         }
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
+            word-wrap: break-word;
         }
         th {
             background-color: #f5f5f5;
             font-weight: 600;
         }
-        .email-quote {
-            border-left: 2px solid #ccc;
-            padding-left: 10px;
-            margin-left: 10px;
-            color: #666;
-            font-size: 14px;
+        p {
+            margin: 8px 0;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .button, .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #007AFF;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 8px 0;
         }
         @media (prefers-color-scheme: dark) {
-            body { color: white; }
-            pre, code { background-color: #2c2c2e; color: white; }
-            th { background-color: #2c2c2e; }
-            th, td { border-color: #444; }
-            .email-quote { color: #999; border-left-color: #555; }
+            body {
+                color: white !important;
+                background-color: transparent !important;
+            }
+            pre, code {
+                background-color: #2c2c2e;
+                color: white;
+            }
+            th {
+                background-color: #2c2c2e;
+                color: white;
+            }
+            th, td {
+                border-color: #444;
+                color: white;
+            }
+            a {
+                color: #0A84FF !important;
+            }
         }
         </style>
         """
-        
-        let fullHTML = css + htmlContent
-        webView.loadHTMLString(fullHTML, baseURL: nil)
-        
-        return webView
-    }
-    
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        
+
+        let wrappedHTML = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset=\"utf-8\">
+            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">
+            \(css)
+        </head>
+        <body>
+            \(htmlContent)
+        </body>
+        </html>
+        """
+
+        uiView.loadHTMLString(wrappedHTML, baseURL: nil)
     }
     
     func makeCoordinator() -> Coordinator {
