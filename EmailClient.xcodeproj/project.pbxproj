@@ -18,9 +18,19 @@
 		017 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018 /* FilterView.swift */; };
 		038 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039 /* Email.swift */; };
 		040 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 041 /* GoogleService-Info.plist */; };
-		044 /* GmailAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045 /* GmailAPIService.swift */; };
 		046 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047 /* SettingsManager.swift */; };
 		048 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049 /* SettingsView.swift */; };
+		050 /* GmailAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051 /* GmailAPIService.swift */; };
+		052 /* GmailAPIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053 /* GmailAPIServiceProtocol.swift */; };
+		054 /* GmailDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055 /* GmailDataModels.swift */; };
+		056 /* GmailAPIServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057 /* GmailAPIServiceFactory.swift */; };
+		058 /* GmailAPIServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059 /* GmailAPIServiceImpl.swift */; };
+		060 /* GmailAPIServiceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061 /* GmailAPIServiceHelpers.swift */; };
+		070 /* EmailPersistenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071 /* EmailPersistenceStore.swift */; };
+		072 /* EmailPersistenceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073 /* EmailPersistenceProtocol.swift */; };
+		074 /* PersistenceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075 /* PersistenceModels.swift */; };
+		076 /* EmailPersistenceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077 /* EmailPersistenceFactory.swift */; };
+		078 /* EmailPersistenceStoreImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079 /* EmailPersistenceStoreImpl.swift */; };
 		A43077C62E6237E3001B94D9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C52E6237E3001B94D9 /* GoogleSignIn */; };
 		A43077C82E6237E3001B94D9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C72E6237E3001B94D9 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
@@ -38,9 +48,19 @@
 		019 /* EmailClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmailClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		039 /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		041 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		045 /* GmailAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmailAPIService.swift; sourceTree = "<group>"; };
 		047 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		049 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		051 /* GmailAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmailAPIService.swift; sourceTree = "<group>"; };
+		053 /* GmailAPIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmailAPIServiceProtocol.swift; sourceTree = "<group>"; };
+		055 /* GmailDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmailDataModels.swift; sourceTree = "<group>"; };
+		057 /* GmailAPIServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmailAPIServiceFactory.swift; sourceTree = "<group>"; };
+		059 /* GmailAPIServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmailAPIServiceImpl.swift; sourceTree = "<group>"; };
+		061 /* GmailAPIServiceHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmailAPIServiceHelpers.swift; sourceTree = "<group>"; };
+		071 /* EmailPersistenceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPersistenceStore.swift; sourceTree = "<group>"; };
+		073 /* EmailPersistenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPersistenceProtocol.swift; sourceTree = "<group>"; };
+		075 /* PersistenceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceModels.swift; sourceTree = "<group>"; };
+		077 /* EmailPersistenceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPersistenceFactory.swift; sourceTree = "<group>"; };
+		079 /* EmailPersistenceStoreImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPersistenceStoreImpl.swift; sourceTree = "<group>"; };
 		A43077C92E623FFF001B94D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +94,7 @@
 				024 /* Views */,
 				025 /* Services */,
 				026 /* Models */,
+				062 /* Frameworks */,
 				006 /* Assets.xcassets */,
 				041 /* GoogleService-Info.plist */,
 				027 /* Preview Content */,
@@ -105,7 +126,6 @@
 			children = (
 				010 /* EmailService.swift */,
 				012 /* AccountManager.swift */,
-				045 /* GmailAPIService.swift */,
 				047 /* SettingsManager.swift */,
 			);
 			path = Services;
@@ -125,6 +145,88 @@
 				008 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		062 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				063 /* GmailAPIService */,
+				082 /* EmailPersistenceStore */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		063 /* GmailAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				051 /* GmailAPIService.swift */,
+				064 /* PublicAPI */,
+				065 /* ImplWiring */,
+				066 /* Impl */,
+			);
+			path = GmailAPIService;
+			sourceTree = "<group>";
+		};
+		064 /* PublicAPI */ = {
+			isa = PBXGroup;
+			children = (
+				053 /* GmailAPIServiceProtocol.swift */,
+				055 /* GmailDataModels.swift */,
+			);
+			path = PublicAPI;
+			sourceTree = "<group>";
+		};
+		065 /* ImplWiring */ = {
+			isa = PBXGroup;
+			children = (
+				057 /* GmailAPIServiceFactory.swift */,
+			);
+			path = ImplWiring;
+			sourceTree = "<group>";
+		};
+		066 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				059 /* GmailAPIServiceImpl.swift */,
+				061 /* GmailAPIServiceHelpers.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		082 /* EmailPersistenceStore */ = {
+			isa = PBXGroup;
+			children = (
+				071 /* EmailPersistenceStore.swift */,
+				083 /* PublicAPI */,
+				084 /* ImplWiring */,
+				085 /* Impl */,
+			);
+			path = EmailPersistenceStore;
+			sourceTree = "<group>";
+		};
+		083 /* PublicAPI */ = {
+			isa = PBXGroup;
+			children = (
+				073 /* EmailPersistenceProtocol.swift */,
+				075 /* PersistenceModels.swift */,
+			);
+			path = PublicAPI;
+			sourceTree = "<group>";
+		};
+		084 /* ImplWiring */ = {
+			isa = PBXGroup;
+			children = (
+				077 /* EmailPersistenceFactory.swift */,
+			);
+			path = ImplWiring;
+			sourceTree = "<group>";
+		};
+		085 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				079 /* EmailPersistenceStoreImpl.swift */,
+			);
+			path = Impl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,9 +311,19 @@
 				015 /* EmailDetailView.swift in Sources */,
 				017 /* FilterView.swift in Sources */,
 				038 /* Email.swift in Sources */,
-				044 /* GmailAPIService.swift in Sources */,
 				046 /* SettingsManager.swift in Sources */,
 				048 /* SettingsView.swift in Sources */,
+				050 /* GmailAPIService.swift in Sources */,
+				052 /* GmailAPIServiceProtocol.swift in Sources */,
+				054 /* GmailDataModels.swift in Sources */,
+				056 /* GmailAPIServiceFactory.swift in Sources */,
+				058 /* GmailAPIServiceImpl.swift in Sources */,
+				060 /* GmailAPIServiceHelpers.swift in Sources */,
+				070 /* EmailPersistenceStore.swift in Sources */,
+				072 /* EmailPersistenceProtocol.swift in Sources */,
+				074 /* PersistenceModels.swift in Sources */,
+				076 /* EmailPersistenceFactory.swift in Sources */,
+				078 /* EmailPersistenceStoreImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

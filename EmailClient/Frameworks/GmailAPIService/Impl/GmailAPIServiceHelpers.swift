@@ -1,99 +1,9 @@
 import Foundation
-import GoogleSignIn
-import SwiftUI
 
-class GmailAPIService: ObservableObject {
-    private let baseURL = "https://www.googleapis.com/gmail/v1"
+// MARK: - Email Parsing Helpers
+extension GmailAPIServiceImpl {
     
-    func fetchMessages(for user: GIDGoogleUser, maxResults: Int = 50) async throws -> [GmailMessage] {
-        let accessToken = user.accessToken.tokenString
-        
-        guard let url = URL(string: "\(baseURL)/users/me/messages?maxResults=\(maxResults)") else {
-            throw GmailAPIError.invalidURL
-        }
-        
-        var request = URLRequest(url: url)
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw GmailAPIError.networkError
-        }
-        
-        let messageList = try JSONDecoder().decode(GmailMessageList.self, from: data)
-        
-        var messages: [GmailMessage] = []
-        
-        for messageInfo in messageList.messages ?? [] {
-            do {
-                let fullMessage = try await fetchFullMessage(messageId: messageInfo.id, user: user)
-                messages.append(fullMessage)
-            } catch {
-                print("Failed to fetch message \(messageInfo.id): \(error)")
-            }
-        }
-        
-        return messages
-    }
-    
-    private func fetchFullMessage(messageId: String, user: GIDGoogleUser) async throws -> GmailMessage {
-        let accessToken = user.accessToken.tokenString
-        
-        guard let url = URL(string: "\(baseURL)/users/me/messages/\(messageId)") else {
-            throw GmailAPIError.invalidURL
-        }
-        
-        var request = URLRequest(url: url)
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw GmailAPIError.networkError
-        }
-        
-        return try JSONDecoder().decode(GmailMessage.self, from: data)
-    }
-    
-    func convertGmailMessageToEmail(_ gmailMessage: GmailMessage, accountEmail: String) -> Email {
-        let headers = gmailMessage.payload?.headers ?? []
-        
-        let subject = headers.first { $0.name == "Subject" }?.value ?? "No Subject"
-        let fromHeader = headers.first { $0.name == "From" }?.value ?? ""
-        let toHeader = headers.first { $0.name == "To" }?.value ?? ""
-        let dateHeader = headers.first { $0.name == "Date" }?.value ?? ""
-        
-        let sender = parseEmailAddress(fromHeader)
-        let recipients = parseEmailAddresses(toHeader)
-        let date = parseDate(dateHeader)
-        
-        let (plainBody, htmlBody, isHTMLContent) = extractBodies(from: gmailMessage.payload)
-        let attachments = extractAttachments(from: gmailMessage.payload, messageId: gmailMessage.id)
-        
-        let isUnread = gmailMessage.labelIds?.contains("UNREAD") ?? false
-        let isStarred = gmailMessage.labelIds?.contains("STARRED") ?? false
-        let labels = gmailMessage.labelIds ?? []
-        
-        return Email(
-            id: gmailMessage.id,
-            subject: subject,
-            sender: sender,
-            recipients: recipients,
-            body: plainBody,
-            htmlBody: htmlBody,
-            date: date,
-            isRead: !isUnread,
-            isStarred: isStarred,
-            labels: labels,
-            accountEmail: accountEmail,
-            threadId: gmailMessage.threadId,
-            attachments: attachments,
-            isHTMLContent: isHTMLContent
-        )
-    }
-    
-    private func parseEmailAddress(_ emailString: String) -> EmailAddress {
+    internal func parseEmailAddress(_ emailString: String) -> EmailAddress {
         let pattern = #"^(.*?)\s*<(.+)>$"#
         if let regex = try? NSRegularExpression(pattern: pattern),
            let match = regex.firstMatch(in: emailString, range: NSRange(emailString.startIndex..., in: emailString)) {
@@ -109,12 +19,12 @@ class GmailAPIService: ObservableObject {
         return EmailAddress(name: nil, email: emailString)
     }
     
-    private func parseEmailAddresses(_ emailString: String) -> [EmailAddress] {
+    internal func parseEmailAddresses(_ emailString: String) -> [EmailAddress] {
         let addresses = emailString.components(separatedBy: ",")
         return addresses.map { parseEmailAddress($0.trimmingCharacters(in: .whitespacesAndNewlines)) }
     }
     
-    private func parseDate(_ dateString: String) -> Date {
+    internal func parseDate(_ dateString: String) -> Date {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         
@@ -134,8 +44,12 @@ class GmailAPIService: ObservableObject {
         
         return Date()
     }
+}
+
+// MARK: - Body Extraction Helpers
+extension GmailAPIServiceImpl {
     
-    private func extractBodies(from payload: GmailPayload?) -> (plain: String, html: String?, isHTML: Bool) {
+    internal func extractBodies(from payload: GmailPayload?) -> (plain: String, html: String?, isHTML: Bool) {
         guard let payload = payload else { return ("", nil, false) }
         
         var plainText = ""
@@ -170,7 +84,7 @@ class GmailAPIService: ObservableObject {
         return (plainText, htmlText, isHTMLContent)
     }
     
-    private func extractFromParts(_ parts: [GmailPart], plainText: inout String, htmlText: inout String?) {
+    internal func extractFromParts(_ parts: [GmailPart], plainText: inout String, htmlText: inout String?) {
         for part in parts {
             if let mimeType = part.mimeType {
                 if mimeType == "text/plain" && plainText.isEmpty {
@@ -195,8 +109,12 @@ class GmailAPIService: ObservableObject {
             }
         }
     }
+}
+
+// MARK: - Attachment Helpers
+extension GmailAPIServiceImpl {
     
-    private func extractAttachments(from payload: GmailPayload?, messageId: String) -> [EmailAttachment] {
+    internal func extractAttachments(from payload: GmailPayload?, messageId: String) -> [EmailAttachment] {
         guard let payload = payload else { return [] }
         
         var attachments: [EmailAttachment] = []
@@ -233,7 +151,7 @@ class GmailAPIService: ObservableObject {
         return attachments
     }
     
-    private func extractFilename(from contentDisposition: String) -> String? {
+    internal func extractFilename(from contentDisposition: String) -> String? {
         let pattern = #"filename[*]?=(?:"([^"]+)"|([^;\s]+))"#
         if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive),
            let match = regex.firstMatch(in: contentDisposition, range: NSRange(contentDisposition.startIndex..., in: contentDisposition)) {
@@ -246,8 +164,12 @@ class GmailAPIService: ObservableObject {
         }
         return nil
     }
+}
+
+// MARK: - String Processing Helpers
+extension GmailAPIServiceImpl {
     
-    private func stripHTML(_ html: String) -> String {
+    internal func stripHTML(_ html: String) -> String {
         let htmlRegex = try! NSRegularExpression(pattern: "<[^>]+>", options: [])
         let range = NSRange(location: 0, length: html.count)
         let strippedText = htmlRegex.stringByReplacingMatches(in: html, options: [], range: range, withTemplate: "")
@@ -262,7 +184,7 @@ class GmailAPIService: ObservableObject {
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    private func decodeBase64URLSafe(_ string: String) -> String {
+    internal func decodeBase64URLSafe(_ string: String) -> String {
         var base64 = string
             .replacingOccurrences(of: "-", with: "+")
             .replacingOccurrences(of: "_", with: "/")
@@ -279,57 +201,4 @@ class GmailAPIService: ObservableObject {
         
         return decoded
     }
-}
-
-struct GmailMessageList: Codable {
-    let messages: [GmailMessageInfo]?
-    let nextPageToken: String?
-    let resultSizeEstimate: Int?
-}
-
-struct GmailMessageInfo: Codable {
-    let id: String
-    let threadId: String
-}
-
-struct GmailMessage: Codable {
-    let id: String
-    let threadId: String?
-    let labelIds: [String]?
-    let snippet: String?
-    let payload: GmailPayload?
-    let sizeEstimate: Int?
-    let historyId: String?
-    let internalDate: String?
-}
-
-struct GmailPayload: Codable {
-    let mimeType: String?
-    let headers: [GmailHeader]?
-    let body: GmailBody?
-    let parts: [GmailPart]?
-}
-
-struct GmailHeader: Codable {
-    let name: String
-    let value: String
-}
-
-struct GmailBody: Codable {
-    let size: Int?
-    let data: String?
-}
-
-struct GmailPart: Codable {
-    let mimeType: String?
-    let headers: [GmailHeader]?
-    let body: GmailBody?
-    let parts: [GmailPart]?
-}
-
-enum GmailAPIError: Error {
-    case noAccessToken
-    case invalidURL
-    case networkError
-    case decodingError
 }
