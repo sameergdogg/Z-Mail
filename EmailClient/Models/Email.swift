@@ -1,22 +1,22 @@
 import Foundation
 
-struct Email: Identifiable, Codable {
-    let id: String
-    let subject: String
-    let sender: EmailAddress
-    let recipients: [EmailAddress]
-    let body: String
-    let htmlBody: String?
-    let date: Date
-    let isRead: Bool
-    let isStarred: Bool
-    let labels: [String]
-    let accountEmail: String
-    let threadId: String?
-    let attachments: [EmailAttachment]
-    let isHTMLContent: Bool
+public struct Email: Identifiable, Codable {
+    public let id: String
+    public let subject: String
+    public let sender: EmailAddress
+    public let recipients: [EmailAddress]
+    public let body: String
+    public let htmlBody: String?
+    public let date: Date
+    public let isRead: Bool
+    public let isStarred: Bool
+    public let labels: [String]
+    public let accountEmail: String
+    public let threadId: String?
+    public let attachments: [EmailAttachment]
+    public let isHTMLContent: Bool
     
-    init(id: String, subject: String, sender: EmailAddress, recipients: [EmailAddress], body: String, htmlBody: String? = nil, date: Date, isRead: Bool = false, isStarred: Bool = false, labels: [String] = [], accountEmail: String, threadId: String? = nil, attachments: [EmailAttachment] = [], isHTMLContent: Bool = false) {
+    public init(id: String, subject: String, sender: EmailAddress, recipients: [EmailAddress], body: String, htmlBody: String? = nil, date: Date, isRead: Bool = false, isStarred: Bool = false, labels: [String] = [], accountEmail: String, threadId: String? = nil, attachments: [EmailAttachment] = [], isHTMLContent: Bool = false) {
         self.id = id
         self.subject = subject
         self.sender = sender
@@ -34,28 +34,28 @@ struct Email: Identifiable, Codable {
     }
 }
 
-struct EmailAddress: Codable {
-    let name: String?
-    let email: String
+public struct EmailAddress: Codable {
+    public let name: String?
+    public let email: String
     
-    var displayName: String {
+    public var displayName: String {
         return name ?? email
     }
 }
 
-struct EmailAttachment: Identifiable, Codable {
-    let id: String
-    let filename: String
-    let mimeType: String
-    let size: Int64
-    let attachmentId: String?
-    let downloadURL: URL?
+public struct EmailAttachment: Identifiable, Codable {
+    public let id: String
+    public let filename: String
+    public let mimeType: String
+    public let size: Int64
+    public let attachmentId: String?
+    public let downloadURL: URL?
     
-    var isImage: Bool {
+    public var isImage: Bool {
         mimeType.hasPrefix("image/")
     }
     
-    var systemImageName: String {
+    public var systemImageName: String {
         switch mimeType {
         case let type where type.hasPrefix("image/"):
             return "photo"
@@ -78,7 +78,7 @@ struct EmailAttachment: Identifiable, Codable {
         }
     }
     
-    var formattedSize: String {
+    public var formattedSize: String {
         let formatter = ByteCountFormatter()
         formatter.allowedUnits = [.useKB, .useMB, .useGB]
         formatter.countStyle = .file
@@ -86,15 +86,15 @@ struct EmailAttachment: Identifiable, Codable {
     }
 }
 
-struct GmailAccount: Identifiable, Codable {
-    let id = UUID()
-    let email: String
-    let displayName: String?
-    var accessToken: String?
-    var refreshToken: String?
-    let dateAdded: Date
+public struct GmailAccount: Identifiable, Codable {
+    public let id = UUID()
+    public let email: String
+    public let displayName: String?
+    public var accessToken: String?
+    public var refreshToken: String?
+    public let dateAdded: Date
     
-    init(email: String, displayName: String? = nil, accessToken: String? = nil, refreshToken: String? = nil) {
+    public init(email: String, displayName: String? = nil, accessToken: String? = nil, refreshToken: String? = nil) {
         self.email = email
         self.displayName = displayName
         self.accessToken = accessToken

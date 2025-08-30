@@ -4,6 +4,7 @@ import WebKit
 struct EmailDetailView: View {
     let email: Email
     let emailService: EmailService
+    @EnvironmentObject var settingsManager: SettingsManager
     
     var body: some View {
         ScrollView {
@@ -134,6 +135,7 @@ struct EmailDetailView: View {
 
 struct EmailContentView: View {
     let email: Email
+    @EnvironmentObject var settingsManager: SettingsManager
     @State private var webViewHeight: CGFloat = 0
     @State private var isLoading = true
     @State private var contentToShow: String = ""
@@ -164,31 +166,66 @@ struct EmailContentView: View {
                 }
             }
         }
+        .onChange(of: settingsManager.useRichEmailRendering) { _ in
+            // Refresh content when user toggles rendering preference
+            isLoading = true
+            processEmailContent()
+        }
     }
     
     private func processEmailContent() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            // Determine what content to show and how to show it
-            if let htmlBody = email.htmlBody, !htmlBody.isEmpty, htmlBody.contains("<") {
-                // We have HTML content, use WebView
-                contentToShow = htmlBody
-                shouldUseWebView = true
-            } else if email.body.contains("<") && email.body.contains(">") {
-                // Body appears to be HTML, use WebView
-                contentToShow = email.body
-                shouldUseWebView = true
-            } else if email.body.contains("http") && email.body.contains("[") {
-                // Body contains links in bracket format, might need HTML rendering
-                contentToShow = convertLinksToHTML(email.body)
-                shouldUseWebView = true
-            } else {
-                // Use plain text
-                contentToShow = email.body
+            // Check user preference first - if they want plain text, always use plain text
+            if !settingsManager.useRichEmailRendering {
+                // User prefers plain text - strip HTML and use plain text view
+                if let htmlBody = email.htmlBody, !htmlBody.isEmpty {
+                    contentToShow = stripHTML(htmlBody)
+                } else {
+                    contentToShow = stripHTML(email.body)
+                }
                 shouldUseWebView = false
+            } else {
+                // User wants rich rendering - determine what content to show and how to show it
+                if let htmlBody = email.htmlBody, !htmlBody.isEmpty, htmlBody.contains("<") {
+                    // We have HTML content, use WebView
+                    contentToShow = htmlBody
+                    shouldUseWebView = true
+                } else if email.body.contains("<") && email.body.contains(">") {
+                    // Body appears to be HTML, use WebView
+                    contentToShow = email.body
+                    shouldUseWebView = true
+                } else if email.body.contains("http") && email.body.contains("[") {
+                    // Body contains links in bracket format, might need HTML rendering
+                    contentToShow = convertLinksToHTML(email.body)
+                    shouldUseWebView = true
+                } else {
+                    // Use plain text
+                    contentToShow = email.body
+                    shouldUseWebView = false
+                }
             }
             
             isLoading = false
         }
+    }
+    
+    private func stripHTML(_ html: String) -> String {
+        // Basic HTML stripping - convert common HTML entities and remove tags
+        let withoutTags = html.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        let withoutEntities = withoutTags
+            .replacingOccurrences(of: "&nbsp;", with: " ")
+            .replacingOccurrences(of: "&amp;", with: "&")
+            .replacingOccurrences(of: "&lt;", with: "<")
+            .replacingOccurrences(of: "&gt;", with: ">")
+            .replacingOccurrences(of: "&quot;", with: "\"")
+            .replacingOccurrences(of: "&#39;", with: "'")
+        
+        // Clean up extra whitespace
+        let lines = withoutEntities.components(separatedBy: .newlines)
+        let cleanedLines = lines.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        
+        return cleanedLines.joined(separator: "\n\n")
     }
     
     private func convertLinksToHTML(_ text: String) -> String {
@@ -371,10 +408,19 @@ struct HTMLEmailView: UIViewRepresentable {
         }
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            webView.evaluateJavaScript("document.body.scrollHeight") { (height, error) in
-                if let height = height as? CGFloat {
-                    DispatchQueue.main.async {
-                        self.parent.height = height + 32
+            // Give the content a moment to load and render
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                webView.evaluateJavaScript("Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)") { (height, error) in
+                    if let height = height as? CGFloat {
+                        DispatchQueue.main.async {
+                            // Ensure minimum height and add padding
+                            self.parent.height = max(height + 64, 300)
+                        }
+                    } else {
+                        // Fallback if JavaScript fails
+                        DispatchQueue.main.async {
+                            self.parent.height = 400
+                        }
                     }
                 }
             }
@@ -514,5 +560,6 @@ struct AttachmentRowView: View {
             ),
             emailService: EmailService(accountManager: AccountManager())
         )
+        .environmentObject(SettingsManager())
     }
 }
