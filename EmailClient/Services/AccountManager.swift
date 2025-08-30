@@ -11,15 +11,66 @@ class AccountManager: ObservableObject {
     private let accountsKey = "gmail_accounts"
     
     init() {
+        print("👤 AccountManager init() - Loading accounts...")
         loadAccounts()
+        print("👤 Loaded \(accounts.count) accounts: \(accounts.map(\.email))")
         checkExistingSignIn()
     }
     
     func checkExistingSignIn() {
+        print("👤 checkExistingSignIn() - Checking for existing Google sign-in...")
+        
+        // First check if there's already a current user
         if let user = GIDSignIn.sharedInstance.currentUser {
+            print("👤 Found existing signed-in user: \(user.profile?.email ?? "unknown")")
             DispatchQueue.main.async {
                 if !self.signedInUsers.contains(where: { $0.profile?.email == user.profile?.email }) {
+                    print("👤 Adding user to signedInUsers array")
                     self.signedInUsers.append(user)
+                } else {
+                    print("👤 User already in signedInUsers array")
+                }
+            }
+            return
+        }
+        
+        print("👤 No current user found, attempting to restore previous sign-in...")
+        
+        // Try to restore previous sign-in for accounts we have stored
+        for account in accounts {
+            print("👤 Attempting to restore sign-in for \(account.email)")
+            Task {
+                do {
+                    if let restoredUser = try await attemptRestoreSignIn(for: account) {
+                        await MainActor.run {
+                            print("✅ Successfully restored sign-in for \(account.email)")
+                            if !self.signedInUsers.contains(where: { $0.profile?.email == restoredUser.profile?.email }) {
+                                self.signedInUsers.append(restoredUser)
+                            }
+                        }
+                    }
+                } catch {
+                    print("❌ Failed to restore sign-in for \(account.email): \(error)")
+                }
+            }
+        }
+    }
+    
+    private func attemptRestoreSignIn(for account: GmailAccount) async throws -> GIDGoogleUser? {
+        print("👤 attemptRestoreSignIn() for \(account.email)")
+        
+        // Try to restore the previous sign-in using Google Sign-In SDK
+        return try await withCheckedThrowingContinuation { continuation in
+            GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                if let error = error {
+                    print("❌ Failed to restore previous sign-in: \(error)")
+                    continuation.resume(throwing: error)
+                } else if let user = user, user.profile?.email == account.email {
+                    print("✅ Restored previous sign-in for \(account.email)")
+                    continuation.resume(returning: user)
+                } else {
+                    print("❌ No matching user found for \(account.email)")
+                    continuation.resume(returning: nil)
                 }
             }
         }
@@ -42,7 +93,13 @@ class AccountManager: ObservableObject {
             throw AccountError.noPresentingViewController
         }
         
-        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController, hint: nil, additionalScopes: ["https://www.googleapis.com/auth/gmail.readonly"])
+        print("👤 Starting Google Sign-In with Gmail readonly scope...")
+        let result = try await GIDSignIn.sharedInstance.signIn(
+            withPresenting: presentingViewController, 
+            hint: nil, 
+            additionalScopes: ["https://www.googleapis.com/auth/gmail.readonly"]
+        )
+        print("✅ Google Sign-In completed successfully")
         
         await MainActor.run {
             let user = result.user
@@ -266,10 +323,18 @@ class AccountManager: ObservableObject {
     }
     
     private func loadAccounts() {
-        guard let data = userDefaults.data(forKey: accountsKey),
-              let accounts = try? JSONDecoder().decode([GmailAccount].self, from: data) else {
+        print("👤 loadAccounts() - Checking UserDefaults for key: \(accountsKey)")
+        guard let data = userDefaults.data(forKey: accountsKey) else {
+            print("👤 No account data found in UserDefaults")
             return
         }
+        
+        guard let accounts = try? JSONDecoder().decode([GmailAccount].self, from: data) else {
+            print("👤 Failed to decode account data")
+            return
+        }
+        
+        print("👤 Successfully loaded \(accounts.count) accounts from UserDefaults")
         self.accounts = accounts
     }
     

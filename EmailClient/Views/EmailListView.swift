@@ -9,7 +9,7 @@ struct EmailListView: View {
     @State private var hasInitialized = false
     
     init() {
-        // We'll update this in onAppear to use the environment's accountManager
+        // Initialize with a temporary AccountManager - will be updated in onAppear
         self._emailService = StateObject(wrappedValue: EmailService(accountManager: AccountManager()))
     }
     
@@ -98,24 +98,40 @@ struct EmailListView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else if emailService.filteredEmails.isEmpty {
                     VStack(spacing: 16) {
-                        Image(systemName: "tray")
+                        Image(systemName: accountManager.accounts.isEmpty ? "person.badge.plus" : "tray")
                             .font(.system(size: 50))
-                            .foregroundColor(.gray)
+                            .foregroundColor(accountManager.accounts.isEmpty ? .blue : .gray)
                         
-                        Text("No Emails")
+                        Text(accountManager.accounts.isEmpty ? "No Accounts Connected" : "No Emails")
                             .font(.title2)
                             .fontWeight(.semibold)
                         
-                        Text("Pull to refresh or check your filter settings")
+                        Text(accountManager.accounts.isEmpty ? 
+                             "Connect your Gmail account to see your emails" : 
+                             "Pull to refresh or check your filter settings")
                             .font(.body)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
+                        
+                        if accountManager.accounts.isEmpty {
+                            Button("Add Gmail Account") {
+                                showingSettings = true
+                            }
+                            .buttonStyle(.borderedProminent)
+                        } else {
+                            Button("Refresh") {
+                                Task {
+                                    await emailService.refreshEmails()
+                                }
+                            }
+                            .buttonStyle(.bordered)
+                        }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     List {
                         ForEach(emailService.filteredEmails) { email in
-                            NavigationLink(destination: EmailDetailView(email: email, emailService: emailService)) {
+                            NavigationLink(destination: EmailDetailView(email: email, emailService: emailService).environmentObject(settingsManager)) {
                                 EmailRowView(email: email, emailService: emailService)
                             }
                         }
@@ -166,15 +182,21 @@ struct EmailListView: View {
                 hasInitialized = true
                 
                 // Update the emailService to use the environment's accountManager
+                print("📧 EmailListView onAppear - Updating accountManager")
                 emailService.updateAccountManager(accountManager)
                 
                 Task {
-                    print("EmailListView onAppear - Loading emails for \(accountManager.accounts.count) accounts")
+                    print("📧 EmailListView - Loading emails for \(accountManager.accounts.count) accounts")
                     if accountManager.accounts.isEmpty {
-                        print("No accounts found - user should be redirected to setup")
+                        print("❌ No accounts found - user should see account setup")
+                        await MainActor.run {
+                            emailService.errorMessage = "No Gmail accounts connected. Please add an account to continue."
+                        }
                     } else {
-                        print("Found accounts: \(accountManager.accounts.map(\.email))")
+                        print("✅ Found accounts: \(accountManager.accounts.map(\.email))")
+                        print("📧 Starting email refresh...")
                         await emailService.refreshEmails()
+                        print("📧 Email refresh completed")
                     }
                 }
             }
