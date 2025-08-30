@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="PersistedAccount" representedClassName="PersistedAccount" syncable="YES" codeGenerationType="category">
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="displayName" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="NO" attributeType="String"/>
+        <attribute name="emailCount" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="lastSyncDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="emails" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersistedEmail" inverseName="account" inverseEntity="PersistedEmail"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="email"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="PersistedEmail" representedClassName="PersistedEmail" syncable="YES" codeGenerationType="category">
+        <attribute name="accountEmail" optional="NO" attributeType="String"/>
+        <attribute name="body" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="htmlBody" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="isHTMLContent" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="isRead" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="isStarred" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="labelsData" optional="YES" attributeType="Binary"/>
+        <attribute name="recipientsData" optional="YES" attributeType="Binary"/>
+        <attribute name="senderEmail" optional="NO" attributeType="String"/>
+        <attribute name="senderName" optional="YES" attributeType="String"/>
+        <attribute name="subject" optional="NO" attributeType="String"/>
+        <attribute name="threadId" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="account" optional="NO" maxCount="1" deletionRule="Nullify" destinationEntity="PersistedAccount" inverseName="emails" inverseEntity="PersistedAccount"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersistedEmailAttachment" inverseName="email" inverseEntity="PersistedEmailAttachment"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="PersistedEmailAttachment" representedClassName="PersistedEmailAttachment" syncable="YES" codeGenerationType="category">
+        <attribute name="attachmentId" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="downloadURL" optional="YES" attributeType="String"/>
+        <attribute name="filename" optional="NO" attributeType="String"/>
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="isDownloaded" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="localPath" optional="YES" attributeType="String"/>
+        <attribute name="mimeType" optional="NO" attributeType="String"/>
+        <attribute name="size" optional="NO" attributeType="Integer 64" defaultValue="0" usesScalarValueType="YES"/>
+        <relationship name="email" optional="NO" maxCount="1" deletionRule="Nullify" destinationEntity="PersistedEmail" inverseName="attachments" inverseEntity="PersistedEmail"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+</model>

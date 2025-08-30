@@ -31,6 +31,12 @@ struct ContentView: View {
                 EmailListView()
                     .environmentObject(accountManager)
                     .environmentObject(settingsManager)
+                    .onAppear {
+                        print("📱 ContentView: EmailListView appearing with \(accountManager.accounts.count) accounts")
+                        for account in accountManager.accounts {
+                            print("📱 Account available: \(account.email)")
+                        }
+                    }
             }
         }
         .sheet(isPresented: $showingAccountSetup) {
