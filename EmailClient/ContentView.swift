@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var accountManager = AccountManager()
+    @StateObject private var settingsManager = SettingsManager()
     @State private var showingAccountSetup = false
     
     var body: some View {
@@ -29,6 +30,7 @@ struct ContentView: View {
             } else {
                 EmailListView()
                     .environmentObject(accountManager)
+                    .environmentObject(settingsManager)
             }
         }
         .sheet(isPresented: $showingAccountSetup) {
