@@ -19,6 +19,8 @@
 		038 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039 /* Email.swift */; };
 		040 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 041 /* GoogleService-Info.plist */; };
 		044 /* GmailAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045 /* GmailAPIService.swift */; };
+		046 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047 /* SettingsManager.swift */; };
+		048 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049 /* SettingsView.swift */; };
 		A43077C62E6237E3001B94D9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C52E6237E3001B94D9 /* GoogleSignIn */; };
 		A43077C82E6237E3001B94D9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C72E6237E3001B94D9 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
@@ -37,6 +39,8 @@
 		039 /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		041 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		045 /* GmailAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmailAPIService.swift; sourceTree = "<group>"; };
+		047 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		049 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A43077C92E623FFF001B94D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +95,7 @@
 				014 /* EmailListView.swift */,
 				016 /* EmailDetailView.swift */,
 				018 /* FilterView.swift */,
+				049 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 				010 /* EmailService.swift */,
 				012 /* AccountManager.swift */,
 				045 /* GmailAPIService.swift */,
+				047 /* SettingsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -204,6 +210,8 @@
 				017 /* FilterView.swift in Sources */,
 				038 /* Email.swift in Sources */,
 				044 /* GmailAPIService.swift in Sources */,
+				046 /* SettingsManager.swift in Sources */,
+				048 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

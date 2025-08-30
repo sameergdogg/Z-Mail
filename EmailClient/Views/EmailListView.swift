@@ -2,9 +2,10 @@ import SwiftUI
 
 struct EmailListView: View {
     @EnvironmentObject var accountManager: AccountManager
+    @EnvironmentObject var settingsManager: SettingsManager
     @StateObject private var emailService: EmailService
     @State private var showingFilters = false
-    @State private var showingReauth = false
+    @State private var showingSettings = false
     @State private var hasInitialized = false
     
     init() {
@@ -45,26 +46,6 @@ struct EmailListView: View {
         // After successful re-authentication, try to refresh emails
         print("Re-authentication completed, refreshing emails...")
         await emailService.refreshEmails()
-    }
-    
-    private func signOutAccount(_ account: GmailAccount) {
-        accountManager.signOut(account: account)
-        
-        // Clear any existing emails and errors
-        emailService.emails.removeAll()
-        emailService.filteredEmails.removeAll()
-        emailService.errorMessage = nil
-        emailService.authenticationErrors.removeValue(forKey: account.email)
-    }
-    
-    private func signOutAllAccounts() {
-        accountManager.signOutAllAccounts()
-        
-        // Clear all email data
-        emailService.emails.removeAll()
-        emailService.filteredEmails.removeAll()
-        emailService.errorMessage = nil
-        emailService.authenticationErrors.removeAll()
     }
     
     var body: some View {
@@ -163,29 +144,21 @@ struct EmailListView: View {
                             Image(systemName: "arrow.clockwise")
                         }
                         
-                        Menu {
-                            Section {
-                                ForEach(accountManager.accounts, id: \.id) { account in
-                                    Button("Sign out \(account.email)") {
-                                        signOutAccount(account)
-                                    }
-                                }
-                            }
-                            
-                            if accountManager.accounts.count > 1 {
-                                Divider()
-                                Button("Sign out all accounts", role: .destructive) {
-                                    signOutAllAccounts()
-                                }
-                            }
-                        } label: {
-                            Image(systemName: "person.circle")
+                        Button(action: {
+                            showingSettings = true
+                        }) {
+                            Image(systemName: "gearshape")
                         }
                     }
                 }
             }
             .sheet(isPresented: $showingFilters) {
                 FilterView(emailService: emailService, accountManager: accountManager)
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+                    .environmentObject(accountManager)
+                    .environmentObject(settingsManager)
             }
         }
         .onAppear {
@@ -299,4 +272,5 @@ struct EmailRowView: View {
 #Preview {
     EmailListView()
         .environmentObject(AccountManager())
+        .environmentObject(SettingsManager())
 }
