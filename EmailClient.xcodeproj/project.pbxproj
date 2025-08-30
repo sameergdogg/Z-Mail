@@ -21,6 +21,8 @@
 		044 /* GmailAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045 /* GmailAPIService.swift */; };
 		A43077C62E6237E3001B94D9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C52E6237E3001B94D9 /* GoogleSignIn */; };
 		A43077C82E6237E3001B94D9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C72E6237E3001B94D9 /* GoogleSignInSwift */; };
+		A4B070D32E63491D00E09916 /* EmailContentRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070D22E63491D00E09916 /* EmailContentRenderer.swift */; };
+		A4B070D52E63493D00E09916 /* EmailMediaViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070D42E63493D00E09916 /* EmailMediaViewer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		041 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		045 /* GmailAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmailAPIService.swift; sourceTree = "<group>"; };
 		A43077C92E623FFF001B94D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A4B070D22E63491D00E09916 /* EmailContentRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailContentRenderer.swift; sourceTree = "<group>"; };
+		A4B070D42E63493D00E09916 /* EmailMediaViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailMediaViewer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +92,11 @@
 		024 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A4B070D22E63491D00E09916 /* EmailContentRenderer.swift */,
 				014 /* EmailListView.swift */,
 				016 /* EmailDetailView.swift */,
 				018 /* FilterView.swift */,
+				A4B070D42E63493D00E09916 /* EmailMediaViewer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,11 +204,13 @@
 				003 /* ContentView.swift in Sources */,
 				001 /* EmailClientApp.swift in Sources */,
 				009 /* EmailService.swift in Sources */,
+				A4B070D32E63491D00E09916 /* EmailContentRenderer.swift in Sources */,
 				011 /* AccountManager.swift in Sources */,
 				013 /* EmailListView.swift in Sources */,
 				015 /* EmailDetailView.swift in Sources */,
 				017 /* FilterView.swift in Sources */,
 				038 /* Email.swift in Sources */,
+				A4B070D52E63493D00E09916 /* EmailMediaViewer.swift in Sources */,
 				044 /* GmailAPIService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
