@@ -197,18 +197,22 @@ struct ClassificationSettingsView: View {
     private func colorForCategory(_ category: EmailCategory) -> Color {
         switch category.color {
         case "orange": return .orange
+        case "brown": return .brown
         case "green": return .green
         case "blue": return .blue
         case "purple": return .purple
         case "red": return .red
+        case "yellow": return .yellow
         default: return .gray
         }
     }
     
     private func descriptionForCategory(_ category: EmailCategory) -> String {
         switch category {
-        case .shop:
-            return "Shopping, purchases, receipts, deliveries"
+        case .promotions:
+            return "Marketing emails, deals, newsletters, advertisements"
+        case .orderHistory:
+            return "Purchase receipts, shipping updates, order confirmations"
         case .finance:
             return "Banking, bills, payments, investments"
         case .personal:
@@ -217,6 +221,8 @@ struct ClassificationSettingsView: View {
             return "Work emails, meetings, projects"
         case .appointments:
             return "Scheduling, reminders, calendar invites"
+        case .signInAlerts:
+            return "Security alerts, login notifications, account access"
         case .other:
             return "Everything else"
         }
