@@ -72,6 +72,35 @@ struct SettingsView: View {
                     }
                 }
                 
+                Section("AI Features") {
+                    NavigationLink(destination: ClassificationSettingsView()) {
+                        HStack {
+                            Image(systemName: "brain")
+                                .foregroundColor(.purple)
+                                .font(.title2)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Email Classification")
+                                    .font(.body)
+                                Text("AI-powered email categorization")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Spacer()
+                            
+                            if SecureConfigurationManager.shared.hasOpenAIAPIKey() {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.green)
+                            } else {
+                                Image(systemName: "exclamationmark.circle")
+                                    .foregroundColor(.orange)
+                            }
+                        }
+                        .padding(.vertical, 2)
+                    }
+                }
+                
                 Section("App Information") {
                     HStack {
                         Text("Version")

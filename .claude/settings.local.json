@@ -3,7 +3,9 @@
     "allow": [
       "WebFetch(domain:developers.google.com)",
       "WebFetch(domain:console.cloud.google.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(find:*)",
+      "Bash(xcodebuild:*)"
     ],
     "deny": [],
     "ask": []
