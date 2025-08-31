@@ -62,6 +62,33 @@ public protocol EmailServiceProtocol: ObservableObject {
     /// This follows the service layer pattern for proper dependency management
     /// - Parameter newAccountManager: The new account manager
     func updateAccountManager(_ newAccountManager: AccountManagerProtocol)
+    
+    /// Gets unique senders from all emails in the persistence store
+    /// - Returns: Array of unique email senders sorted by sender name
+    func getUniqueSenders() -> [EmailSender]
+    
+    /// Gets emails from a specific sender
+    /// - Parameter sender: The sender to filter by
+    /// - Returns: Array of emails from the specified sender
+    func getEmailsFromSender(_ sender: EmailSender) -> [Email]
+}
+
+/// Email sender model for grouping emails by sender
+public struct EmailSender: Identifiable, Hashable {
+    public let id = UUID()
+    public let email: String
+    public let name: String?
+    public let emailCount: Int
+    
+    public var displayName: String {
+        return name ?? email
+    }
+    
+    public init(email: String, name: String? = nil, emailCount: Int = 0) {
+        self.email = email
+        self.name = name
+        self.emailCount = emailCount
+    }
 }
 
 /// Current sync progress state

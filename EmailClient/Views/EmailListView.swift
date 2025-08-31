@@ -7,6 +7,7 @@ struct EmailListView: View {
     @State private var showingFilters = false
     @State private var showingSettings = false
     @State private var hasInitialized = false
+    @State private var selectedTopFilter: TopLevelFilter = .inbox
     
     init() {
         // Initialize with a temporary AccountManager - will be updated in onAppear
@@ -49,8 +50,84 @@ struct EmailListView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
+        NavigationStack {
+            VStack(spacing: 0) {
+                // iPhone 16 optimized header
+                VStack(spacing: 0) {
+                    // Header with proper Dynamic Island spacing
+                    HStack(alignment: .center) {
+                        Button(action: { showingSettings = true }) {
+                            Image(systemName: "gearshape")
+                                .font(.system(size: 22, weight: .medium))
+                                .foregroundColor(.accentColor)
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Spacer()
+                        
+                        Text(navigationTitle)
+                            .font(.system(size: 34, weight: .bold, design: .default))
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        Button(action: { showingFilters = true }) {
+                            Image(systemName: "line.3.horizontal.decrease.circle")
+                                .font(.system(size: 22, weight: .medium))
+                                .foregroundColor(.accentColor)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 12)
+                    .padding(.bottom, 16)
+                    .background(Color(UIColor.systemBackground))
+                    
+                    // Filter pills optimized for iPhone 16
+                    EmailFilterScrollView(
+                        selectedFilter: $selectedTopFilter,
+                        emailService: emailService
+                    )
+                }
+                .background(Color(UIColor.systemBackground))
+                .shadow(color: .black.opacity(0.05), radius: 1, x: 0, y: 1)
+                
+                // Content area with proper iPhone 16 spacing
+                Group {
+                    if selectedTopFilter == .senders {
+                        SenderListView(emailService: emailService)
+                    } else {
+                        inboxContentView
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .navigationBarHidden(true)
+            .background(Color(.systemGroupedBackground))
+            .sheet(isPresented: $showingFilters) {
+                FilterView(emailService: emailService, accountManager: accountManager)
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
+            .onAppear {
+                setupEmailService()
+            }
+        }
+    }
+    
+    private var navigationTitle: String {
+        switch selectedTopFilter {
+        case .inbox:
+            return "Inbox"
+        case .senders:
+            return "Senders"
+        }
+    }
+    
+    @ViewBuilder
+    private var inboxContentView: some View {
+        VStack {
                 if emailService.isLoading {
                     ProgressView("Loading emails...")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -141,63 +218,28 @@ struct EmailListView: View {
                     }
                 }
             }
-            .navigationTitle("Inbox")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        showingFilters = true
-                    }) {
-                        Image(systemName: "line.3.horizontal.decrease.circle")
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack {
-                        Button(action: {
-                            Task {
-                                await emailService.refreshEmails()
-                            }
-                        }) {
-                            Image(systemName: "arrow.clockwise")
-                        }
-                        
-                        Button(action: {
-                            showingSettings = true
-                        }) {
-                            Image(systemName: "gearshape")
-                        }
-                    }
-                }
-            }
-            .sheet(isPresented: $showingFilters) {
-                FilterView(emailService: emailService, accountManager: accountManager)
-            }
-            .sheet(isPresented: $showingSettings) {
-                SettingsView()
-                    .environmentObject(accountManager)
-                    .environmentObject(settingsManager)
-            }
         }
-        .onAppear {
-            if !hasInitialized {
-                hasInitialized = true
-                
-                // Update the emailService to use the environment's accountManager
-                print("📧 EmailListView onAppear - Updating accountManager")
-                emailService.updateAccountManager(accountManager)
-                
-                Task {
-                    print("📧 EmailListView - Loading emails for \(accountManager.accounts.count) accounts")
-                    if accountManager.accounts.isEmpty {
-                        print("❌ No accounts found - user should see account setup")
-                        await MainActor.run {
-                            emailService.errorMessage = "No Gmail accounts connected. Please add an account to continue."
-                        }
-                    } else {
-                        print("✅ Found accounts: \(accountManager.accounts.map(\.email))")
-                        print("📧 Loading emails from persistence on startup...")
-                        await emailService.loadEmailsOnLaunch()
-                        print("📧 Email load from persistence completed")
+    
+    private func setupEmailService() {
+        if !hasInitialized {
+            hasInitialized = true
+            
+            // Update the emailService to use the environment's accountManager
+            print("📧 EmailListView onAppear - Updating accountManager")
+            emailService.updateAccountManager(accountManager)
+            
+            Task {
+                print("📧 EmailListView - Loading emails for \(accountManager.accounts.count) accounts")
+                if accountManager.accounts.isEmpty {
+                    print("❌ No accounts found - user should see account setup")
+                    await MainActor.run {
+                        emailService.errorMessage = "No Gmail accounts connected. Please add an account to continue."
                     }
+                } else {
+                    print("✅ Found accounts: \(accountManager.accounts.map(\.email))")
+                    print("📧 Loading emails from persistence on startup...")
+                    await emailService.loadEmailsOnLaunch()
+                    print("📧 Email load from persistence completed")
                 }
             }
         }
