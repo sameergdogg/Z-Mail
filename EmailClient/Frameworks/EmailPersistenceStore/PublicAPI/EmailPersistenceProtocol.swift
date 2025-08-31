@@ -126,17 +126,27 @@ public struct PersistenceConfiguration {
     /// Enable encryption for sensitive data (default: true)
     public let enableEncryption: Bool
     
+    /// Use in-memory storage only (for testing, default: false)
+    public let isInMemoryOnly: Bool
+    
+    /// Enable CloudKit sync (default: false)
+    public let enableCloudKit: Bool
+    
     public init(
         maxEmailsPerAccount: Int = 1000,
         emailRetentionPeriod: TimeInterval = 30 * 24 * 60 * 60, // 30 days
         enableAutoCleanup: Bool = true,
         batchSize: Int = 50,
-        enableEncryption: Bool = true
+        enableEncryption: Bool = true,
+        isInMemoryOnly: Bool = false,
+        enableCloudKit: Bool = false
     ) {
         self.maxEmailsPerAccount = maxEmailsPerAccount
         self.emailRetentionPeriod = emailRetentionPeriod
         self.enableAutoCleanup = enableAutoCleanup
         self.batchSize = batchSize
         self.enableEncryption = enableEncryption
+        self.isInMemoryOnly = isInMemoryOnly
+        self.enableCloudKit = enableCloudKit
     }
 }

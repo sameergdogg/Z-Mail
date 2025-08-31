@@ -31,6 +31,9 @@
 		074 /* PersistenceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075 /* PersistenceModels.swift */; };
 		076 /* EmailPersistenceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077 /* EmailPersistenceFactory.swift */; };
 		078 /* EmailPersistenceStoreImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079 /* EmailPersistenceStoreImpl.swift */; };
+		080 /* SwiftDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081 /* SwiftDataModels.swift */; };
+		086 /* SwiftDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087 /* SwiftDataContainer.swift */; };
+		088 /* SwiftDataEmailPersistenceStoreImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089 /* SwiftDataEmailPersistenceStoreImpl.swift */; };
 		A43077C62E6237E3001B94D9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C52E6237E3001B94D9 /* GoogleSignIn */; };
 		A43077C82E6237E3001B94D9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C72E6237E3001B94D9 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
@@ -61,6 +64,9 @@
 		075 /* PersistenceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceModels.swift; sourceTree = "<group>"; };
 		077 /* EmailPersistenceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPersistenceFactory.swift; sourceTree = "<group>"; };
 		079 /* EmailPersistenceStoreImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPersistenceStoreImpl.swift; sourceTree = "<group>"; };
+		081 /* SwiftDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataModels.swift; sourceTree = "<group>"; };
+		087 /* SwiftDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContainer.swift; sourceTree = "<group>"; };
+		089 /* SwiftDataEmailPersistenceStoreImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataEmailPersistenceStoreImpl.swift; sourceTree = "<group>"; };
 		A43077C92E623FFF001B94D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -225,6 +231,9 @@
 			isa = PBXGroup;
 			children = (
 				079 /* EmailPersistenceStoreImpl.swift */,
+				081 /* SwiftDataModels.swift */,
+				087 /* SwiftDataContainer.swift */,
+				089 /* SwiftDataEmailPersistenceStoreImpl.swift */,
 			);
 			path = Impl;
 			sourceTree = "<group>";
@@ -324,6 +333,9 @@
 				074 /* PersistenceModels.swift in Sources */,
 				076 /* EmailPersistenceFactory.swift in Sources */,
 				078 /* EmailPersistenceStoreImpl.swift in Sources */,
+				080 /* SwiftDataModels.swift in Sources */,
+				086 /* SwiftDataContainer.swift in Sources */,
+				088 /* SwiftDataEmailPersistenceStoreImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
