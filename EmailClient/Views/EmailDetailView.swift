@@ -3,7 +3,7 @@ import WebKit
 
 struct EmailDetailView: View {
     let email: Email
-    let emailService: EmailService
+    let emailService: EmailServiceProtocol
     @EnvironmentObject var settingsManager: SettingsManager
     
     var body: some View {
@@ -42,7 +42,9 @@ struct EmailDetailView: View {
                         
                         VStack {
                             Button(action: {
-                                emailService.toggleStar(email)
+                                Task {
+                                    await emailService.toggleStar(email)
+                                }
                             }) {
                                 Image(systemName: email.isStarred ? "star.fill" : "star")
                                     .foregroundColor(email.isStarred ? .yellow : .gray)
@@ -88,7 +90,9 @@ struct EmailDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             if !email.isRead {
-                emailService.markAsRead(email)
+                Task {
+                    await emailService.markAsRead(email)
+                }
             }
         }
         .toolbar {
@@ -558,7 +562,7 @@ struct AttachmentRowView: View {
                 ],
                 isHTMLContent: true
             ),
-            emailService: EmailService(accountManager: AccountManagerAPI.shared)
+            emailService: EmailServiceAPI.create(with: AccountManagerAPI.shared)
         )
         .environmentObject(SettingsManager())
     }

@@ -11,7 +11,6 @@
 		003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004 /* ContentView.swift */; };
 		005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 006 /* Assets.xcassets */; };
 		007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008 /* Preview Assets.xcassets */; };
-		009 /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010 /* EmailService.swift */; };
 		013 /* EmailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014 /* EmailListView.swift */; };
 		015 /* EmailDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016 /* EmailDetailView.swift */; };
 		017 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018 /* FilterView.swift */; };
@@ -40,6 +39,10 @@
 		A4B070E12E63FF3C00E09916 /* AccountManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070D62E63FF3C00E09916 /* AccountManagerImpl.swift */; };
 		A4B070E22E63FF3C00E09916 /* AccountManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070DA2E63FF3C00E09916 /* AccountManagerProtocol.swift */; };
 		A4B070E32E63FF3C00E09916 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070DD2E63FF3C00E09916 /* AccountManager.swift */; };
+		A4B070EC2E64091100E09916 /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070EA2E64091100E09916 /* EmailService.swift */; };
+		A4B070ED2E64091100E09916 /* EmailServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070E42E64091100E09916 /* EmailServiceImpl.swift */; };
+		A4B070EE2E64091100E09916 /* EmailServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070E82E64091100E09916 /* EmailServiceProtocol.swift */; };
+		A4B070EF2E64091100E09916 /* EmailServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070E62E64091100E09916 /* EmailServiceFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +50,6 @@
 		004 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		008 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		010 /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
 		014 /* EmailListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailListView.swift; sourceTree = "<group>"; };
 		016 /* EmailDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailDetailView.swift; sourceTree = "<group>"; };
 		018 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -76,6 +78,10 @@
 		A4B070DA2E63FF3C00E09916 /* AccountManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManagerProtocol.swift; sourceTree = "<group>"; };
 		A4B070DB2E63FF3C00E09916 /* AccountModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModels.swift; sourceTree = "<group>"; };
 		A4B070DD2E63FF3C00E09916 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		A4B070E42E64091100E09916 /* EmailServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailServiceImpl.swift; sourceTree = "<group>"; };
+		A4B070E62E64091100E09916 /* EmailServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailServiceFactory.swift; sourceTree = "<group>"; };
+		A4B070E82E64091100E09916 /* EmailServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailServiceProtocol.swift; sourceTree = "<group>"; };
+		A4B070EA2E64091100E09916 /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +144,6 @@
 		025 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				010 /* EmailService.swift */,
 				047 /* SettingsManager.swift */,
 			);
 			path = Services;
@@ -163,6 +168,7 @@
 		062 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4B070EB2E64091100E09916 /* EmailService */,
 				A4B070DE2E63FF3C00E09916 /* AccountManager */,
 				063 /* GmailAPIService */,
 				082 /* EmailPersistenceStore */,
@@ -282,6 +288,41 @@
 			path = AccountManager;
 			sourceTree = "<group>";
 		};
+		A4B070E52E64091100E09916 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				A4B070E42E64091100E09916 /* EmailServiceImpl.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		A4B070E72E64091100E09916 /* ImplWiring */ = {
+			isa = PBXGroup;
+			children = (
+				A4B070E62E64091100E09916 /* EmailServiceFactory.swift */,
+			);
+			path = ImplWiring;
+			sourceTree = "<group>";
+		};
+		A4B070E92E64091100E09916 /* PublicAPI */ = {
+			isa = PBXGroup;
+			children = (
+				A4B070E82E64091100E09916 /* EmailServiceProtocol.swift */,
+			);
+			path = PublicAPI;
+			sourceTree = "<group>";
+		};
+		A4B070EB2E64091100E09916 /* EmailService */ = {
+			isa = PBXGroup;
+			children = (
+				A4B070E52E64091100E09916 /* Impl */,
+				A4B070E72E64091100E09916 /* ImplWiring */,
+				A4B070E92E64091100E09916 /* PublicAPI */,
+				A4B070EA2E64091100E09916 /* EmailService.swift */,
+			);
+			path = EmailService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -358,7 +399,6 @@
 			files = (
 				003 /* ContentView.swift in Sources */,
 				001 /* EmailClientApp.swift in Sources */,
-				009 /* EmailService.swift in Sources */,
 				A4B070DF2E63FF3C00E09916 /* AccountManagerFactory.swift in Sources */,
 				A4B070E02E63FF3C00E09916 /* AccountModels.swift in Sources */,
 				A4B070E12E63FF3C00E09916 /* AccountManagerImpl.swift in Sources */,
@@ -384,6 +424,10 @@
 				080 /* SwiftDataModels.swift in Sources */,
 				086 /* SwiftDataContainer.swift in Sources */,
 				088 /* SwiftDataEmailPersistenceStoreImpl.swift in Sources */,
+				A4B070EC2E64091100E09916 /* EmailService.swift in Sources */,
+				A4B070ED2E64091100E09916 /* EmailServiceImpl.swift in Sources */,
+				A4B070EE2E64091100E09916 /* EmailServiceProtocol.swift in Sources */,
+				A4B070EF2E64091100E09916 /* EmailServiceFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

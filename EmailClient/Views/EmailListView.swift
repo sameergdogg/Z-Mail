@@ -3,14 +3,14 @@ import SwiftUI
 struct EmailListView: View {
     @EnvironmentObject var accountManager: AccountManagerImpl
     @EnvironmentObject var settingsManager: SettingsManager
-    @StateObject private var emailService: EmailService
+    @StateObject private var emailService: EmailServiceImpl
     @State private var showingFilters = false
     @State private var showingSettings = false
     @State private var hasInitialized = false
     
     init() {
         // Initialize with a temporary AccountManager - will be updated in onAppear
-        self._emailService = StateObject(wrappedValue: EmailService(accountManager: AccountManagerAPI.shared))
+        self._emailService = StateObject(wrappedValue: EmailServiceAPI.create(with: AccountManagerAPI.shared) as! EmailServiceImpl)
     }
     
     private var hasAuthenticationErrors: Bool {
@@ -206,7 +206,7 @@ struct EmailListView: View {
 
 struct EmailRowView: View {
     let email: Email
-    let emailService: EmailService
+    let emailService: EmailServiceProtocol
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -273,7 +273,9 @@ struct EmailRowView: View {
         .padding(.vertical, 2)
         .swipeActions(edge: .trailing) {
             Button(action: {
-                emailService.toggleStar(email)
+                Task {
+                    await emailService.toggleStar(email)
+                }
             }) {
                 Image(systemName: email.isStarred ? "star.slash" : "star")
             }
@@ -281,7 +283,9 @@ struct EmailRowView: View {
             
             Button(action: {
                 if !email.isRead {
-                    emailService.markAsRead(email)
+                    Task {
+                        await emailService.markAsRead(email)
+                    }
                 }
             }) {
                 Image(systemName: email.isRead ? "envelope.badge" : "envelope.open")
