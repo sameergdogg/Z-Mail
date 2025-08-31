@@ -226,7 +226,6 @@ class AccountManager: ObservableObject {
         return !signedInUsers.contains { $0.profile?.email == account.email }
     }
     
-    @MainActor
     func reauthenticateAccount(_ account: GmailAccount) async throws {
         print("Starting re-authentication for account: \(account.email)")
         
@@ -241,7 +240,9 @@ class AccountManager: ObservableObject {
         }
         
         // Remove the failed user from signed in users
-        signedInUsers.removeAll { $0.profile?.email == account.email }
+        await MainActor.run {
+            signedInUsers.removeAll { $0.profile?.email == account.email }
+        }
         
         do {
             // Attempt to sign in the specific account
@@ -265,17 +266,19 @@ class AccountManager: ObservableObject {
             }
             
             // Update the account with new tokens
-            if let index = accounts.firstIndex(where: { $0.email == account.email }) {
-                var updatedAccount = accounts[index]
-                updatedAccount.accessToken = user.accessToken.tokenString
-                updatedAccount.refreshToken = user.refreshToken.tokenString
-                accounts[index] = updatedAccount
-                saveAccounts()
-            }
-            
-            // Add the user to signed in users
-            if !signedInUsers.contains(where: { $0.profile?.email == account.email }) {
-                signedInUsers.append(user)
+            await MainActor.run {
+                if let index = accounts.firstIndex(where: { $0.email == account.email }) {
+                    var updatedAccount = accounts[index]
+                    updatedAccount.accessToken = user.accessToken.tokenString
+                    updatedAccount.refreshToken = user.refreshToken.tokenString
+                    accounts[index] = updatedAccount
+                    saveAccounts()
+                }
+                
+                // Add the user to signed in users
+                if !signedInUsers.contains(where: { $0.profile?.email == account.email }) {
+                    signedInUsers.append(user)
+                }
             }
             
             print("Successfully re-authenticated account: \(account.email)")
@@ -321,6 +324,7 @@ class AccountManager: ObservableObject {
     func getUserForAccount(_ account: GmailAccount) -> GIDGoogleUser? {
         return signedInUsers.first { $0.profile?.email == account.email }
     }
+    
     
     private func loadAccounts() {
         print("👤 loadAccounts() - Checking UserDefaults for key: \(accountsKey)")

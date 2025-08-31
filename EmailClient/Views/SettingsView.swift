@@ -6,6 +6,9 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingSignOutAlert = false
     @State private var accountToSignOut: GmailAccount?
+    @State private var isReauthenticating = false
+    @State private var reauthenticationError: String?
+    @State private var showingReauthAlert = false
     
     var body: some View {
         NavigationView {
@@ -48,6 +51,9 @@ struct SettingsView: View {
                             onSignOut: {
                                 accountToSignOut = account
                                 showingSignOutAlert = true
+                            },
+                            onReauthenticate: {
+                                reauthenticateAccount(account)
                             }
                         )
                     }
@@ -115,6 +121,21 @@ struct SettingsView: View {
                     Text("Are you sure you want to sign out of all accounts?")
                 }
             }
+            .alert(
+                reauthenticationError == nil ? "Reauthentication Successful" : "Reauthentication Failed",
+                isPresented: $showingReauthAlert
+            ) {
+                Button("OK") {
+                    reauthenticationError = nil
+                }
+            } message: {
+                if let error = reauthenticationError {
+                    Text("Failed to reauthenticate: \(error)")
+                } else {
+                    Text("Account has been successfully reauthenticated with Google.")
+                }
+            }
+            .disabled(isReauthenticating || accountManager.isLoading)
         }
     }
     
@@ -125,11 +146,39 @@ struct SettingsView: View {
     private func signOutAllAccounts() {
         accountManager.signOutAllAccounts()
     }
+    
+    private func reauthenticateAccount(_ account: GmailAccount) {
+        Task {
+            await MainActor.run {
+                isReauthenticating = true
+                reauthenticationError = nil
+            }
+            
+            do {
+                try await accountManager.reauthenticateAccount(account)
+                
+                await MainActor.run {
+                    isReauthenticating = false
+                    reauthenticationError = nil
+                    showingReauthAlert = true
+                }
+                
+            } catch {
+                await MainActor.run {
+                    isReauthenticating = false
+                    reauthenticationError = error.localizedDescription
+                    showingReauthAlert = true
+                }
+            }
+        }
+    }
 }
 
 struct AccountRowView: View {
     let account: GmailAccount
     let onSignOut: () -> Void
+    let onReauthenticate: () -> Void
+    @EnvironmentObject var accountManager: AccountManager
     
     var body: some View {
         HStack {
@@ -145,11 +194,30 @@ struct AccountRowView: View {
             
             Spacer()
             
-            Button("Sign Out") {
-                onSignOut()
+            VStack(spacing: 4) {
+                Button(action: onReauthenticate) {
+                    if accountManager.isLoading {
+                        HStack(spacing: 4) {
+                            ProgressView()
+                                .scaleEffect(0.8)
+                            Text("Authenticating...")
+                        }
+                    } else {
+                        Text("Reauthenticate")
+                    }
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                .disabled(accountManager.isLoading)
+                
+                Button("Sign Out") {
+                    onSignOut()
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                .tint(.red)
+                .disabled(accountManager.isLoading)
             }
-            .buttonStyle(.bordered)
-            .controlSize(.small)
         }
         .padding(.vertical, 4)
     }

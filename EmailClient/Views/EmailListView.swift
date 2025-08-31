@@ -194,9 +194,9 @@ struct EmailListView: View {
                         }
                     } else {
                         print("✅ Found accounts: \(accountManager.accounts.map(\.email))")
-                        print("📧 Starting email refresh...")
-                        await emailService.refreshEmails()
-                        print("📧 Email refresh completed")
+                        print("📧 Loading emails from persistence on startup...")
+                        await emailService.loadEmailsOnLaunch()
+                        print("📧 Email load from persistence completed")
                     }
                 }
             }
