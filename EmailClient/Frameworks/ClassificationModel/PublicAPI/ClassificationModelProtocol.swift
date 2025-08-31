@@ -35,17 +35,21 @@ public protocol ClassificationModelProtocol {
 
 /// Email classification categories
 public enum EmailCategory: String, CaseIterable, Codable {
-    case shop = "shop"
-    case finance = "finance" 
+    case promotions = "promotions"
+    case orderHistory = "order_history"
+    case finance = "finance"
     case personal = "personal"
     case work = "work"
     case appointments = "appointments"
+    case signInAlerts = "sign_in_alerts"
     case other = "other"
     
     public var displayName: String {
         switch self {
-        case .shop:
-            return "Shopping"
+        case .promotions:
+            return "Promotions"
+        case .orderHistory:
+            return "Order History"
         case .finance:
             return "Finance"
         case .personal:
@@ -54,6 +58,8 @@ public enum EmailCategory: String, CaseIterable, Codable {
             return "Work"
         case .appointments:
             return "Appointments"
+        case .signInAlerts:
+            return "Sign In Alerts"
         case .other:
             return "Other"
         }
@@ -61,8 +67,10 @@ public enum EmailCategory: String, CaseIterable, Codable {
     
     public var iconName: String {
         switch self {
-        case .shop:
-            return "bag"
+        case .promotions:
+            return "megaphone"
+        case .orderHistory:
+            return "shippingbox"
         case .finance:
             return "dollarsign.circle"
         case .personal:
@@ -71,6 +79,8 @@ public enum EmailCategory: String, CaseIterable, Codable {
             return "briefcase"
         case .appointments:
             return "calendar"
+        case .signInAlerts:
+            return "shield.checkered"
         case .other:
             return "folder"
         }
@@ -78,8 +88,10 @@ public enum EmailCategory: String, CaseIterable, Codable {
     
     public var color: String {
         switch self {
-        case .shop:
+        case .promotions:
             return "orange"
+        case .orderHistory:
+            return "brown"
         case .finance:
             return "green"
         case .personal:
@@ -88,6 +100,8 @@ public enum EmailCategory: String, CaseIterable, Codable {
             return "purple"
         case .appointments:
             return "red"
+        case .signInAlerts:
+            return "yellow"
         case .other:
             return "gray"
         }

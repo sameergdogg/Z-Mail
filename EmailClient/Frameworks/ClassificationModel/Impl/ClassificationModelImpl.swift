@@ -233,16 +233,18 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
         You are a precise email classifier. Analyze the email and classify it into one of these categories:
         
         Categories:
-        - shop: Shopping, purchases, receipts, deliveries, product notifications
-        - finance: Banking, investments, bills, payments, financial statements
+        - promotions: Marketing emails, deals, newsletters, advertisements, promotional content
+        - order_history: Purchase receipts, shipping updates, order confirmations, delivery notifications
+        - finance: Banking, investments, bills, payments, financial statements, credit cards
         - personal: Personal communication, family, friends, social messages
         - work: Work-related emails, meetings, projects, professional communication
-        - appointments: Scheduling, reminders, calendar invites, bookings
+        - appointments: Scheduling, reminders, calendar invites, bookings, events
+        - sign_in_alerts: Security alerts, login notifications, suspicious activity, account access warnings
         - other: Everything else that doesn't fit the above categories
         
         Respond with valid JSON in this exact format:
         {
-            "category": "shop|finance|personal|work|appointments|other",
+            "category": "promotions|order_history|finance|personal|work|appointments|sign_in_alerts|other",
             "confidence": 0.95,
             "rationale": "Brief explanation"
         }
