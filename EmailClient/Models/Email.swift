@@ -86,19 +86,3 @@ public struct EmailAttachment: Identifiable, Codable {
     }
 }
 
-public struct GmailAccount: Identifiable, Codable {
-    public let id = UUID()
-    public let email: String
-    public let displayName: String?
-    public var accessToken: String?
-    public var refreshToken: String?
-    public let dateAdded: Date
-    
-    public init(email: String, displayName: String? = nil, accessToken: String? = nil, refreshToken: String? = nil) {
-        self.email = email
-        self.displayName = displayName
-        self.accessToken = accessToken
-        self.refreshToken = refreshToken
-        self.dateAdded = Date()
-    }
-}

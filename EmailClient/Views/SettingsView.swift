@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var accountManager: AccountManager
+    @EnvironmentObject var accountManager: AccountManagerImpl
     @EnvironmentObject var settingsManager: SettingsManager
     @Environment(\.dismiss) private var dismiss
     @State private var showingSignOutAlert = false
@@ -178,7 +178,7 @@ struct AccountRowView: View {
     let account: GmailAccount
     let onSignOut: () -> Void
     let onReauthenticate: () -> Void
-    @EnvironmentObject var accountManager: AccountManager
+    @EnvironmentObject var accountManager: AccountManagerImpl
     
     var body: some View {
         HStack {
@@ -254,6 +254,6 @@ struct RenderingPreviewView: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(AccountManager())
+        .environmentObject(AccountManagerAPI.shared as! AccountManagerImpl)
         .environmentObject(SettingsManager())
 }

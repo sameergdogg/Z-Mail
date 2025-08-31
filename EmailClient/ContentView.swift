@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var accountManager = AccountManager()
+    @StateObject private var accountManager: AccountManagerImpl = {
+        AccountManagerAPI.shared as! AccountManagerImpl
+    }()
     @StateObject private var settingsManager = SettingsManager()
     @State private var showingAccountSetup = false
     
@@ -47,7 +49,7 @@ struct ContentView: View {
 }
 
 struct AccountSetupView: View {
-    @EnvironmentObject var accountManager: AccountManager
+    @EnvironmentObject var accountManager: AccountManagerImpl
     @Environment(\.dismiss) private var dismiss
     @State private var showError = false
     @State private var errorMessage = ""

@@ -558,7 +558,7 @@ struct AttachmentRowView: View {
                 ],
                 isHTMLContent: true
             ),
-            emailService: EmailService(accountManager: AccountManager())
+            emailService: EmailService(accountManager: AccountManagerAPI.shared)
         )
         .environmentObject(SettingsManager())
     }
