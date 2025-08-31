@@ -16,7 +16,15 @@ public class EmailPersistenceFactory {
     public func createEmailPersistenceStore(
         dependencies: EmailPersistenceDependencies = EmailPersistenceDependencies()
     ) -> EmailPersistenceProtocol {
-        return EmailPersistenceStoreImpl(dependencies: dependencies)
+        do {
+            print("🏭 Creating SwiftData EmailPersistenceStore...")
+            return try SwiftDataEmailPersistenceStoreImpl(dependencies: dependencies)
+        } catch {
+            print("❌ Failed to create SwiftData store: \(error)")
+            print("🔄 Falling back to in-memory implementation...")
+            // Fallback to in-memory implementation if SwiftData fails
+            return EmailPersistenceStoreImpl(dependencies: dependencies)
+        }
     }
 }
 
