@@ -11,13 +11,13 @@ class EmailService: ObservableObject {
     @Published var sortOrder: SortOrder = .dateDescending
     @Published var errorMessage: String?
     
-    private var accountManager: AccountManager
+    private var accountManager: AccountManagerProtocol
     private let gmailAPIService: GmailAPIServiceProtocol
     private let persistenceStore: EmailPersistenceProtocol
     private var cancellables = Set<AnyCancellable>()
     
     init(
-        accountManager: AccountManager,
+        accountManager: AccountManagerProtocol,
         gmailAPIService: GmailAPIServiceProtocol = GmailAPI.shared,
         persistenceStore: EmailPersistenceProtocol = EmailPersistenceAPI.shared
     ) {
@@ -28,7 +28,7 @@ class EmailService: ObservableObject {
         setupPersistenceSubscription()
     }
     
-    func updateAccountManager(_ newAccountManager: AccountManager) {
+    func updateAccountManager(_ newAccountManager: AccountManagerProtocol) {
         self.accountManager = newAccountManager
     }
     

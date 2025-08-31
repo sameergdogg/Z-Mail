@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FilterView: View {
     let emailService: EmailService
-    let accountManager: AccountManager
+    let accountManager: AccountManagerProtocol
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -138,7 +138,7 @@ struct SortOptionView: View {
 
 #Preview {
     FilterView(
-        emailService: EmailService(accountManager: AccountManager()),
-        accountManager: AccountManager()
+        emailService: EmailService(accountManager: AccountManagerAPI.shared),
+        accountManager: AccountManagerAPI.shared
     )
 }
