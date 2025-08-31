@@ -32,8 +32,36 @@ class EmailService: ObservableObject {
         self.accountManager = newAccountManager
     }
     
+    /// Load emails on app launch - only reads from persistence store, no server calls
+    func loadEmailsOnLaunch() async {
+        print("🚀 EmailService.loadEmailsOnLaunch() started - persistence only")
+        
+        await MainActor.run {
+            self.isLoading = true
+            self.errorMessage = nil
+        }
+        
+        defer {
+            Task { @MainActor in
+                self.isLoading = false
+                print("🚀 EmailService.loadEmailsOnLaunch() completed")
+            }
+        }
+        
+        print("🚀 Accounts count: \(accountManager.accounts.count)")
+        for account in accountManager.accounts {
+            print("🚀 Account: \(account.email)")
+        }
+        
+        await loadEmailsFromPersistence()
+        applyCurrentFilter()
+        
+        print("🚀 Final email count: \(emails.count), filtered: \(filteredEmails.count)")
+    }
+    
+    /// Refresh emails from server - used for pull-to-refresh
     func refreshEmails() async {
-        print("🔄 EmailService.refreshEmails() started")
+        print("🔄 EmailService.refreshEmails() started - server sync")
         
         await MainActor.run {
             self.isLoading = true
@@ -52,7 +80,7 @@ class EmailService: ObservableObject {
             print("🔄 Account: \(account.email)")
         }
         
-        await intelligentSync()
+        await forceSyncFromServer()
         await loadEmailsFromPersistence()
         applyCurrentFilter()
         
@@ -315,6 +343,36 @@ class EmailService: ObservableObject {
         case .accountDataCleared(let accountEmail):
             emails.removeAll { $0.accountEmail == accountEmail }
             applyCurrentFilter()
+        }
+    }
+    
+    /// Force sync from server - always fetches from Gmail API regardless of cache state
+    private func forceSyncFromServer() async {
+        print("🌐 forceSyncFromServer() started - bypassing cache")
+        
+        if accountManager.accounts.isEmpty {
+            print("❌ No accounts available for sync")
+            await MainActor.run {
+                self.errorMessage = "No Gmail accounts connected. Please add an account to continue."
+            }
+            return
+        }
+        
+        for account in accountManager.accounts {
+            print("🌐 Force syncing from server for account: \(account.email)")
+            do {
+                // Always perform full sync from server
+                await performFullSync(for: account)
+                
+                // Update last sync date
+                try await persistenceStore.updateLastSyncDate(Date(), for: account.email)
+                
+            } catch {
+                await MainActor.run {
+                    self.errorMessage = "Force sync failed for \(account.email): \(error.localizedDescription)"
+                }
+                print("Force sync failed for \(account.email): \(error)")
+            }
         }
     }
     
