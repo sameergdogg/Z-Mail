@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Email: Identifiable, Codable {
+public struct Email: Identifiable, Codable, Equatable {
     public let id: String
     public let subject: String
     public let sender: EmailAddress
@@ -34,7 +34,7 @@ public struct Email: Identifiable, Codable {
     }
 }
 
-public struct EmailAddress: Codable {
+public struct EmailAddress: Codable, Equatable {
     public let name: String?
     public let email: String
     
@@ -43,7 +43,7 @@ public struct EmailAddress: Codable {
     }
 }
 
-public struct EmailAttachment: Identifiable, Codable {
+public struct EmailAttachment: Identifiable, Codable, Equatable {
     public let id: String
     public let filename: String
     public let mimeType: String

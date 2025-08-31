@@ -68,7 +68,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
         applyCurrentFilter()
         
         // Then perform intelligent sync based on cache state
-        await intelligentSync()
+        //await intelligentSync()
         await loadEmailsFromPersistence() // Reload after sync
         applyCurrentFilter()
         
@@ -189,6 +189,47 @@ internal class EmailServiceImpl: EmailServiceProtocol {
         // Trigger a refresh with the new account manager
         Task {
             await loadEmailsOnLaunch()
+        }
+    }
+    
+    /// Gets unique senders from all emails in the persistence store
+    /// - Returns: Array of unique email senders sorted by sender name
+    public func getUniqueSenders() -> [EmailSender] {
+        let senderGroups = Dictionary(grouping: emails) { email in
+            email.sender.email
+        }
+        
+        let uniqueSenders = senderGroups.map { (senderEmail, emails) in
+            let firstEmail = emails.first!
+            return EmailSender(
+                email: senderEmail,
+                name: firstEmail.sender.name,
+                emailCount: emails.count
+            )
+        }
+        
+        return uniqueSenders.sorted { sender1, sender2 in
+            sender1.displayName.localizedCaseInsensitiveCompare(sender2.displayName) == .orderedAscending
+        }
+    }
+    
+    /// Gets emails from a specific sender
+    /// - Parameter sender: The sender to filter by
+    /// - Returns: Array of emails from the specified sender
+    public func getEmailsFromSender(_ sender: EmailSender) -> [Email] {
+        return emails.filter { email in
+            email.sender.email == sender.email
+        }.sorted { email1, email2 in
+            switch sortOrder {
+            case .dateAscending:
+                return email1.date < email2.date
+            case .dateDescending:
+                return email1.date > email2.date
+            case .senderAscending:
+                return email1.sender.displayName < email2.sender.displayName
+            case .senderDescending:
+                return email1.sender.displayName > email2.sender.displayName
+            }
         }
     }
     

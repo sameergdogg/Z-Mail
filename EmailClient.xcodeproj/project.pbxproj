@@ -43,6 +43,8 @@
 		A4B070ED2E64091100E09916 /* EmailServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070E42E64091100E09916 /* EmailServiceImpl.swift */; };
 		A4B070EE2E64091100E09916 /* EmailServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070E82E64091100E09916 /* EmailServiceProtocol.swift */; };
 		A4B070EF2E64091100E09916 /* EmailServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070E62E64091100E09916 /* EmailServiceFactory.swift */; };
+		A4B070F22E640B6600E09916 /* SenderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070F12E640B6600E09916 /* SenderListView.swift */; };
+		A4B070F32E640B6600E09916 /* EmailFilterScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070F02E640B6600E09916 /* EmailFilterScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		A4B070E62E64091100E09916 /* EmailServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailServiceFactory.swift; sourceTree = "<group>"; };
 		A4B070E82E64091100E09916 /* EmailServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailServiceProtocol.swift; sourceTree = "<group>"; };
 		A4B070EA2E64091100E09916 /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
+		A4B070F02E640B6600E09916 /* EmailFilterScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFilterScrollView.swift; sourceTree = "<group>"; };
+		A4B070F12E640B6600E09916 /* SenderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 		024 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A4B070F02E640B6600E09916 /* EmailFilterScrollView.swift */,
+				A4B070F12E640B6600E09916 /* SenderListView.swift */,
 				014 /* EmailListView.swift */,
 				016 /* EmailDetailView.swift */,
 				018 /* FilterView.swift */,
@@ -418,6 +424,8 @@
 				060 /* GmailAPIServiceHelpers.swift in Sources */,
 				070 /* EmailPersistenceStore.swift in Sources */,
 				072 /* EmailPersistenceProtocol.swift in Sources */,
+				A4B070F22E640B6600E09916 /* SenderListView.swift in Sources */,
+				A4B070F32E640B6600E09916 /* EmailFilterScrollView.swift in Sources */,
 				074 /* PersistenceModels.swift in Sources */,
 				076 /* EmailPersistenceFactory.swift in Sources */,
 				078 /* EmailPersistenceStoreImpl.swift in Sources */,
