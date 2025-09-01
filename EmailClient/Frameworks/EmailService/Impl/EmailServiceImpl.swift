@@ -193,7 +193,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
     /// Gets unique senders from all emails in the persistence store
     /// - Returns: Array of unique email senders sorted by sender name
     public func getUniqueSenders() -> [EmailSender] {
-        let senderGroups = Dictionary(grouping: emails) { email in
+        let senderGroups = Dictionary(grouping: filteredEmails) { email in
             email.sender.email
         }
         
@@ -215,7 +215,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
     /// - Parameter sender: The sender to filter by
     /// - Returns: Array of emails from the specified sender
     public func getEmailsFromSender(_ sender: EmailSender) -> [Email] {
-        return emails.filter { email in
+        return filteredEmails.filter { email in
             email.sender.email == sender.email
         }.sorted { email1, email2 in
             switch sortOrder {
@@ -290,6 +290,10 @@ internal class EmailServiceImpl: EmailServiceProtocol {
                 self.filteredEmails = self.emails.filter { $0.accountEmail == email }
             case .label(let label):
                 self.filteredEmails = self.emails.filter { $0.labels.contains(label) }
+            case .classification(let category):
+                self.filteredEmails = self.emails.filter { email in
+                    email.isClassified && email.classificationCategory == category
+                }
             }
         }
     }

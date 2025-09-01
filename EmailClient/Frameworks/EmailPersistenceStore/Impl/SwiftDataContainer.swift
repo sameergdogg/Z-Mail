@@ -85,6 +85,10 @@ extension SwiftDataContainer {
                 // Label filtering would require more complex predicate with JSON data
                 // For now, we'll filter in memory after fetching
                 break
+            case .classification(_):
+                // Classification filtering requires complex logic with classification data
+                // For now, we'll filter in memory after fetching
+                break
             }
         }
         

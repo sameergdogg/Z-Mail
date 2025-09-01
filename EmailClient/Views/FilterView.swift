@@ -38,6 +38,16 @@ struct FilterView: View {
                     }
                 }
                 
+                Section("Filter by Category") {
+                    ForEach(availableClassifications(), id: \.rawValue) { category in
+                        FilterOptionView(
+                            title: category.displayName,
+                            isSelected: isSelected(.classification(category.rawValue)),
+                            action: { emailService.applyFilter(.classification(category.rawValue)) }
+                        )
+                    }
+                }
+                
                 Section("Sort Order") {
                     SortOptionView(
                         title: "Date (Newest First)",
@@ -76,6 +86,18 @@ struct FilterView: View {
         }
     }
     
+    private func availableClassifications() -> [EmailCategory] {
+        // Return categories that have emails
+        let allEmails = emailService.emails
+        let categoriesWithEmails = Set<EmailCategory>(allEmails.compactMap { email in
+            guard email.isClassified, let categoryString = email.classificationCategory else { return nil }
+            return EmailCategory(rawValue: categoryString)
+        })
+        
+        // Return sorted categories that have emails
+        return EmailCategory.allCases.filter { categoriesWithEmails.contains($0) }
+    }
+    
     private func isSelected(_ filter: EmailFilter) -> Bool {
         switch (emailService.currentFilter, filter) {
         case (.all, .all),
@@ -85,6 +107,8 @@ struct FilterView: View {
         case (.account(let current), .account(let new)):
             return current == new
         case (.label(let current), .label(let new)):
+            return current == new
+        case (.classification(let current), .classification(let new)):
             return current == new
         default:
             return false

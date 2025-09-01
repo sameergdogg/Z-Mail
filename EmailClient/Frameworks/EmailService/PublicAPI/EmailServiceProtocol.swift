@@ -136,12 +136,13 @@ public enum EmailServiceError: Error, LocalizedError {
 }
 
 /// Email filter options
-public enum EmailFilter {
+public enum EmailFilter: Equatable {
     case all
     case unread
     case starred
     case account(String)
     case label(String)
+    case classification(String)
 }
 
 /// Email sort order options
