@@ -52,6 +52,7 @@ enum TopLevelFilter: String, CaseIterable {
     case inbox = "inbox"
     case senders = "senders"
     case categories = "categories"
+    case summary = "summary"
     
     var displayName: String {
         switch self {
@@ -61,6 +62,8 @@ enum TopLevelFilter: String, CaseIterable {
             return "Senders"
         case .categories:
             return "Categories"
+        case .summary:
+            return "Summary"
         }
     }
 }

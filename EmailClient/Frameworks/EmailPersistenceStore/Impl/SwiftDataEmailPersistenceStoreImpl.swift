@@ -474,6 +474,7 @@ private extension SwiftDataEmailPersistenceStoreImpl {
     private func clearAllDataFromSwiftData() throws {
         let allEmails = try modelContext.fetch(FetchDescriptor<SwiftDataEmail>())
         let allAccounts = try modelContext.fetch(FetchDescriptor<SwiftDataAccount>())
+        let allDigests = try modelContext.fetch(FetchDescriptor<SwiftDataDigest>())
         
         for email in allEmails {
             modelContext.delete(email)
@@ -483,8 +484,47 @@ private extension SwiftDataEmailPersistenceStoreImpl {
             modelContext.delete(account)
         }
         
+        for digest in allDigests {
+            modelContext.delete(digest)
+        }
+        
         try saveSwiftDataContext()
         print("🗑️ Cleared all SwiftData")
+    }
+    
+    // MARK: - Digest Methods
+    
+    public func hasDigest(for date: Date) throws -> Bool {
+        return try swiftDataContainer.hasDigest(for: date)
+    }
+    
+    public func fetchDigest(for date: Date) throws -> DailyDigest? {
+        guard let swiftDataDigest = try swiftDataContainer.fetchDigest(for: date) else {
+            return nil
+        }
+        return swiftDataDigest.toDomainModel()
+    }
+    
+    public func saveDigest(_ digest: DailyDigest, for date: Date, emailCount: Int, accountEmails: [String]) async throws {
+        try swiftDataContainer.saveDigest(digest, for: date, emailCount: emailCount, accountEmails: accountEmails)
+        
+        // Emit change event if needed
+        await MainActor.run {
+            emailChangesSubject.send(.digestSaved(date: date))
+        }
+    }
+    
+    public func deleteDigest(for date: Date) async throws -> Bool {
+        let result = try swiftDataContainer.deleteDigest(for: date)
+        
+        if result {
+            // Emit change event if needed
+            await MainActor.run {
+                emailChangesSubject.send(.digestDeleted(date: date))
+            }
+        }
+        
+        return result
     }
 }
 

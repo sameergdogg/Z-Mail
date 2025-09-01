@@ -5,7 +5,13 @@
       "WebFetch(domain:console.cloud.google.com)",
       "WebSearch",
       "Bash(find:*)",
-      "Bash(xcodebuild:*)"
+      "Bash(xcodebuild:*)",
+      "Bash(open:*)",
+      "Bash(swiftc:*)",
+      "Bash(timeout 60 xcodebuild:*)",
+      "Bash(gtimeout:*)",
+      "Bash(grep:*)",
+      "Bash(chmod:*)"
     ],
     "deny": [],
     "ask": []

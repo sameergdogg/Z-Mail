@@ -59,6 +59,31 @@ public protocol EmailPersistenceProtocol {
     
     /// Publisher for real-time email changes
     var emailChanges: AnyPublisher<EmailChangeEvent, Never> { get }
+    
+    // MARK: - Digest Methods
+    
+    /// Checks if a digest exists for the specified date
+    /// - Parameter date: The date to check
+    /// - Returns: True if digest exists, false otherwise
+    func hasDigest(for date: Date) throws -> Bool
+    
+    /// Fetches a digest for a specific date
+    /// - Parameter date: The date to fetch the digest for
+    /// - Returns: The digest or nil if not found
+    func fetchDigest(for date: Date) throws -> DailyDigest?
+    
+    /// Saves a digest for the specified date
+    /// - Parameters:
+    ///   - digest: The digest to save
+    ///   - date: The date to associate with the digest
+    ///   - emailCount: Number of emails included in the digest
+    ///   - accountEmails: List of account emails included in the digest
+    func saveDigest(_ digest: DailyDigest, for date: Date, emailCount: Int, accountEmails: [String]) async throws
+    
+    /// Deletes a digest for the specified date
+    /// - Parameter date: The date to delete the digest for
+    /// - Returns: True if digest was deleted, false if not found
+    func deleteDigest(for date: Date) async throws -> Bool
 }
 
 /// Sync strategy for intelligent data loading
@@ -74,6 +99,8 @@ public enum EmailChangeEvent {
     case emailUpdated(Email)
     case emailDeleted(String)  // email ID
     case accountDataCleared(String)  // account email
+    case digestSaved(date: Date)  // digest saved
+    case digestDeleted(date: Date)  // digest deleted
 }
 
 /// Email persistence specific errors

@@ -115,6 +115,43 @@ public extension ClassificationModelProtocol {
         return results
     }
     
+    /// Converts EmailData to ClassifiedEmail with classification results
+    /// - Parameters:
+    ///   - emails: Array of EmailData to convert
+    ///   - results: Array of corresponding classification results
+    /// - Returns: Array of ClassifiedEmail objects
+    func convertToClassifiedEmails(
+        _ emails: [EmailData],
+        with results: [EmailClassificationResult]
+    ) -> [ClassifiedEmail] {
+        guard emails.count == results.count else {
+            print("⚠️ Mismatch between emails count (\(emails.count)) and results count (\(results.count))")
+            return []
+        }
+        
+        return zip(emails, results).map { email, result in
+            // Extract domain from sender email
+            let domain = email.from.components(separatedBy: "@").last ?? ""
+            
+            // Create a truncated body excerpt for the digest
+            let bodyExcerpt = String(email.body.prefix(200))
+            
+            return ClassifiedEmail(
+                id: email.id,
+                sender: email.from,
+                domain: domain,
+                subject: email.subject,
+                date: email.date,
+                category: result.category.rawValue,
+                confidence: result.confidence,
+                summary: result.summary,
+                bodyExcerpt: bodyExcerpt,
+                threadKey: nil,
+                entities: nil
+            )
+        }
+    }
+    
     /// Gets classification statistics for an array of results
     /// - Parameter results: Array of classification results
     /// - Returns: Dictionary with category counts and confidence statistics

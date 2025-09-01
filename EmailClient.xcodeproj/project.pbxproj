@@ -56,6 +56,7 @@
 		A4B071082E64A53000E09916 /* AppDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B071092E64A53000E09916 /* AppDataManager.swift */; };
 		A4B0710A2E64A54000E09916 /* ClassificationCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0710B2E64A54000E09916 /* ClassificationCategoriesView.swift */; };
 		A4B0710C2E64A54000E09916 /* CategoryEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0710D2E64A54000E09916 /* CategoryEmailsView.swift */; };
+		A4B0710D2E66046100E09916 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0710C2E66046100E09916 /* SummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,7 @@
 		A4B071072E64A53000E09916 /* LaunchClassificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchClassificationManager.swift; sourceTree = "<group>"; };
 		A4B071092E64A53000E09916 /* AppDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataManager.swift; sourceTree = "<group>"; };
 		A4B0710B2E64A54000E09916 /* ClassificationCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationCategoriesView.swift; sourceTree = "<group>"; };
+		A4B0710C2E66046100E09916 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		A4B0710D2E64A54000E09916 /* CategoryEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEmailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 		024 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A4B0710C2E66046100E09916 /* SummaryView.swift */,
 				A4B070F02E640B6600E09916 /* EmailFilterScrollView.swift */,
 				A4B070F12E640B6600E09916 /* SenderListView.swift */,
 				014 /* EmailListView.swift */,
@@ -485,6 +488,7 @@
 				052 /* GmailAPIServiceProtocol.swift in Sources */,
 				054 /* GmailDataModels.swift in Sources */,
 				056 /* GmailAPIServiceFactory.swift in Sources */,
+				A4B0710D2E66046100E09916 /* SummaryView.swift in Sources */,
 				A4B070FC2E64A51100E09916 /* ClassificationModelImpl.swift in Sources */,
 				A4B070FD2E64A51100E09916 /* ClassificationModel.swift in Sources */,
 				A4B070FE2E64A51100E09916 /* ClassificationModelFactory.swift in Sources */,

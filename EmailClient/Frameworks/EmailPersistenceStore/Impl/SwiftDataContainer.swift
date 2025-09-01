@@ -9,7 +9,8 @@ public class SwiftDataContainer {
     public init(configuration: PersistenceConfiguration) throws {
         let schema = Schema([
             SwiftDataEmail.self,
-            SwiftDataAccount.self
+            SwiftDataAccount.self,
+            SwiftDataDigest.self
         ])
         
         let modelConfiguration = ModelConfiguration(
@@ -208,7 +209,73 @@ extension SwiftDataContainer {
             modelContext.delete(account)
         }
         
+        // Delete all digests
+        let allDigests = try modelContext.fetch(FetchDescriptor<SwiftDataDigest>())
+        for digest in allDigests {
+            modelContext.delete(digest)
+        }
+        
         try save()
         print("🗑️ Cleared all persistent data")
+    }
+    
+    // MARK: - Digest Operations
+    
+    /// Fetch digest for a specific date
+    public func fetchDigest(for date: Date) throws -> SwiftDataDigest? {
+        let dateKey = SwiftDataDigest.createDateKey(for: date)
+        let predicate = #Predicate<SwiftDataDigest> { digest in
+            digest.dateKey == dateKey
+        }
+        let descriptor = FetchDescriptor<SwiftDataDigest>(predicate: predicate)
+        return try modelContext.fetch(descriptor).first
+    }
+    
+    /// Fetch digests for a date range
+    public func fetchDigests(from startDate: Date, to endDate: Date) throws -> [SwiftDataDigest] {
+        let predicate = #Predicate<SwiftDataDigest> { digest in
+            digest.digestDate >= startDate && digest.digestDate <= endDate
+        }
+        let descriptor = FetchDescriptor<SwiftDataDigest>(
+            predicate: predicate,
+            sortBy: [SortDescriptor(\.digestDate, order: .reverse)]
+        )
+        return try modelContext.fetch(descriptor)
+    }
+    
+    /// Save or update digest for a specific date
+    public func saveDigest(_ digest: DailyDigest, for date: Date, emailCount: Int, accountEmails: [String]) throws {
+        let dateKey = SwiftDataDigest.createDateKey(for: date)
+        
+        // Check if digest already exists for this date
+        if let existingDigest = try fetchDigest(for: date) {
+            // Update existing digest
+            try existingDigest.updateFromDomainModel(digest, emailCount: emailCount, accountEmails: accountEmails)
+            print("📊 Updated existing digest for \(dateKey)")
+        } else {
+            // Create new digest
+            let newDigest = try digest.toSwiftDataModel(for: date, emailCount: emailCount, accountEmails: accountEmails)
+            modelContext.insert(newDigest)
+            print("📊 Created new digest for \(dateKey)")
+        }
+        
+        try save()
+    }
+    
+    /// Delete digest for a specific date
+    public func deleteDigest(for date: Date) throws -> Bool {
+        if let existingDigest = try fetchDigest(for: date) {
+            let dateKey = SwiftDataDigest.createDateKey(for: date)
+            modelContext.delete(existingDigest)
+            try save()
+            print("🗑️ Deleted digest for \(dateKey)")
+            return true
+        }
+        return false
+    }
+    
+    /// Check if digest exists for a specific date
+    public func hasDigest(for date: Date) throws -> Bool {
+        return try fetchDigest(for: date) != nil
     }
 }

@@ -1,0 +1,468 @@
+{
+  "" : {
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient-master.dia",
+    "emit-module-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient-master-emit-module.dia",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient-master.swiftdeps"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/ContentView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/EmailClientApp.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClientApp.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClientApp.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClientApp.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClientApp.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClientApp.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClientApp.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClientApp.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClientApp~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/AccountManager.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManager.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManager.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManager.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManager.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManager.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManager.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManager.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManager~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/Impl/AccountManagerImpl.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerImpl.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerImpl.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerImpl.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerImpl.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerImpl.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerImpl.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerImpl.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerImpl~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerFactory.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerFactory.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerFactory.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerFactory.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerFactory.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerFactory.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerFactory.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerFactory~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/PublicAPI/AccountManagerProtocol.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerProtocol.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerProtocol.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerProtocol.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerProtocol.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerProtocol.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerProtocol.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerProtocol.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountManagerProtocol~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/PublicAPI/AccountModels.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountModels.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountModels.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountModels.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountModels.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountModels.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountModels.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountModels.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AccountModels~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ClassificationModel/ClassificationModel.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModel.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModel.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModel.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModel.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModel.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModel.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModel.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModel~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ClassificationModel/Impl/ClassificationModelImpl.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelImpl.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelImpl.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelImpl.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelImpl.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelImpl.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelImpl.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelImpl.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelImpl~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ClassificationModel/ImplWiring/ClassificationModelFactory.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelFactory.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelFactory.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelFactory.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelFactory.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelFactory.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelFactory.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelFactory.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelFactory~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ClassificationModel/PublicAPI/ClassificationModelProtocol.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelProtocol.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelProtocol.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelProtocol.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelProtocol.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelProtocol.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelProtocol.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelProtocol.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationModelProtocol~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/EmailPersistenceStore.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStore.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStore.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStore.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStore.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStore.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStore.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStore.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStore~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/EmailPersistenceStoreImpl.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStoreImpl.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStoreImpl.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStoreImpl.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStoreImpl.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStoreImpl.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStoreImpl.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStoreImpl.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceStoreImpl~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataContainer.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataContainer.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataContainer.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataContainer.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataContainer.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataContainer.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataContainer.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataContainer.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataContainer~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataEmailPersistenceStoreImpl.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataEmailPersistenceStoreImpl.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataEmailPersistenceStoreImpl.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataEmailPersistenceStoreImpl.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataEmailPersistenceStoreImpl.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataEmailPersistenceStoreImpl.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataEmailPersistenceStoreImpl.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataEmailPersistenceStoreImpl.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataEmailPersistenceStoreImpl~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataModels.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataModels.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataModels.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataModels.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataModels.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataModels.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataModels.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SwiftDataModels~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/ImplWiring/EmailPersistenceFactory.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceFactory.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceFactory.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceFactory.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceFactory.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceFactory.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceFactory.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceFactory.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceFactory~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/PublicAPI/EmailPersistenceProtocol.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceProtocol.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceProtocol.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceProtocol.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceProtocol.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceProtocol.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceProtocol.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceProtocol.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailPersistenceProtocol~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/PublicAPI/PersistenceModels.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/PersistenceModels.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/PersistenceModels.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/PersistenceModels.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/PersistenceModels.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/PersistenceModels.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/PersistenceModels.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/PersistenceModels.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/PersistenceModels~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailService.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailService.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailService.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailService.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailService.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailService.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailService.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailService~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/Impl/EmailServiceImpl.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceImpl.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceImpl.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceImpl.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceImpl.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceImpl.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceImpl.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceImpl.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceImpl~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceFactory.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceFactory.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceFactory.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceFactory.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceFactory.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceFactory.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceFactory.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceFactory~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/PublicAPI/EmailServiceProtocol.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceProtocol.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceProtocol.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceProtocol.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceProtocol.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceProtocol.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceProtocol.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceProtocol.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailServiceProtocol~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/GmailAPIService.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIService.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIService.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIService.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIService.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIService.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIService.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIService.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIService~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/Impl/GmailAPIServiceHelpers.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceHelpers.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceHelpers.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceHelpers.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceHelpers.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceHelpers.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceHelpers.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceHelpers.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceHelpers~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/Impl/GmailAPIServiceImpl.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceImpl.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceImpl.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceImpl.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceImpl.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceImpl.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceImpl.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceImpl.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceImpl~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/ImplWiring/GmailAPIServiceFactory.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceFactory.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceFactory.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceFactory.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceFactory.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceFactory.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceFactory.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceFactory.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceFactory~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/PublicAPI/GmailAPIServiceProtocol.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceProtocol.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceProtocol.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceProtocol.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceProtocol.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceProtocol.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceProtocol.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceProtocol.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailAPIServiceProtocol~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/PublicAPI/GmailDataModels.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailDataModels.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailDataModels.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailDataModels.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailDataModels.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailDataModels.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailDataModels.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailDataModels.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GmailDataModels~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Models/Email.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/Email.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/Email.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/Email.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/Email.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/Email.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/Email.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/Email.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/Email~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/AppDataManager.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AppDataManager.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AppDataManager.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AppDataManager.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AppDataManager.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AppDataManager.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AppDataManager.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AppDataManager.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/AppDataManager~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/EmailClassificationService.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClassificationService.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClassificationService.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClassificationService.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClassificationService.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClassificationService.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClassificationService.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClassificationService.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClassificationService~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/LaunchClassificationManager.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/LaunchClassificationManager.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/LaunchClassificationManager.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/LaunchClassificationManager.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/LaunchClassificationManager.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/LaunchClassificationManager.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/LaunchClassificationManager.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/LaunchClassificationManager.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/LaunchClassificationManager~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/SecureConfigurationManager.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SecureConfigurationManager.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SecureConfigurationManager.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SecureConfigurationManager.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SecureConfigurationManager.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SecureConfigurationManager.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SecureConfigurationManager.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SecureConfigurationManager.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SecureConfigurationManager~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/SettingsManager.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsManager.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsManager.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsManager.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsManager.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsManager.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsManager.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsManager.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsManager~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/CategoryEmailsView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationCategoriesView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationSettingsView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationSettingsView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationSettingsView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationSettingsView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationSettingsView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationSettingsView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationSettingsView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationSettingsView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationSettingsView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailDetailView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailDetailView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailDetailView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailDetailView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailDetailView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailDetailView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailDetailView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailDetailView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailDetailView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailFilterScrollView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailFilterScrollView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailFilterScrollView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailFilterScrollView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailFilterScrollView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailFilterScrollView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailFilterScrollView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailFilterScrollView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailFilterScrollView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailListView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailListView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailListView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailListView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailListView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailListView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailListView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailListView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailListView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/FilterView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/FilterView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/FilterView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/FilterView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/FilterView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/FilterView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/FilterView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/FilterView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/FilterView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SenderListView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SenderListView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SenderListView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SenderListView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SenderListView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SenderListView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SenderListView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SenderListView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SettingsView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SettingsView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SummaryView.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SummaryView.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SummaryView.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SummaryView.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SummaryView.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SummaryView.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SummaryView.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SummaryView.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/SummaryView~partial.swiftmodule"
+  },
+  "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/scammy/Documents/Projects/Z-Mail/build/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

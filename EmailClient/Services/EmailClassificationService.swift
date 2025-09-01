@@ -142,7 +142,8 @@ class EmailClassificationService: ObservableObject {
             await MainActor.run {
                 email.updateClassification(
                     category: result.category.rawValue,
-                    confidence: result.confidence
+                    confidence: result.confidence,
+                    summary: result.summary
                 )
                 
                 // Save the context

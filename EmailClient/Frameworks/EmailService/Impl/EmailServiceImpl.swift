@@ -395,6 +395,14 @@ internal class EmailServiceImpl: EmailServiceProtocol {
         case .accountDataCleared(let accountEmail):
             emails.removeAll { $0.accountEmail == accountEmail }
             applyCurrentFilter()
+            
+        case .digestSaved(let date):
+            print("📊 Digest saved for \(date)")
+            // No action needed for email list
+            
+        case .digestDeleted(let date):
+            print("🗑️ Digest deleted for \(date)")
+            // No action needed for email list
         }
     }
     
@@ -623,5 +631,38 @@ internal class EmailServiceImpl: EmailServiceProtocol {
         }
         
         return nil
+    }
+    
+    // MARK: - Digest Methods
+    
+    public func hasDigest(for date: Date) -> Bool {
+        do {
+            return try persistenceStore.hasDigest(for: date)
+        } catch {
+            print("❌ Failed to check if digest exists: \(error)")
+            return false
+        }
+    }
+    
+    public func loadDigest(for date: Date) -> DailyDigest? {
+        do {
+            return try persistenceStore.fetchDigest(for: date)
+        } catch {
+            print("❌ Failed to load digest: \(error)")
+            return nil
+        }
+    }
+    
+    public func saveDigest(_ digest: DailyDigest, for date: Date, emailCount: Int, accountEmails: [String]) async throws {
+        try await persistenceStore.saveDigest(digest, for: date, emailCount: emailCount, accountEmails: accountEmails)
+        print("✅ Saved digest for date: \(date)")
+    }
+    
+    public func deleteDigest(for date: Date) async throws -> Bool {
+        let result = try await persistenceStore.deleteDigest(for: date)
+        if result {
+            print("✅ Deleted digest for date: \(date)")
+        }
+        return result
     }
 }
