@@ -354,6 +354,8 @@ private extension SwiftDataEmailPersistenceStoreImpl {
                 }
             case .label(_):
                 break // Will filter in memory after fetching
+            case .classification(_):
+                break // Will filter in memory after fetching since classification requires complex logic
             }
         }
         
@@ -496,6 +498,7 @@ extension EmailFilter {
         case .starred: return "starred"
         case .account(let email): return "account(\(email))"
         case .label(let label): return "label(\(label))"
+        case .classification(let category): return "classification(\(category))"
         }
     }
 }

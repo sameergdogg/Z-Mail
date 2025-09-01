@@ -51,6 +51,8 @@ internal class EmailPersistenceStoreImpl: EmailPersistenceProtocol {
                             return email == accountEmail
                         case .label(let label):
                             return email.labels.contains(label)
+                        case .classification(let classification):
+                            return email.classificationCategory == classification
                         }
                     }
                 } else {
