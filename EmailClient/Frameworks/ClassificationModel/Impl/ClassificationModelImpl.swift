@@ -45,9 +45,9 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
             return cachedResult
         }
         
-        // Validate email size
-        if email.body.count > configuration.maxBodyLength * 2 {
-            throw ClassificationError.emailTooLarge
+        // Log if email is very large but don't fail - we'll truncate it intelligently
+        if email.body.count > configuration.maxBodyLength * 3 {
+            print("⚠️ Very large email detected (\(email.body.count) chars), will truncate for classification: \(email.subject)")
         }
         
         // Rate limiting
@@ -196,8 +196,8 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
     }
     
     private func createClassificationRequest(email: EmailData) throws -> OpenAIClassificationRequest {
-        // Truncate email body to max length
-        let truncatedBody = String(email.body.prefix(configuration.maxBodyLength))
+        // Intelligently truncate email body to max length
+        let truncatedBody = intelligentTruncate(email.body, maxLength: configuration.maxBodyLength)
         
         // Use simple JSON mode instead of structured schema for better compatibility
         let responseFormat = OpenAIClassificationRequest.ResponseFormat(
@@ -268,6 +268,27 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
             print("❌ Failed to parse classification response: \(content)")
             throw ClassificationError.invalidResponse
         }
+    }
+    
+    /// Intelligently truncates email body while preserving key content for classification
+    private func intelligentTruncate(_ body: String, maxLength: Int) -> String {
+        guard body.count > maxLength else { return body }
+        
+        // For very short limits, just take the beginning
+        guard maxLength > 500 else {
+            return String(body.prefix(maxLength))
+        }
+        
+        // For longer emails, take the beginning (which often contains key info)
+        // and a smaller sample from the middle/end
+        let beginningLength = Int(Double(maxLength) * 0.7) // 70% from beginning
+        let endLength = maxLength - beginningLength // 30% from end
+        
+        let beginning = String(body.prefix(beginningLength))
+        let ending = String(body.suffix(endLength))
+        
+        // Add a separator to indicate truncation
+        return beginning + "\n\n[... content truncated ...]\n\n" + ending
     }
 }
 

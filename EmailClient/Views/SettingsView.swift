@@ -3,12 +3,16 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var accountManager: AccountManagerImpl
     @EnvironmentObject var settingsManager: SettingsManager
+    @Environment(\.appDataManager) var appDataManager
     @Environment(\.dismiss) private var dismiss
     @State private var showingSignOutAlert = false
     @State private var accountToSignOut: GmailAccount?
     @State private var isReauthenticating = false
     @State private var reauthenticationError: String?
     @State private var showingReauthAlert = false
+    @State private var isRunningFullClassification = false
+    @State private var classificationResultMessage: String?
+    @State private var showingClassificationAlert = false
     
     var body: some View {
         NavigationView {
@@ -99,6 +103,38 @@ struct SettingsView: View {
                         }
                         .padding(.vertical, 2)
                     }
+                    
+                    if SecureConfigurationManager.shared.hasOpenAIAPIKey() && appDataManager.isInitialized {
+                        Button(action: {
+                            runFullClassification()
+                        }) {
+                            HStack {
+                                Image(systemName: isRunningFullClassification ? "arrow.clockwise" : "wand.and.stars")
+                                    .foregroundColor(.blue)
+                                    .font(.title2)
+                                    .rotationEffect(.degrees(isRunningFullClassification ? 360 : 0))
+                                    .animation(isRunningFullClassification ? .linear(duration: 1).repeatForever(autoreverses: false) : .default, value: isRunningFullClassification)
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Run Full Classification")
+                                        .font(.body)
+                                        .foregroundColor(.primary)
+                                    Text(isRunningFullClassification ? "Classifying all emails..." : "Re-classify all emails with AI")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+                                
+                                if isRunningFullClassification {
+                                    ProgressView()
+                                        .scaleEffect(0.8)
+                                }
+                            }
+                            .padding(.vertical, 2)
+                        }
+                        .disabled(isRunningFullClassification)
+                    }
                 }
                 
                 Section("App Information") {
@@ -164,6 +200,17 @@ struct SettingsView: View {
                     Text("Account has been successfully reauthenticated with Google.")
                 }
             }
+            .alert("Classification Complete", isPresented: $showingClassificationAlert) {
+                Button("OK") {
+                    classificationResultMessage = nil
+                }
+            } message: {
+                if let message = classificationResultMessage {
+                    Text(message)
+                } else {
+                    Text("Full email classification has been completed successfully.")
+                }
+            }
             .disabled(isReauthenticating || accountManager.isLoading)
         }
     }
@@ -198,6 +245,45 @@ struct SettingsView: View {
                     reauthenticationError = error.localizedDescription
                     showingReauthAlert = true
                 }
+            }
+        }
+    }
+    
+    private func runFullClassification() {
+        Task {
+            await MainActor.run {
+                isRunningFullClassification = true
+                classificationResultMessage = nil
+            }
+            
+            do {
+                print("🤖 Starting full email classification from Settings...")
+                await appDataManager.forceFullClassification()
+                
+                // Get classification statistics if available
+                if let stats = await appDataManager.getClassificationStatistics() {
+                    await MainActor.run {
+                        isRunningFullClassification = false
+                        classificationResultMessage = "Successfully classified \(stats.totalEmails) emails across \(stats.categoryCounts.count) categories."
+                        showingClassificationAlert = true
+                    }
+                    print("✅ Full classification completed - Total: \(stats.totalEmails) emails")
+                } else {
+                    await MainActor.run {
+                        isRunningFullClassification = false
+                        classificationResultMessage = "Full email classification completed successfully."
+                        showingClassificationAlert = true
+                    }
+                    print("✅ Full classification completed")
+                }
+                
+            } catch {
+                await MainActor.run {
+                    isRunningFullClassification = false
+                    classificationResultMessage = "Classification failed: \(error.localizedDescription)"
+                    showingClassificationAlert = true
+                }
+                print("❌ Full classification failed: \(error)")
             }
         }
     }
