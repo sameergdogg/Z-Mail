@@ -13,6 +13,8 @@ struct SettingsView: View {
     @State private var isRunningFullClassification = false
     @State private var classificationResultMessage: String?
     @State private var showingClassificationAlert = false
+    @State private var addAccountError: String?
+    @State private var showingAddAccountAlert = false
     
     var body: some View {
         NavigationView {
@@ -61,6 +63,24 @@ struct SettingsView: View {
                             }
                         )
                     }
+                    
+                    Button(action: {
+                        addNewAccount()
+                    }) {
+                        HStack {
+                            Image(systemName: "person.badge.plus")
+                                .foregroundColor(.blue)
+                            Text("Add Account")
+                                .foregroundColor(.blue)
+                            
+                            if accountManager.isLoading {
+                                Spacer()
+                                ProgressView()
+                                    .scaleEffect(0.8)
+                            }
+                        }
+                    }
+                    .disabled(accountManager.isLoading)
                     
                     if accountManager.accounts.count > 1 {
                         Button(action: {
@@ -211,6 +231,17 @@ struct SettingsView: View {
                     Text("Full email classification has been completed successfully.")
                 }
             }
+            .alert("Add Account Failed", isPresented: $showingAddAccountAlert) {
+                Button("OK") {
+                    addAccountError = nil
+                }
+            } message: {
+                if let error = addAccountError {
+                    Text("Failed to add account: \(error)")
+                } else {
+                    Text("An unknown error occurred while adding the account.")
+                }
+            }
             .disabled(isReauthenticating || accountManager.isLoading)
         }
     }
@@ -245,6 +276,23 @@ struct SettingsView: View {
                     reauthenticationError = error.localizedDescription
                     showingReauthAlert = true
                 }
+            }
+        }
+    }
+    
+    private func addNewAccount() {
+        Task {
+            do {
+                print("🔐 Adding new Google account from Settings...")
+                try await accountManager.signInWithGoogle()
+                print("✅ Successfully added new account")
+                
+            } catch {
+                await MainActor.run {
+                    addAccountError = error.localizedDescription
+                    showingAddAccountAlert = true
+                }
+                print("❌ Failed to add account: \(error)")
             }
         }
     }
