@@ -1,0 +1,4 @@
+module AppAuth {
+umbrella "/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth"
+export *
+}

@@ -1,0 +1,4 @@
+module AppCheckCore {
+umbrella header "/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public/AppCheckCore/AppCheckCore.h"
+export *
+}

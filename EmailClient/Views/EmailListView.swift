@@ -103,6 +103,8 @@ struct EmailListView: View {
                         ClassificationCategoriesView()
                             .environmentObject(accountManager)
                             .environmentObject(settingsManager)
+                    case .summary:
+                        SummaryView(emailService: emailService)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -129,6 +131,8 @@ struct EmailListView: View {
             return "Senders"
         case .categories:
             return "Categories"
+        case .summary:
+            return "Summary"
         }
     }
     

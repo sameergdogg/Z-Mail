@@ -19,10 +19,11 @@ public struct Email: Identifiable, Codable, Equatable {
     // Classification fields
     public let classificationCategory: String? // EmailCategory raw value
     public let classificationConfidence: Double?
+    public let classificationSummary: String?
     public let classificationDate: Date?
     public let isClassified: Bool
     
-    public init(id: String, subject: String, sender: EmailAddress, recipients: [EmailAddress], body: String, htmlBody: String? = nil, date: Date, isRead: Bool = false, isStarred: Bool = false, labels: [String] = [], accountEmail: String, threadId: String? = nil, attachments: [EmailAttachment] = [], isHTMLContent: Bool = false, classificationCategory: String? = nil, classificationConfidence: Double? = nil, classificationDate: Date? = nil, isClassified: Bool = false) {
+    public init(id: String, subject: String, sender: EmailAddress, recipients: [EmailAddress], body: String, htmlBody: String? = nil, date: Date, isRead: Bool = false, isStarred: Bool = false, labels: [String] = [], accountEmail: String, threadId: String? = nil, attachments: [EmailAttachment] = [], isHTMLContent: Bool = false, classificationCategory: String? = nil, classificationConfidence: Double? = nil, classificationSummary: String? = nil, classificationDate: Date? = nil, isClassified: Bool = false) {
         self.id = id
         self.subject = subject
         self.sender = sender
@@ -39,6 +40,7 @@ public struct Email: Identifiable, Codable, Equatable {
         self.isHTMLContent = isHTMLContent
         self.classificationCategory = classificationCategory
         self.classificationConfidence = classificationConfidence
+        self.classificationSummary = classificationSummary
         self.classificationDate = classificationDate
         self.isClassified = isClassified
     }

@@ -71,6 +71,31 @@ public protocol EmailServiceProtocol: ObservableObject {
     /// - Parameter sender: The sender to filter by
     /// - Returns: Array of emails from the specified sender
     func getEmailsFromSender(_ sender: EmailSender) -> [Email]
+    
+    // MARK: - Digest Methods
+    
+    /// Checks if a digest exists for the specified date
+    /// - Parameter date: The date to check
+    /// - Returns: True if digest exists, false otherwise
+    func hasDigest(for date: Date) -> Bool
+    
+    /// Loads a persisted digest for the specified date
+    /// - Parameter date: The date to load the digest for
+    /// - Returns: The persisted digest or nil if not found
+    func loadDigest(for date: Date) -> DailyDigest?
+    
+    /// Saves a digest for the specified date
+    /// - Parameters:
+    ///   - digest: The digest to save
+    ///   - date: The date to associate with the digest
+    ///   - emailCount: Number of emails included in the digest
+    ///   - accountEmails: List of account emails included in the digest
+    func saveDigest(_ digest: DailyDigest, for date: Date, emailCount: Int, accountEmails: [String]) async throws
+    
+    /// Deletes a persisted digest for the specified date
+    /// - Parameter date: The date to delete the digest for
+    /// - Returns: True if digest was deleted, false if not found
+    func deleteDigest(for date: Date) async throws -> Bool
 }
 
 /// Email sender model for grouping emails by sender

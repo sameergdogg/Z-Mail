@@ -220,9 +220,70 @@ internal class EmailPersistenceStoreImpl: EmailPersistenceProtocol {
             queue.async(flags: .barrier) {
                 self.emails.removeAll()
                 self.lastSyncDates.removeAll()
+                self.digests.removeAll()
                 continuation.resume()
             }
         }
+    }
+    
+    // MARK: - Digest Methods
+    
+    // In-memory storage for digests
+    private var digests: [String: DailyDigest] = [:] // dateKey -> DailyDigest
+    
+    public func hasDigest(for date: Date) throws -> Bool {
+        let dateKey = createDateKey(for: date)
+        return queue.sync {
+            return digests[dateKey] != nil
+        }
+    }
+    
+    public func fetchDigest(for date: Date) throws -> DailyDigest? {
+        let dateKey = createDateKey(for: date)
+        return queue.sync {
+            return digests[dateKey]
+        }
+    }
+    
+    public func saveDigest(_ digest: DailyDigest, for date: Date, emailCount: Int, accountEmails: [String]) async throws {
+        let dateKey = createDateKey(for: date)
+        await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+            queue.async(flags: .barrier) {
+                self.digests[dateKey] = digest
+                continuation.resume()
+            }
+        }
+        
+        // Emit change event
+        await MainActor.run {
+            emailChangesSubject.send(.digestSaved(date: date))
+        }
+    }
+    
+    public func deleteDigest(for date: Date) async throws -> Bool {
+        let dateKey = createDateKey(for: date)
+        let hadDigest = await withCheckedContinuation { (continuation: CheckedContinuation<Bool, Never>) in
+            queue.async(flags: .barrier) {
+                let hadDigest = self.digests[dateKey] != nil
+                self.digests.removeValue(forKey: dateKey)
+                continuation.resume(returning: hadDigest)
+            }
+        }
+        
+        if hadDigest {
+            // Emit change event
+            await MainActor.run {
+                emailChangesSubject.send(.digestDeleted(date: date))
+            }
+        }
+        
+        return hadDigest
+    }
+    
+    private func createDateKey(for date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
     }
 }
 
