@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E6B74DEE-B08B-43CA-9542-2FF990A9BEBA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EmailClient/Services/AppDataManager.swift"
@@ -24,7 +24,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "AF938D53-04ED-4C7E-AB55-62E6BC2E7D8F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EmailClient/Services/AppDataManager.swift"
@@ -34,71 +34,13 @@
             endingLineNumber = "67"
             landmarkName = "initialize()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AF938D53-04ED-4C7E-AB55-62E6BC2E7D8F - f0a67084a328595e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for EmailClient.AppDataManager.initialize() async -&gt; ()"
-                  moduleName = "EmailClient.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/AppDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67">
-               </Location>
-               <Location
-                  uuid = "AF938D53-04ED-4C7E-AB55-62E6BC2E7D8F - 9989eaf8ef65a354"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(9) suspend resume partial function for EmailClient.AppDataManager.initialize() async -&gt; ()"
-                  moduleName = "EmailClient.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/AppDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67">
-               </Location>
-               <Location
-                  uuid = "AF938D53-04ED-4C7E-AB55-62E6BC2E7D8F - f0a67084a328597d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for EmailClient.AppDataManager.initialize() async -&gt; ()"
-                  moduleName = "EmailClient.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/AppDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68">
-               </Location>
-               <Location
-                  uuid = "AF938D53-04ED-4C7E-AB55-62E6BC2E7D8F - 9989eaf8ef65a377"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(9) suspend resume partial function for EmailClient.AppDataManager.initialize() async -&gt; ()"
-                  moduleName = "EmailClient.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/AppDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E959F641-FB64-4A38-8EC1-3ABB79B6AB3B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EmailClient/Services/AppDataManager.swift"
@@ -114,7 +56,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "FC5D0BC8-AB38-41CD-BCFF-11D3A1019A04"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EmailClient/Services/AppDataManager.swift"
@@ -123,6 +65,22 @@
             startingLineNumber = "48"
             endingLineNumber = "48"
             landmarkName = "initialize()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89CFA29B-44E0-455F-98E3-AA428D54F29F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EmailClient/Services/LaunchClassificationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "performLaunchClassificationIfNeeded()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

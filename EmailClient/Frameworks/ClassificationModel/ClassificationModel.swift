@@ -179,7 +179,7 @@ public extension ClassificationConfiguration {
     /// High accuracy configuration (slower but more accurate)
     static let highAccuracy = ClassificationConfiguration(
         temperature: 0.0,
-        maxBodyLength: 6000,
+        maxBodyLength: 8000,
         enableCaching: true,
         maxConcurrentRequests: 2,
         requestTimeout: 45.0
@@ -188,7 +188,7 @@ public extension ClassificationConfiguration {
     /// Fast processing configuration (faster but potentially less accurate)
     static let fastProcessing = ClassificationConfiguration(
         temperature: 0.1,
-        maxBodyLength: 2000,
+        maxBodyLength: 4000,
         enableCaching: true,
         maxConcurrentRequests: 5,
         requestTimeout: 20.0
@@ -197,7 +197,7 @@ public extension ClassificationConfiguration {
     /// Debug configuration with detailed logging
     static let debug = ClassificationConfiguration(
         temperature: 0.0,
-        maxBodyLength: 4000,
+        maxBodyLength: 6000,
         enableCaching: false,
         maxConcurrentRequests: 1,
         requestTimeout: 60.0

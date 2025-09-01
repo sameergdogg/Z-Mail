@@ -7,27 +7,18 @@ class LaunchClassificationManager: ObservableObject {
     
     // MARK: - Published Properties
     
-    @Published var isInitialClassificationComplete = false
     @Published var classificationProgress: Double = 0.0
     
     // MARK: - Private Properties
     
     private let modelContext: ModelContext
     private let classificationService: EmailClassificationService
-    private var hasRunInitialClassification = false
-    
-    // UserDefaults key to track if we've run initial classification
-    private let initialClassificationKey = "hasRunInitialClassification"
     
     // MARK: - Initialization
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         self.classificationService = EmailClassificationService(modelContext: modelContext)
-        
-        // Check if we've already run initial classification
-        hasRunInitialClassification = UserDefaults.standard.bool(forKey: initialClassificationKey)
-        isInitialClassificationComplete = hasRunInitialClassification
         
         // Listen to classification service updates
         setupBindings()
@@ -37,14 +28,8 @@ class LaunchClassificationManager: ObservableObject {
     
     /// Performs launch-time classification if needed
     func performLaunchClassificationIfNeeded() async {
-        guard !hasRunInitialClassification else {
-            print("📧 Initial classification already completed")
-            return
-        }
-        
         guard SecureConfigurationManager.shared.hasOpenAIAPIKey() else {
             print("📧 No API key configured - skipping initial classification")
-            markInitialClassificationComplete()
             return
         }
         
@@ -55,7 +40,6 @@ class LaunchClassificationManager: ObservableObject {
             
             if unclassifiedCount == 0 {
                 print("📧 No unclassified emails found")
-                markInitialClassificationComplete()
                 return
             }
             
@@ -64,23 +48,13 @@ class LaunchClassificationManager: ObservableObject {
             // Perform classification in background
             await classificationService.classifyUnclassifiedEmails()
             
-            // Mark as complete
-            markInitialClassificationComplete()
-            
         } catch {
             print("❌ Failed to perform launch classification: \(error)")
-            // Still mark as complete to avoid retrying every launch
-            markInitialClassificationComplete()
         }
     }
     
     /// Forces a re-classification of all emails (useful for testing or after API key changes)
     func forceFullClassification() async {
-        // Reset the flag
-        UserDefaults.standard.set(false, forKey: initialClassificationKey)
-        hasRunInitialClassification = false
-        isInitialClassificationComplete = false
-        
         // Clear all existing classifications
         await clearAllClassifications()
         
@@ -125,13 +99,6 @@ class LaunchClassificationManager: ObservableObject {
         } catch {
             print("❌ Failed to clear classifications: \(error)")
         }
-    }
-    
-    private func markInitialClassificationComplete() {
-        UserDefaults.standard.set(true, forKey: initialClassificationKey)
-        hasRunInitialClassification = true
-        isInitialClassificationComplete = true
-        print("✅ Initial classification marked as complete")
     }
 }
 

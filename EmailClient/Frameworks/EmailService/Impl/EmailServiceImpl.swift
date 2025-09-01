@@ -68,7 +68,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
         applyCurrentFilter()
         
         // Then perform intelligent sync based on cache state
-        await intelligentSync()
+        //await intelligentSync()
         await loadEmailsFromPersistence() // Reload after sync
         applyCurrentFilter()
         

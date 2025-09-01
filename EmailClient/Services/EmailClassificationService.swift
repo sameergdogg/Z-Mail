@@ -160,7 +160,8 @@ class EmailClassificationService: ObservableObject {
             
             // Mark as classified with error to avoid retrying immediately
             await MainActor.run {
-                email.isClassified = true
+                // if we failed to classify we should set is classified to false
+                email.isClassified = false
                 email.classificationDate = Date()
                 email.updatedAt = Date()
                 
