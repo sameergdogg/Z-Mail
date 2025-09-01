@@ -51,6 +51,7 @@ struct FilterButton: View {
 enum TopLevelFilter: String, CaseIterable {
     case inbox = "inbox"
     case senders = "senders"
+    case categories = "categories"
     
     var displayName: String {
         switch self {
@@ -58,6 +59,8 @@ enum TopLevelFilter: String, CaseIterable {
             return "Inbox"
         case .senders:
             return "Senders"
+        case .categories:
+            return "Categories"
         }
     }
 }

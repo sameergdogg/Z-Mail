@@ -3,7 +3,7 @@
 
 // Public API
 @_exported import Foundation
-@_exported import CoreData
+@_exported import SwiftData
 @_exported import Combine
 
 // Export Factory and Container

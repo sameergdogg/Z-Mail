@@ -78,7 +78,7 @@ public enum EmailChangeEvent {
 
 /// Email persistence specific errors
 public enum EmailPersistenceError: Error, LocalizedError {
-    case coreDataError(Error)
+    case swiftDataError(Error)
     case emailNotFound(String)
     case accountNotFound(String)
     case saveFailed(String)
@@ -86,11 +86,12 @@ public enum EmailPersistenceError: Error, LocalizedError {
     case migrationFailed(Error)
     case diskSpaceFull
     case dataCorrupted
+    case initializationFailed(String)
     
     public var errorDescription: String? {
         switch self {
-        case .coreDataError(let error):
-            return "Core Data error: \(error.localizedDescription)"
+        case .swiftDataError(let error):
+            return "SwiftData error: \(error.localizedDescription)"
         case .emailNotFound(let emailId):
             return "Email with ID '\(emailId)' not found"
         case .accountNotFound(let accountEmail):
@@ -105,6 +106,8 @@ public enum EmailPersistenceError: Error, LocalizedError {
             return "Insufficient disk space for email storage"
         case .dataCorrupted:
             return "Email database is corrupted and needs to be reset"
+        case .initializationFailed(let reason):
+            return "Failed to initialize persistence store: \(reason)"
         }
     }
 }

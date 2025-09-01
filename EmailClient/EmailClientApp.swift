@@ -3,6 +3,7 @@ import GoogleSignIn
 
 @main
 struct EmailClientApp: App {
+    @StateObject private var appDataManager = AppDataManager.shared
     
     init() {
         configureGoogleSignIn()
@@ -11,6 +12,13 @@ struct EmailClientApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.appDataManager, appDataManager)
+                .environmentObject(appDataManager)
+                .onAppear {
+                    Task {
+                        await appDataManager.initialize()
+                    }
+                }
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }

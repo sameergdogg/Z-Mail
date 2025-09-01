@@ -51,6 +51,11 @@
 		A4B070FF2E64A51100E09916 /* ClassificationModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070F82E64A51100E09916 /* ClassificationModelProtocol.swift */; };
 		A4B071002E64A52000E09916 /* SecureConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B071012E64A52000E09916 /* SecureConfigurationManager.swift */; };
 		A4B071022E64A52000E09916 /* ClassificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B071032E64A52000E09916 /* ClassificationSettingsView.swift */; };
+		A4B071042E64A53000E09916 /* EmailClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B071052E64A53000E09916 /* EmailClassificationService.swift */; };
+		A4B071062E64A53000E09916 /* LaunchClassificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B071072E64A53000E09916 /* LaunchClassificationManager.swift */; };
+		A4B071082E64A53000E09916 /* AppDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B071092E64A53000E09916 /* AppDataManager.swift */; };
+		A4B0710A2E64A54000E09916 /* ClassificationCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0710B2E64A54000E09916 /* ClassificationCategoriesView.swift */; };
+		A4B0710C2E64A54000E09916 /* CategoryEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0710D2E64A54000E09916 /* CategoryEmailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +103,11 @@
 		A4B070FA2E64A51100E09916 /* ClassificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationModel.swift; sourceTree = "<group>"; };
 		A4B071012E64A52000E09916 /* SecureConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureConfigurationManager.swift; sourceTree = "<group>"; };
 		A4B071032E64A52000E09916 /* ClassificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationSettingsView.swift; sourceTree = "<group>"; };
+		A4B071052E64A53000E09916 /* EmailClassificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailClassificationService.swift; sourceTree = "<group>"; };
+		A4B071072E64A53000E09916 /* LaunchClassificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchClassificationManager.swift; sourceTree = "<group>"; };
+		A4B071092E64A53000E09916 /* AppDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataManager.swift; sourceTree = "<group>"; };
+		A4B0710B2E64A54000E09916 /* ClassificationCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationCategoriesView.swift; sourceTree = "<group>"; };
+		A4B0710D2E64A54000E09916 /* CategoryEmailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEmailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +166,8 @@
 				018 /* FilterView.swift */,
 				049 /* SettingsView.swift */,
 				A4B071032E64A52000E09916 /* ClassificationSettingsView.swift */,
+				A4B0710B2E64A54000E09916 /* ClassificationCategoriesView.swift */,
+				A4B0710D2E64A54000E09916 /* CategoryEmailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +177,9 @@
 			children = (
 				047 /* SettingsManager.swift */,
 				A4B071012E64A52000E09916 /* SecureConfigurationManager.swift */,
+				A4B071052E64A53000E09916 /* EmailClassificationService.swift */,
+				A4B071072E64A53000E09916 /* LaunchClassificationManager.swift */,
+				A4B071092E64A53000E09916 /* AppDataManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -492,6 +507,11 @@
 				A4B070EF2E64091100E09916 /* EmailServiceFactory.swift in Sources */,
 				A4B071002E64A52000E09916 /* SecureConfigurationManager.swift in Sources */,
 				A4B071022E64A52000E09916 /* ClassificationSettingsView.swift in Sources */,
+				A4B071042E64A53000E09916 /* EmailClassificationService.swift in Sources */,
+				A4B071062E64A53000E09916 /* LaunchClassificationManager.swift in Sources */,
+				A4B071082E64A53000E09916 /* AppDataManager.swift in Sources */,
+				A4B0710A2E64A54000E09916 /* ClassificationCategoriesView.swift in Sources */,
+				A4B0710C2E64A54000E09916 /* CategoryEmailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

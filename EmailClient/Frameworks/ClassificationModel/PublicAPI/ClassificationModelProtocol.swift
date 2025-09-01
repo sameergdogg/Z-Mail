@@ -197,9 +197,6 @@ public struct ClassificationConfiguration: Hashable {
     /// Cache expiration time in seconds (default: 24 hours)
     public let cacheExpirationTime: TimeInterval
     
-    /// Enable detailed logging for debugging
-    public let enableDetailedLogging: Bool
-    
     /// Maximum number of concurrent API requests
     public let maxConcurrentRequests: Int
     
@@ -211,7 +208,6 @@ public struct ClassificationConfiguration: Hashable {
         maxBodyLength: Int = 4000,
         enableCaching: Bool = true,
         cacheExpirationTime: TimeInterval = 24 * 60 * 60, // 24 hours
-        enableDetailedLogging: Bool = false,
         maxConcurrentRequests: Int = 3,
         requestTimeout: TimeInterval = 30.0
     ) {
@@ -219,7 +215,6 @@ public struct ClassificationConfiguration: Hashable {
         self.maxBodyLength = maxBodyLength
         self.enableCaching = enableCaching
         self.cacheExpirationTime = cacheExpirationTime
-        self.enableDetailedLogging = enableDetailedLogging
         self.maxConcurrentRequests = maxConcurrentRequests
         self.requestTimeout = requestTimeout
     }

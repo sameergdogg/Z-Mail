@@ -199,7 +199,6 @@ public extension ClassificationConfiguration {
         temperature: 0.0,
         maxBodyLength: 4000,
         enableCaching: false,
-        enableDetailedLogging: true,
         maxConcurrentRequests: 1,
         requestTimeout: 60.0
     )

@@ -16,7 +16,13 @@ public struct Email: Identifiable, Codable, Equatable {
     public let attachments: [EmailAttachment]
     public let isHTMLContent: Bool
     
-    public init(id: String, subject: String, sender: EmailAddress, recipients: [EmailAddress], body: String, htmlBody: String? = nil, date: Date, isRead: Bool = false, isStarred: Bool = false, labels: [String] = [], accountEmail: String, threadId: String? = nil, attachments: [EmailAttachment] = [], isHTMLContent: Bool = false) {
+    // Classification fields
+    public let classificationCategory: String? // EmailCategory raw value
+    public let classificationConfidence: Double?
+    public let classificationDate: Date?
+    public let isClassified: Bool
+    
+    public init(id: String, subject: String, sender: EmailAddress, recipients: [EmailAddress], body: String, htmlBody: String? = nil, date: Date, isRead: Bool = false, isStarred: Bool = false, labels: [String] = [], accountEmail: String, threadId: String? = nil, attachments: [EmailAttachment] = [], isHTMLContent: Bool = false, classificationCategory: String? = nil, classificationConfidence: Double? = nil, classificationDate: Date? = nil, isClassified: Bool = false) {
         self.id = id
         self.subject = subject
         self.sender = sender
@@ -31,6 +37,10 @@ public struct Email: Identifiable, Codable, Equatable {
         self.threadId = threadId
         self.attachments = attachments
         self.isHTMLContent = isHTMLContent
+        self.classificationCategory = classificationCategory
+        self.classificationConfidence = classificationConfidence
+        self.classificationDate = classificationDate
+        self.isClassified = isClassified
     }
 }
 
