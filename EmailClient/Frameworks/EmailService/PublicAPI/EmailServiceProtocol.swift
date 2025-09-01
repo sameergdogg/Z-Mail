@@ -169,22 +169,17 @@ public struct EmailServiceConfiguration {
     /// Batch size for processing operations (default: 20)
     public let batchSize: Int
     
-    /// Enable detailed logging (default: false)
-    public let enableDetailedLogging: Bool
-    
     public init(
         maxEmailsPerSync: Int = 50,
         enableBackgroundSync: Bool = true,
         syncInterval: TimeInterval = 5 * 60, // 5 minutes
         enableGmailAPISync: Bool = true,
-        batchSize: Int = 20,
-        enableDetailedLogging: Bool = false
+        batchSize: Int = 20
     ) {
         self.maxEmailsPerSync = maxEmailsPerSync
         self.enableBackgroundSync = enableBackgroundSync
         self.syncInterval = syncInterval
         self.enableGmailAPISync = enableGmailAPISync
         self.batchSize = batchSize
-        self.enableDetailedLogging = enableDetailedLogging
     }
 }

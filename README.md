@@ -71,8 +71,9 @@ EmailClient/
         │   └── EmailPersistenceFactory.swift
         └── Impl/                     # Internal implementation
             ├── EmailPersistenceStoreImpl.swift
-            ├── EmailDataModel.xcdatamodeld
-            └── CoreDataStack.swift
+            ├── SwiftDataContainer.swift
+            ├── SwiftDataEmailPersistenceStoreImpl.swift
+            └── SwiftDataModels.swift
 ```
 
 ## 🏛️ Framework Architecture
@@ -151,9 +152,8 @@ public class EmailPersistenceFactory {
     public func createEmailPersistenceStore(dependencies: EmailPersistenceDependencies) -> EmailPersistenceProtocol
 }
 
-// Dependency injection container with Core Data stack
+// Dependency injection container with SwiftData
 public class EmailPersistenceDependencies {
-    public let coreDataStack: CoreDataStack
     public let configuration: PersistenceConfiguration
 }
 ```
@@ -161,8 +161,9 @@ public class EmailPersistenceDependencies {
 ### ⚙️ Impl Layer
 **Purpose**: Thread-safe persistence implementation with intelligent caching
 - `EmailPersistenceStoreImpl.swift`: Core persistence logic with concurrent access
-- `CoreDataStack.swift`: Modern Core Data stack with async/await support
-- `EmailDataModel.xcdatamodeld`: Core Data model for offline storage
+- `SwiftDataContainer.swift`: SwiftData container management
+- `SwiftDataEmailPersistenceStoreImpl.swift`: SwiftData-based persistence implementation
+- `SwiftDataModels.swift`: SwiftData model definitions for offline storage
 
 ### 🎯 Usage Examples
 ```swift

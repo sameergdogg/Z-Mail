@@ -41,9 +41,7 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
     public func classifyEmail(_ email: EmailData, apiKey: String) async throws -> EmailClassificationResult {
         // Check cache first
         if let cachedResult = cache.retrieve(for: email.id) {
-            if configuration.enableDetailedLogging {
-                print("📋 Using cached classification for email: \(email.id)")
-            }
+            print("📋 Using cached classification for email: \(email.id)")
             return cachedResult
         }
         
@@ -73,16 +71,12 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
             // Publish update
             classificationUpdatesSubject.send(result)
             
-            if configuration.enableDetailedLogging {
-                print("✅ Successfully classified email: \(email.id) as \(result.category.rawValue) with confidence \(result.confidence)")
-            }
+            print("✅ Successfully classified email: \(email.id) as \(result.category.rawValue) with confidence \(result.confidence)")
             
             return result
             
         } catch {
-            if configuration.enableDetailedLogging {
-                print("❌ Failed to classify email: \(email.id) - \(error)")
-            }
+            print("❌ Failed to classify email: \(email.id) - \(error)")
             throw error
         }
     }
@@ -111,9 +105,7 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
                     case .success(let classification):
                         chunkResults.append(classification)
                     case .failure(let error):
-                        if configuration.enableDetailedLogging {
-                            print("❌ Batch classification error: \(error)")
-                        }
+                        print("❌ Batch classification error: \(error)")
                         if let classificationError = error as? ClassificationError,
                            case .classificationFailed(let message) = classificationError {
                             errors.append(message)
@@ -142,9 +134,7 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
     
     public func clearCache() {
         cache.clearAll()
-        if configuration.enableDetailedLogging {
-            print("🗑️ Cleared classification cache")
-        }
+        print("🗑️ Cleared classification cache")
     }
     
     // MARK: - Private Methods
@@ -165,38 +155,28 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try jsonEncoder.encode(classificationRequest)
         
-        if configuration.enableDetailedLogging {
-            print("🌐 Sending classification request for email: \(email.id)")
-        }
+        print("🌐 Sending classification request for email: \(email.id)")
         
         do {
             let (data, response) = try await urlSession.data(for: request)
             
             if let httpResponse = response as? HTTPURLResponse {
-                if configuration.enableDetailedLogging {
-                    print("📡 HTTP Response Status: \(httpResponse.statusCode)")
-                    if let responseString = String(data: data, encoding: .utf8) {
-                        print("📡 Response Body: \(responseString)")
-                    }
+                print("📡 HTTP Response Status: \(httpResponse.statusCode)")
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("📡 Response Body: \(responseString)")
                 }
                 
                 switch httpResponse.statusCode {
                 case 200:
                     break // Success
                 case 401:
-                    if configuration.enableDetailedLogging {
-                        print("🔑 Authentication failed - check API key")
-                    }
+                    print("🔑 Authentication failed - check API key")
                     throw ClassificationError.invalidAPIKey
                 case 429:
-                    if configuration.enableDetailedLogging {
-                        print("🚦 Rate limit exceeded")
-                    }
+                    print("🚦 Rate limit exceeded")
                     throw ClassificationError.apiRateLimitExceeded
                 default:
-                    if configuration.enableDetailedLogging {
-                        print("❌ HTTP Error \(httpResponse.statusCode)")
-                    }
+                    print("❌ HTTP Error \(httpResponse.statusCode)")
                     throw ClassificationError.classificationFailed("HTTP \(httpResponse.statusCode)")
                 }
             }
@@ -207,14 +187,10 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
         } catch let error as ClassificationError {
             throw error
         } catch let urlError as URLError {
-            if configuration.enableDetailedLogging {
-                print("🌐 URLError: \(urlError.localizedDescription) (Code: \(urlError.code.rawValue))")
-            }
+            print("🌐 URLError: \(urlError.localizedDescription) (Code: \(urlError.code.rawValue))")
             throw ClassificationError.networkError
         } catch {
-            if configuration.enableDetailedLogging {
-                print("⚠️ Unexpected error: \(error)")
-            }
+            print("⚠️ Unexpected error: \(error)")
             throw ClassificationError.classificationFailed(error.localizedDescription)
         }
     }
@@ -289,9 +265,7 @@ internal class ClassificationModelImpl: ClassificationModelProtocol {
             )
             
         } catch {
-            if configuration.enableDetailedLogging {
-                print("❌ Failed to parse classification response: \(content)")
-            }
+            print("❌ Failed to parse classification response: \(content)")
             throw ClassificationError.invalidResponse
         }
     }

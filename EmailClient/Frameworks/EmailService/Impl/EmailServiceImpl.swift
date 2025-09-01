@@ -68,7 +68,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
         applyCurrentFilter()
         
         // Then perform intelligent sync based on cache state
-        //await intelligentSync()
+        await intelligentSync()
         await loadEmailsFromPersistence() // Reload after sync
         applyCurrentFilter()
         
@@ -166,9 +166,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
                 try await persistenceStore.updateEmail(updatedEmail)
             }
         } catch {
-            if configuration.enableDetailedLogging {
-                print("Failed to update email in persistence store: \(error)")
-            }
+            print("Failed to update email in persistence store: \(error)")
         }
         
         // Update Gmail API (if possible)
@@ -270,9 +268,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
                 try await persistenceStore.updateEmail(updatedEmail)
             }
         } catch {
-            if configuration.enableDetailedLogging {
-                print("Failed to update email in persistence store: \(error)")
-            }
+            print("Failed to update email in persistence store: \(error)")
         }
         
         // Update Gmail API (if possible)
@@ -320,9 +316,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
     private func syncEmailStatusWithGmailAPI(_ email: Email, isRead: Bool) async {
         guard let account = accountManager.accounts.first(where: { $0.email == email.accountEmail }),
               let user = accountManager.getUserForAccount(account) else {
-            if configuration.enableDetailedLogging {
-                print("❌ No account or user found for syncing email status")
-            }
+            print("❌ No account or user found for syncing email status")
             return
         }
         
@@ -335,13 +329,9 @@ internal class EmailServiceImpl: EmailServiceProtocol {
             // Note: Gmail API doesn't have a "mark as unread" operation
             // This is a limitation of Gmail's API
             
-            if configuration.enableDetailedLogging {
-                print("✅ Successfully synced email status with Gmail API")
-            }
+            print("✅ Successfully synced email status with Gmail API")
         } catch {
-            if configuration.enableDetailedLogging {
-                print("⚠️ Failed to sync email status with Gmail API: \(error)")
-            }
+            print("⚠️ Failed to sync email status with Gmail API: \(error)")
             // Don't show error to user for background sync failures
             // The local state change is still valid
         }
@@ -352,22 +342,16 @@ internal class EmailServiceImpl: EmailServiceProtocol {
     private func syncEmailStarWithGmailAPI(_ email: Email, isStarred: Bool) async {
         guard let account = accountManager.accounts.first(where: { $0.email == email.accountEmail }),
               let user = accountManager.getUserForAccount(account) else {
-            if configuration.enableDetailedLogging {
-                print("❌ No account or user found for syncing email star")
-            }
+            print("❌ No account or user found for syncing email star")
             return
         }
         
         do {
             let validatedUser = try await accountManager.validateAndRefreshTokenForUser(user)
             try await gmailAPIService.toggleMessageStar(messageId: email.id, user: validatedUser, isStarred: isStarred)
-            if configuration.enableDetailedLogging {
-                print("✅ Successfully synced email star with Gmail API")
-            }
+            print("✅ Successfully synced email star with Gmail API")
         } catch {
-            if configuration.enableDetailedLogging {
-                print("⚠️ Failed to sync email star with Gmail API: \(error)")
-            }
+            print("⚠️ Failed to sync email star with Gmail API: \(error)")
             // Don't show error to user for background sync failures
             // The local state change is still valid
         }
@@ -412,14 +396,10 @@ internal class EmailServiceImpl: EmailServiceProtocol {
     
     /// Force sync from server - always fetches from Gmail API regardless of cache state
     private func forceSyncFromServer() async {
-        if configuration.enableDetailedLogging {
-            print("🌐 forceSyncFromServer() started - bypassing cache")
-        }
+        print("🌐 forceSyncFromServer() started - bypassing cache")
         
         if accountManager.accounts.isEmpty {
-            if configuration.enableDetailedLogging {
-                print("❌ No accounts available for sync")
-            }
+            print("❌ No accounts available for sync")
             await MainActor.run {
                 self.errorMessage = "No Gmail accounts connected. Please add an account to continue."
             }
@@ -427,9 +407,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
         }
         
         for account in accountManager.accounts {
-            if configuration.enableDetailedLogging {
-                print("🌐 Force syncing from server for account: \(account.email)")
-            }
+            print("🌐 Force syncing from server for account: \(account.email)")
             do {
                 // Always perform full sync from server
                 await performFullSync(for: account)
@@ -441,22 +419,16 @@ internal class EmailServiceImpl: EmailServiceProtocol {
                 await MainActor.run {
                     self.errorMessage = "Force sync failed for \(account.email): \(error.localizedDescription)"
                 }
-                if configuration.enableDetailedLogging {
-                    print("Force sync failed for \(account.email): \(error)")
-                }
+                print("Force sync failed for \(account.email): \(error)")
             }
         }
     }
     
     private func intelligentSync() async {
-        if configuration.enableDetailedLogging {
-            print("🔄 intelligentSync() started with \(accountManager.accounts.count) accounts")
-        }
+        print("🔄 intelligentSync() started with \(accountManager.accounts.count) accounts")
         
         if accountManager.accounts.isEmpty {
-            if configuration.enableDetailedLogging {
-                print("❌ No accounts available for sync")
-            }
+            print("❌ No accounts available for sync")
             await MainActor.run {
                 self.errorMessage = "No Gmail accounts connected. Please add an account to continue."
             }
@@ -464,32 +436,22 @@ internal class EmailServiceImpl: EmailServiceProtocol {
         }
         
         for account in accountManager.accounts {
-            if configuration.enableDetailedLogging {
-                print("🔄 Processing account: \(account.email)")
-            }
+            print("🔄 Processing account: \(account.email)")
             do {
                 let strategy = await persistenceStore.determineSyncStrategy(for: account.email)
-                if configuration.enableDetailedLogging {
-                    print("📊 Sync strategy for \(account.email): \(strategy)")
-                }
+                print("📊 Sync strategy for \(account.email): \(strategy)")
                 
                 switch strategy {
                 case .cacheOnly:
-                    if configuration.enableDetailedLogging {
-                        print("💾 Using cache-only for \(account.email)")
-                    }
+                    print("💾 Using cache-only for \(account.email)")
                     continue // Skip API calls, use cached data
                     
                 case .fullSync:
-                    if configuration.enableDetailedLogging {
-                        print("🔄 Performing full sync for \(account.email)")
-                    }
+                    print("🔄 Performing full sync for \(account.email)")
                     await performFullSync(for: account)
                     
                 case .incrementalSync(let since):
-                    if configuration.enableDetailedLogging {
-                        print("📈 Performing incremental sync for \(account.email) since \(since)")
-                    }
+                    print("📈 Performing incremental sync for \(account.email) since \(since)")
                     await performIncrementalSync(for: account, since: since)
                 }
                 
@@ -500,17 +462,13 @@ internal class EmailServiceImpl: EmailServiceProtocol {
                 await MainActor.run {
                     self.errorMessage = "Sync failed for \(account.email): \(error.localizedDescription)"
                 }
-                if configuration.enableDetailedLogging {
-                    print("Sync failed for \(account.email): \(error)")
-                }
+                print("Sync failed for \(account.email): \(error)")
             }
         }
     }
     
     private func performFullSync(for account: GmailAccount) async {
-        if configuration.enableDetailedLogging {
-            print("🔄 performFullSync() started for \(account.email)")
-        }
+        print("🔄 performFullSync() started for \(account.email)")
         
         // Update sync progress
         await MainActor.run {
@@ -518,9 +476,7 @@ internal class EmailServiceImpl: EmailServiceProtocol {
         }
         
         do {
-            if configuration.enableDetailedLogging {
-                print("🔄 Fetching emails from Gmail API for \(account.email)")
-            }
+            print("🔄 Fetching emails from Gmail API for \(account.email)")
             
             // Update progress
             await MainActor.run {
@@ -528,22 +484,16 @@ internal class EmailServiceImpl: EmailServiceProtocol {
             }
             
             let accountEmails = try await fetchEmailsForAccount(account)
-            if configuration.enableDetailedLogging {
-                print("✅ Fetched \(accountEmails.count) emails from Gmail API")
-            }
+            print("✅ Fetched \(accountEmails.count) emails from Gmail API")
             
             // Update progress
             await MainActor.run {
                 self.syncProgress = .syncing(accountEmail: account.email, progress: 0.7)
             }
             
-            if configuration.enableDetailedLogging {
-                print("🔄 Saving \(accountEmails.count) emails to persistence store")
-            }
+            print("🔄 Saving \(accountEmails.count) emails to persistence store")
             try await persistenceStore.saveEmails(accountEmails, for: account.email)
-            if configuration.enableDetailedLogging {
-                print("✅ Successfully saved emails to persistence store")
-            }
+            print("✅ Successfully saved emails to persistence store")
             
             // Complete sync
             await MainActor.run {
@@ -551,29 +501,21 @@ internal class EmailServiceImpl: EmailServiceProtocol {
             }
             
         } catch {
-            if configuration.enableDetailedLogging {
-                print("❌ performFullSync() failed for \(account.email): \(error)")
-            }
+            print("❌ performFullSync() failed for \(account.email): \(error)")
             
             await MainActor.run {
                 self.syncProgress = .failed(error: error.localizedDescription)
                 
                 if let error = error as? EmailServiceError {
                     if error.isAuthenticationError {
-                        if configuration.enableDetailedLogging {
-                            print("❌ Authentication error for \(account.email)")
-                        }
+                        print("❌ Authentication error for \(account.email)")
                         self.authenticationErrors[account.email] = error
                     } else {
-                        if configuration.enableDetailedLogging {
-                            print("❌ API error for \(account.email): \(error.errorDescription ?? "unknown")")
-                        }
+                        print("❌ API error for \(account.email): \(error.errorDescription ?? "unknown")")
                         self.errorMessage = error.errorDescription
                     }
                 } else {
-                    if configuration.enableDetailedLogging {
-                        print("❌ Generic error for \(account.email): \(error.localizedDescription)")
-                    }
+                    print("❌ Generic error for \(account.email): \(error.localizedDescription)")
                     self.errorMessage = "Failed to sync \(account.email): \(error.localizedDescription)"
                 }
             }
@@ -587,31 +529,21 @@ internal class EmailServiceImpl: EmailServiceProtocol {
     }
     
     private func loadEmailsFromPersistence() async {
-        if configuration.enableDetailedLogging {
-            print("💾 loadEmailsFromPersistence() started")
-        }
+        print("💾 loadEmailsFromPersistence() started")
         var allEmails: [Email] = []
         
         for account in accountManager.accounts {
             do {
-                if configuration.enableDetailedLogging {
-                    print("💾 Loading emails for \(account.email) from persistence")
-                }
+                print("💾 Loading emails for \(account.email) from persistence")
                 let accountEmails = try await persistenceStore.fetchEmails(for: account.email, filter: nil)
-                if configuration.enableDetailedLogging {
-                    print("💾 Loaded \(accountEmails.count) emails for \(account.email)")
-                }
+                print("💾 Loaded \(accountEmails.count) emails for \(account.email)")
                 allEmails.append(contentsOf: accountEmails)
             } catch {
-                if configuration.enableDetailedLogging {
-                    print("❌ Failed to load emails for \(account.email) from persistence: \(error)")
-                }
+                print("❌ Failed to load emails for \(account.email) from persistence: \(error)")
             }
         }
         
-        if configuration.enableDetailedLogging {
-            print("💾 Total emails loaded from persistence: \(allEmails.count)")
-        }
+        print("💾 Total emails loaded from persistence: \(allEmails.count)")
         
         await MainActor.run {
             self.emails = allEmails
@@ -620,64 +552,38 @@ internal class EmailServiceImpl: EmailServiceProtocol {
     }
     
     private func fetchEmailsForAccount(_ account: GmailAccount) async throws -> [Email] {
-        if configuration.enableDetailedLogging {
-            print("📧 fetchEmailsForAccount() started for \(account.email)")
-        }
+        print("📧 fetchEmailsForAccount() started for \(account.email)")
         
         // Check if account requires re-authentication
-        if configuration.enableDetailedLogging {
-            print("📧 Checking if account requires re-authentication...")
-        }
+        print("📧 Checking if account requires re-authentication...")
         if accountManager.requiresReauthentication(for: account) {
-            if configuration.enableDetailedLogging {
-                print("❌ Account \(account.email) requires re-authentication")
-            }
+            print("❌ Account \(account.email) requires re-authentication")
             throw EmailServiceError.reauthenticationRequired(account.email)
         }
-        if configuration.enableDetailedLogging {
-            print("✅ Account authentication check passed")
-        }
+        print("✅ Account authentication check passed")
         
-        if configuration.enableDetailedLogging {
-            print("📧 Getting user for account...")
-        }
+        print("📧 Getting user for account...")
         guard let user = accountManager.getUserForAccount(account) else {
-            if configuration.enableDetailedLogging {
-                print("❌ No signed-in user found for account \(account.email)")
-            }
+            print("❌ No signed-in user found for account \(account.email)")
             throw EmailServiceError.noSignedInUser(account.email)
         }
-        if configuration.enableDetailedLogging {
-            print("✅ Found signed-in user for \(account.email)")
-        }
+        print("✅ Found signed-in user for \(account.email)")
         
         do {
-            if configuration.enableDetailedLogging {
-                print("📧 Validating and refreshing token for user...")
-            }
+            print("📧 Validating and refreshing token for user...")
             // Use the new validation method that handles re-authentication gracefully
             let validatedUser = try await accountManager.validateAndRefreshTokenForUser(user)
-            if configuration.enableDetailedLogging {
-                print("✅ Token validation completed")
-            }
+            print("✅ Token validation completed")
             
-            if configuration.enableDetailedLogging {
-                print("📧 Fetching messages from Gmail API (max \(configuration.maxEmailsPerSync))...")
-            }
+            print("📧 Fetching messages from Gmail API (max \(configuration.maxEmailsPerSync))...")
             let gmailMessages = try await gmailAPIService.fetchMessages(for: validatedUser, maxResults: configuration.maxEmailsPerSync)
-            if configuration.enableDetailedLogging {
-                print("✅ Fetched \(gmailMessages.count) messages from Gmail API")
-            }
+            print("✅ Fetched \(gmailMessages.count) messages from Gmail API")
             
-            if configuration.enableDetailedLogging {
-                print("📧 Converting Gmail messages to Email objects...")
-            }
+            print("📧 Converting Gmail messages to Email objects...")
             let emails = gmailMessages.map { gmailMessage in
                 gmailAPIService.convertGmailMessageToEmail(gmailMessage, accountEmail: account.email)
             }
-            if configuration.enableDetailedLogging {
-                print("✅ Converted \(emails.count) messages to Email objects")
-            }
+            print("✅ Converted \(emails.count) messages to Email objects")
             
             return emails
             

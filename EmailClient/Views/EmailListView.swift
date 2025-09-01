@@ -94,10 +94,15 @@ struct EmailListView: View {
                 
                 // Content area with proper iPhone 16 spacing
                 Group {
-                    if selectedTopFilter == .senders {
-                        SenderListView(emailService: emailService)
-                    } else {
+                    switch selectedTopFilter {
+                    case .inbox:
                         inboxContentView
+                    case .senders:
+                        SenderListView(emailService: emailService)
+                    case .categories:
+                        ClassificationCategoriesView()
+                            .environmentObject(accountManager)
+                            .environmentObject(settingsManager)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -122,6 +127,8 @@ struct EmailListView: View {
             return "Inbox"
         case .senders:
             return "Senders"
+        case .categories:
+            return "Categories"
         }
     }
     
