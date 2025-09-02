@@ -5,6 +5,7 @@ struct SenderListView: View {
     @State private var senders: [EmailSender] = []
     @State private var filteredSenders: [EmailSender] = []
     @State private var searchText = ""
+    @EnvironmentObject var settingsManager: SettingsManager
     
     var body: some View {
         List {
@@ -30,6 +31,9 @@ struct SenderListView: View {
         .onChange(of: searchText) { _ in
             filterSenders()
         }
+        .onChange(of: settingsManager.senderSortOrder) { _ in
+            filterSenders()
+        }
     }
     
     private func loadSenders() {
@@ -38,14 +42,45 @@ struct SenderListView: View {
     }
     
     private func filterSenders() {
-        if searchText.isEmpty {
-            filteredSenders = senders
+        // First filter by search text
+        let filtered = if searchText.isEmpty {
+            senders
         } else {
-            filteredSenders = senders.filter { sender in
+            senders.filter { sender in
                 sender.displayName.localizedCaseInsensitiveContains(searchText) ||
                 sender.email.localizedCaseInsensitiveContains(searchText)
             }
         }
+        
+        // Then sort according to selected sort order
+        filteredSenders = sortSenders(filtered)
+    }
+    
+    private func sortSenders(_ senders: [EmailSender]) -> [EmailSender] {
+        switch settingsManager.senderSortOrder {
+        case .alphabeticalAscending:
+            return senders.sorted { $0.displayName.localizedCaseInsensitiveCompare($1.displayName) == .orderedAscending }
+        case .alphabeticalDescending:
+            return senders.sorted { $0.displayName.localizedCaseInsensitiveCompare($1.displayName) == .orderedDescending }
+        case .emailCountAscending:
+            return senders.sorted { $0.emailCount < $1.emailCount }
+        case .emailCountDescending:
+            return senders.sorted { $0.emailCount > $1.emailCount }
+        case .conversationCountAscending:
+            // For now, use email count as a proxy for conversation count
+            // TODO: Implement actual conversation counting logic
+            return senders.sorted { getConversationCount(for: $0) < getConversationCount(for: $1) }
+        case .conversationCountDescending:
+            // For now, use email count as a proxy for conversation count
+            // TODO: Implement actual conversation counting logic
+            return senders.sorted { getConversationCount(for: $0) > getConversationCount(for: $1) }
+        }
+    }
+    
+    private func getConversationCount(for sender: EmailSender) -> Int {
+        // TODO: Implement actual conversation counting by analyzing email threads
+        // For now, we'll use a simple heuristic: email count / 2 (assuming some back-and-forth)
+        return max(1, sender.emailCount / 2)
     }
 }
 

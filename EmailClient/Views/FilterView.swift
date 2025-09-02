@@ -4,6 +4,7 @@ struct FilterView: View {
     let emailService: EmailServiceProtocol
     let accountManager: AccountManagerProtocol
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var settingsManager: SettingsManager
     
     var body: some View {
         NavigationView {
@@ -48,7 +49,7 @@ struct FilterView: View {
                     }
                 }
                 
-                Section("Sort Order") {
+                Section("Email Sort Order") {
                     SortOptionView(
                         title: "Date (Newest First)",
                         isSelected: emailService.sortOrder == .dateDescending,
@@ -72,6 +73,17 @@ struct FilterView: View {
                         isSelected: emailService.sortOrder == .senderDescending,
                         action: { emailService.applySortOrder(.senderDescending) }
                     )
+                }
+                
+                Section("Sender List Sort Order") {
+                    ForEach(SenderSortOrder.allCases, id: \.rawValue) { sortOrder in
+                        SenderSortOptionView(
+                            title: sortOrder.displayName,
+                            iconName: sortOrder.iconName,
+                            isSelected: settingsManager.senderSortOrder == sortOrder,
+                            action: { settingsManager.senderSortOrder = sortOrder }
+                        )
+                    }
                 }
             }
             .navigationTitle("Filters & Sorting")
@@ -146,6 +158,34 @@ struct SortOptionView: View {
     var body: some View {
         Button(action: action) {
             HStack {
+                Text(title)
+                    .foregroundColor(.primary)
+                
+                Spacer()
+                
+                if isSelected {
+                    Image(systemName: "checkmark")
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+    }
+}
+
+struct SenderSortOptionView: View {
+    let title: String
+    let iconName: String
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                Image(systemName: iconName)
+                    .font(.system(size: 16))
+                    .foregroundColor(.blue)
+                    .frame(width: 24)
+                
                 Text(title)
                     .foregroundColor(.primary)
                 
