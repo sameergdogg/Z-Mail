@@ -12,13 +12,13 @@ class LaunchClassificationManager: ObservableObject {
     // MARK: - Private Properties
     
     private let modelContext: ModelContext
-    private let classificationService: EmailClassificationService
+    private let classificationService: EmailClassificationServiceProtocol
     
     // MARK: - Initialization
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
-        self.classificationService = EmailClassificationService(modelContext: modelContext)
+        self.classificationService = EmailClassificationServiceAPI.create(modelContext: modelContext)
         
         // Listen to classification service updates
         setupBindings()
@@ -65,9 +65,8 @@ class LaunchClassificationManager: ObservableObject {
     // MARK: - Private Methods
     
     private func setupBindings() {
-        // Forward classification service progress to our published properties
-        classificationService.$classificationProgress
-            .assign(to: &$classificationProgress)
+        // Note: With protocol-based services, we'll update progress manually during operations
+        // rather than using publisher bindings
     }
     
     private func getUnclassifiedEmailCount() async throws -> Int {

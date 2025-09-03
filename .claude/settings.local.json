@@ -12,7 +12,10 @@
       "Bash(gtimeout:*)",
       "Bash(grep:*)",
       "Bash(chmod:*)",
-      "Bash(./build.sh)"
+      "Bash(./build.sh)",
+      "Bash(uuidgen)",
+      "Bash(timeout 30 xcodebuild:*)",
+      "Bash(/dev/null)"
     ],
     "deny": [],
     "ask": []

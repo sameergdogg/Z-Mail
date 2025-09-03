@@ -9,82 +9,10 @@ struct FilterView: View {
     var body: some View {
         NavigationView {
             List {
-                Section("Filter by Status") {
-                    FilterOptionView(
-                        title: "All Emails",
-                        isSelected: isSelected(.all),
-                        action: { emailService.applyFilter(.all) }
-                    )
-                    
-                    FilterOptionView(
-                        title: "Unread",
-                        isSelected: isSelected(.unread),
-                        action: { emailService.applyFilter(.unread) }
-                    )
-                    
-                    FilterOptionView(
-                        title: "Starred",
-                        isSelected: isSelected(.starred),
-                        action: { emailService.applyFilter(.starred) }
-                    )
-                }
-                
-                Section("Filter by Account") {
-                    ForEach(accountManager.accounts) { account in
-                        FilterOptionView(
-                            title: account.email,
-                            isSelected: isSelected(.account(account.email)),
-                            action: { emailService.applyFilter(.account(account.email)) }
-                        )
-                    }
-                }
-                
-                Section("Filter by Category") {
-                    ForEach(availableClassifications(), id: \.rawValue) { category in
-                        FilterOptionView(
-                            title: category.displayName,
-                            isSelected: isSelected(.classification(category.rawValue)),
-                            action: { emailService.applyFilter(.classification(category.rawValue)) }
-                        )
-                    }
-                }
-                
-                Section("Email Sort Order") {
-                    SortOptionView(
-                        title: "Date (Newest First)",
-                        isSelected: emailService.sortOrder == .dateDescending,
-                        action: { emailService.applySortOrder(.dateDescending) }
-                    )
-                    
-                    SortOptionView(
-                        title: "Date (Oldest First)",
-                        isSelected: emailService.sortOrder == .dateAscending,
-                        action: { emailService.applySortOrder(.dateAscending) }
-                    )
-                    
-                    SortOptionView(
-                        title: "Sender (A-Z)",
-                        isSelected: emailService.sortOrder == .senderAscending,
-                        action: { emailService.applySortOrder(.senderAscending) }
-                    )
-                    
-                    SortOptionView(
-                        title: "Sender (Z-A)",
-                        isSelected: emailService.sortOrder == .senderDescending,
-                        action: { emailService.applySortOrder(.senderDescending) }
-                    )
-                }
-                
-                Section("Sender List Sort Order") {
-                    ForEach(SenderSortOrder.allCases, id: \.rawValue) { sortOrder in
-                        SenderSortOptionView(
-                            title: sortOrder.displayName,
-                            iconName: sortOrder.iconName,
-                            isSelected: settingsManager.senderSortOrder == sortOrder,
-                            action: { settingsManager.senderSortOrder = sortOrder }
-                        )
-                    }
-                }
+                statusFilterSection
+                accountFilterSection
+                emailSortSection
+                senderSortSection
             }
             .navigationTitle("Filters & Sorting")
             .navigationBarTitleDisplayMode(.inline)
@@ -97,6 +25,85 @@ struct FilterView: View {
             }
         }
     }
+    
+    // MARK: - View Components
+    
+    private var statusFilterSection: some View {
+        Section("Filter by Status") {
+            FilterOptionView(
+                title: "All Emails",
+                isSelected: isSelected(.all),
+                action: { emailService.applyFilter(.all) }
+            )
+            
+            FilterOptionView(
+                title: "Unread",
+                isSelected: isSelected(.unread),
+                action: { emailService.applyFilter(.unread) }
+            )
+            
+            FilterOptionView(
+                title: "Starred",
+                isSelected: isSelected(.starred),
+                action: { emailService.applyFilter(.starred) }
+            )
+        }
+    }
+    
+    private var accountFilterSection: some View {
+        Section("Filter by Account") {
+            ForEach(accountManager.accounts) { account in
+                FilterOptionView(
+                    title: account.email,
+                    isSelected: isSelected(.account(account.email)),
+                    action: { emailService.applyFilter(.account(account.email)) }
+                )
+            }
+        }
+    }
+    
+    private var emailSortSection: some View {
+        Section("Email Sort Order") {
+            SortOptionView(
+                title: "Date (Newest First)",
+                isSelected: emailService.sortOrder == .dateDescending,
+                action: { emailService.applySortOrder(.dateDescending) }
+            )
+            
+            SortOptionView(
+                title: "Date (Oldest First)",
+                isSelected: emailService.sortOrder == .dateAscending,
+                action: { emailService.applySortOrder(.dateAscending) }
+            )
+            
+            SortOptionView(
+                title: "Sender (A-Z)",
+                isSelected: emailService.sortOrder == .senderAscending,
+                action: { emailService.applySortOrder(.senderAscending) }
+            )
+            
+            SortOptionView(
+                title: "Sender (Z-A)",
+                isSelected: emailService.sortOrder == .senderDescending,
+                action: { emailService.applySortOrder(.senderDescending) }
+            )
+        }
+    }
+    
+    private var senderSortSection: some View {
+        Section("Sender List Sort Order") {
+            ForEach(LegacySenderSortOrder.allCases, id: \.rawValue) { sortOrder in
+                SenderSortOptionView(
+                    title: sortOrder.rawValue,
+                    iconName: "arrow.up.arrow.down",
+                    isSelected: settingsManager.senderSortOrder == sortOrder,
+                    action: { settingsManager.senderSortOrder = sortOrder }
+                )
+            }
+        }
+    }
+    
+    // MARK: - Helper Methods
     
     private func availableClassifications() -> [EmailCategory] {
         // Return categories that have emails
@@ -127,6 +134,8 @@ struct FilterView: View {
         }
     }
 }
+
+// MARK: - Supporting Views
 
 struct FilterOptionView: View {
     let title: String
@@ -201,8 +210,10 @@ struct SenderSortOptionView: View {
 }
 
 #Preview {
+    // Use testing API for preview
     FilterView(
-        emailService: EmailServiceAPI.create(with: AccountManagerAPI.shared),
+        emailService: EmailServiceAPI.createForTesting(accountManager: AccountManagerAPI.shared),
         accountManager: AccountManagerAPI.shared
     )
+    .environmentObject(SettingsManager())
 }

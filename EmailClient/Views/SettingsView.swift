@@ -19,230 +19,251 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section("Email Display") {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Email Rendering")
-                                .font(.body)
-                            Text("Choose how emails are displayed")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        
-                        Spacer()
-                        
-                        Picker("Email Rendering", selection: $settingsManager.useRichEmailRendering) {
-                            Text("Plain Text").tag(false)
-                            Text("Rich HTML").tag(true)
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 140)
-                    }
-                    .padding(.vertical, 4)
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Preview:")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        
-                        RenderingPreviewView(useRichRendering: settingsManager.useRichEmailRendering)
-                    }
-                    .padding(.vertical, 8)
-                }
-                
-                Section("Accounts") {
-                    ForEach(accountManager.accounts, id: \.id) { account in
-                        AccountRowView(
-                            account: account,
-                            onSignOut: {
-                                accountToSignOut = account
-                                showingSignOutAlert = true
-                            },
-                            onReauthenticate: {
-                                reauthenticateAccount(account)
-                            }
-                        )
-                    }
-                    
-                    Button(action: {
-                        addNewAccount()
-                    }) {
-                        HStack {
-                            Image(systemName: "person.badge.plus")
-                                .foregroundColor(.blue)
-                            Text("Add Account")
-                                .foregroundColor(.blue)
-                            
-                            if accountManager.isLoading {
-                                Spacer()
-                                ProgressView()
-                                    .scaleEffect(0.8)
-                            }
-                        }
-                    }
-                    .disabled(accountManager.isLoading)
-                    
-                    if accountManager.accounts.count > 1 {
-                        Button(action: {
-                            showingSignOutAlert = true
-                        }) {
-                            HStack {
-                                Image(systemName: "person.2.slash")
-                                    .foregroundColor(.red)
-                                Text("Sign Out All Accounts")
-                                    .foregroundColor(.red)
-                            }
-                        }
-                    }
-                }
-                
-                Section("AI Features") {
-                    NavigationLink(destination: ClassificationSettingsView()) {
-                        HStack {
-                            Image(systemName: "brain")
-                                .foregroundColor(.purple)
-                                .font(.title2)
-                            
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Email Classification")
-                                    .font(.body)
-                                Text("AI-powered email categorization")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                            
-                            Spacer()
-                            
-                            if SecureConfigurationManager.shared.hasOpenAIAPIKey() {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
-                            } else {
-                                Image(systemName: "exclamationmark.circle")
-                                    .foregroundColor(.orange)
-                            }
-                        }
-                        .padding(.vertical, 2)
-                    }
-                    
-                    if SecureConfigurationManager.shared.hasOpenAIAPIKey() && appDataManager.isInitialized {
-                        Button(action: {
-                            runFullClassification()
-                        }) {
-                            HStack {
-                                Image(systemName: isRunningFullClassification ? "arrow.clockwise" : "wand.and.stars")
-                                    .foregroundColor(.blue)
-                                    .font(.title2)
-                                    .rotationEffect(.degrees(isRunningFullClassification ? 360 : 0))
-                                    .animation(isRunningFullClassification ? .linear(duration: 1).repeatForever(autoreverses: false) : .default, value: isRunningFullClassification)
-                                
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text("Run Full Classification")
-                                        .font(.body)
-                                        .foregroundColor(.primary)
-                                    Text(isRunningFullClassification ? "Classifying all emails..." : "Re-classify all emails with AI")
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                }
-                                
-                                Spacer()
-                                
-                                if isRunningFullClassification {
-                                    ProgressView()
-                                        .scaleEffect(0.8)
-                                }
-                            }
-                            .padding(.vertical, 2)
-                        }
-                        .disabled(isRunningFullClassification)
-                    }
-                }
-                
-                Section("App Information") {
-                    HStack {
-                        Text("Version")
-                        Spacer()
-                        Text("1.0.0")
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Link(destination: URL(string: "https://github.com")!) {
-                        HStack {
-                            Text("Source Code")
-                            Spacer()
-                            Image(systemName: "arrow.up.right.square")
-                                .foregroundColor(.blue)
-                        }
-                    }
-                }
+                emailDisplaySection
+                accountsSection
+                aiFeaturesSection
+                appInformationSection
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
-            }
-            .alert("Sign Out", isPresented: $showingSignOutAlert) {
+        }
+        .alert("Sign Out", isPresented: $showingSignOutAlert) {
+            Button("Cancel", role: .cancel) { }
+            Button("Sign Out", role: .destructive) {
                 if let account = accountToSignOut {
-                    Button("Cancel", role: .cancel) {
-                        accountToSignOut = nil
+                    signOutAccount(account)
+                    accountToSignOut = nil
+                } else {
+                    signOutAllAccounts()
+                }
+            }
+        } message: {
+            Text(accountToSignOut != nil ? 
+                "Are you sure you want to sign out of \(accountToSignOut!.email)?" :
+                "Are you sure you want to sign out of all accounts?")
+        }
+        .alert("Classification Complete", isPresented: $showingClassificationAlert) {
+            Button("OK") { }
+        } message: {
+            Text("Email classification has been completed!")
+        }
+        .alert("Add Account Error", isPresented: $showingAddAccountAlert) {
+            Button("OK") { }
+        } message: {
+            Text(addAccountError ?? "Unknown error")
+        }
+    }
+    
+    // MARK: - View Sections
+    
+    private var emailDisplaySection: some View {
+        Section("Email Display") {
+            emailRenderingPicker
+            renderingPreview
+        }
+    }
+    
+    private var emailRenderingPicker: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Email Rendering")
+                    .font(.body)
+                Text("Choose how emails are displayed")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+            
+            Picker("Email Rendering", selection: $settingsManager.useRichEmailRendering) {
+                Text("Plain Text").tag(false)
+                Text("Rich HTML").tag(true)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .frame(width: 140)
+        }
+        .padding(.vertical, 4)
+    }
+    
+    private var renderingPreview: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Preview:")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            
+            RenderingPreviewView(useRichRendering: settingsManager.useRichEmailRendering)
+        }
+        .padding(.vertical, 8)
+    }
+    
+    private var accountsSection: some View {
+        Section("Accounts") {
+            accountsList
+            addAccountButton
+            signOutAllButton
+        }
+    }
+    
+    private var accountsList: some View {
+        ForEach(accountManager.accounts, id: \.id) { account in
+            AccountRowView(
+                account: account,
+                onSignOut: {
+                    accountToSignOut = account
+                    showingSignOutAlert = true
+                },
+                onReauthenticate: {
+                    reauthenticateAccount(account)
+                }
+            )
+        }
+    }
+    
+    private var addAccountButton: some View {
+        Button(action: {
+            addNewAccount()
+        }) {
+            HStack {
+                Image(systemName: "person.badge.plus")
+                    .foregroundColor(.blue)
+                Text("Add Account")
+                    .foregroundColor(.blue)
+                
+                if accountManager.isLoading {
+                    Spacer()
+                    ProgressView()
+                        .scaleEffect(0.8)
+                }
+            }
+        }
+        .disabled(accountManager.isLoading)
+    }
+    
+    @ViewBuilder
+    private var signOutAllButton: some View {
+        if accountManager.accounts.count > 1 {
+            Button(action: {
+                showingSignOutAlert = true
+            }) {
+                HStack {
+                    Image(systemName: "person.2.slash")
+                        .foregroundColor(.red)
+                    Text("Sign Out All Accounts")
+                        .foregroundColor(.red)
+                }
+            }
+        }
+    }
+    
+    private var aiFeaturesSection: some View {
+        Section("AI Features") {
+            classificationSettingsLink
+            fullClassificationButton
+        }
+    }
+    
+    private var classificationSettingsLink: some View {
+        NavigationLink(destination: ClassificationSettingsView()) {
+            HStack {
+                Image(systemName: "brain")
+                    .foregroundColor(.purple)
+                    .font(.title2)
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Email Classification")
+                        .font(.body)
+                    Text("AI-powered email categorization")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                
+                Spacer()
+                
+                if SecureConfigurationManager.shared.hasOpenAIAPIKey() {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(.green)
+                } else {
+                    Image(systemName: "exclamationmark.circle")
+                        .foregroundColor(.orange)
+                }
+            }
+            .padding(.vertical, 2)
+        }
+    }
+    
+    @ViewBuilder
+    private var fullClassificationButton: some View {
+        if SecureConfigurationManager.shared.hasOpenAIAPIKey() && appDataManager.isInitialized {
+            Button(action: {
+                runFullClassification()
+            }) {
+                HStack {
+                    Image(systemName: isRunningFullClassification ? "arrow.clockwise" : "wand.and.stars")
+                        .foregroundColor(.blue)
+                        .font(.title2)
+                        .rotationEffect(.degrees(isRunningFullClassification ? 360 : 0))
+                        .animation(isRunningFullClassification ? .linear(duration: 1).repeatForever(autoreverses: false) : .default, value: isRunningFullClassification)
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Run Full Classification")
+                            .font(.body)
+                            .foregroundColor(.primary)
+                        Text(isRunningFullClassification ? "Classifying all emails..." : "Re-classify all emails with AI")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
-                    Button("Sign Out", role: .destructive) {
-                        signOutAccount(account)
-                        accountToSignOut = nil
-                    }
-                } else {
-                    Button("Cancel", role: .cancel) { }
-                    Button("Sign Out All", role: .destructive) {
-                        signOutAllAccounts()
+                    
+                    Spacer()
+                    
+                    if isRunningFullClassification {
+                        ProgressView()
+                            .scaleEffect(0.8)
                     }
                 }
-            } message: {
-                if let account = accountToSignOut {
-                    Text("Are you sure you want to sign out of \(account.email)?")
-                } else {
-                    Text("Are you sure you want to sign out of all accounts?")
-                }
+                .padding(.vertical, 2)
             }
-            .alert(
-                reauthenticationError == nil ? "Reauthentication Successful" : "Reauthentication Failed",
-                isPresented: $showingReauthAlert
-            ) {
-                Button("OK") {
-                    reauthenticationError = nil
-                }
-            } message: {
-                if let error = reauthenticationError {
-                    Text("Failed to reauthenticate: \(error)")
-                } else {
-                    Text("Account has been successfully reauthenticated with Google.")
-                }
+            .disabled(isRunningFullClassification)
+        }
+    }
+    
+    private var appInformationSection: some View {
+        Section("App Information") {
+            versionRow
+            githubLink
+        }
+    }
+    
+    private var versionRow: some View {
+        HStack {
+            Text("Version")
+            Spacer()
+            Text("1.0.0")
+                .foregroundColor(.secondary)
+        }
+    }
+    
+    private var githubLink: some View {
+        Link(destination: URL(string: "https://github.com")!) {
+            HStack {
+                Text("Source Code")
+                Spacer()
+                Image(systemName: "arrow.up.right.square")
+                    .foregroundColor(.blue)
             }
-            .alert("Classification Complete", isPresented: $showingClassificationAlert) {
-                Button("OK") {
-                    classificationResultMessage = nil
-                }
-            } message: {
-                if let message = classificationResultMessage {
-                    Text(message)
-                } else {
-                    Text("Full email classification has been completed successfully.")
-                }
+        }
+    }
+    
+    // MARK: - Action Methods
+    
+    private func addNewAccount() {
+        Task { @MainActor in
+            do {
+                try await accountManager.signInWithGoogle()
+                addAccountError = nil
+            } catch {
+                addAccountError = error.localizedDescription
+                showingAddAccountAlert = true
             }
-            .alert("Add Account Failed", isPresented: $showingAddAccountAlert) {
-                Button("OK") {
-                    addAccountError = nil
-                }
-            } message: {
-                if let error = addAccountError {
-                    Text("Failed to add account: \(error)")
-                } else {
-                    Text("An unknown error occurred while adding the account.")
-                }
-            }
-            .disabled(isReauthenticating || accountManager.isLoading)
         }
     }
     
@@ -255,87 +276,39 @@ struct SettingsView: View {
     }
     
     private func reauthenticateAccount(_ account: GmailAccount) {
-        Task {
-            await MainActor.run {
-                isReauthenticating = true
-                reauthenticationError = nil
-            }
-            
+        Task { @MainActor in
             do {
-                try await accountManager.reauthenticateAccount(account)
-                
-                await MainActor.run {
-                    isReauthenticating = false
-                    reauthenticationError = nil
-                    showingReauthAlert = true
-                }
-                
-            } catch {
-                await MainActor.run {
-                    isReauthenticating = false
-                    reauthenticationError = error.localizedDescription
-                    showingReauthAlert = true
-                }
-            }
-        }
-    }
-    
-    private func addNewAccount() {
-        Task {
-            do {
-                print("🔐 Adding new Google account from Settings...")
                 try await accountManager.signInWithGoogle()
-                print("✅ Successfully added new account")
-                
             } catch {
-                await MainActor.run {
-                    addAccountError = error.localizedDescription
-                    showingAddAccountAlert = true
-                }
-                print("❌ Failed to add account: \(error)")
+                reauthenticationError = error.localizedDescription
+                showingReauthAlert = true
             }
         }
     }
     
     private func runFullClassification() {
-        Task {
-            await MainActor.run {
-                isRunningFullClassification = true
-                classificationResultMessage = nil
-            }
+        Task { @MainActor in
+            isRunningFullClassification = true
             
             do {
-                print("🤖 Starting full email classification from Settings...")
                 await appDataManager.forceFullClassification()
                 
-                // Get classification statistics if available
-                if let stats = await appDataManager.getClassificationStatistics() {
-                    await MainActor.run {
-                        isRunningFullClassification = false
-                        classificationResultMessage = "Successfully classified \(stats.totalEmails) emails across \(stats.categoryCounts.count) categories."
-                        showingClassificationAlert = true
-                    }
-                    print("✅ Full classification completed - Total: \(stats.totalEmails) emails")
-                } else {
-                    await MainActor.run {
-                        isRunningFullClassification = false
-                        classificationResultMessage = "Full email classification completed successfully."
-                        showingClassificationAlert = true
-                    }
-                    print("✅ Full classification completed")
-                }
+                // Get statistics after classification
+                let stats = await appDataManager.getClassificationStatistics()
                 
-            } catch {
-                await MainActor.run {
-                    isRunningFullClassification = false
-                    classificationResultMessage = "Classification failed: \(error.localizedDescription)"
-                    showingClassificationAlert = true
-                }
-                print("❌ Full classification failed: \(error)")
+                classificationResultMessage = stats != nil ?
+                "Successfully classified emails!" :
+                "Classification completed!"
+                
+                showingClassificationAlert = true
             }
+            
+            isRunningFullClassification = false
         }
     }
 }
+
+// MARK: - Supporting Views
 
 struct AccountRowView: View {
     let account: GmailAccount
@@ -345,42 +318,34 @@ struct AccountRowView: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(account.displayName ?? "Unknown")
-                    .font(.body)
-                    .fontWeight(.medium)
-                
+            VStack(alignment: .leading, spacing: 4) {
                 Text(account.email)
+                    .font(.body)
+                    .lineLimit(1)
+                
+                Text(account.isActive ? "Active" : "Needs Re-authentication")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(account.isActive ? .green : .orange)
             }
             
             Spacer()
             
-            VStack(spacing: 4) {
-                Button(action: onReauthenticate) {
-                    if accountManager.isLoading {
-                        HStack(spacing: 4) {
-                            ProgressView()
-                                .scaleEffect(0.8)
-                            Text("Authenticating...")
-                        }
-                    } else {
-                        Text("Reauthenticate")
-                    }
+            if !account.isActive {
+                Button("Re-authenticate") {
+                    onReauthenticate()
                 }
                 .buttonStyle(.bordered)
                 .controlSize(.small)
-                .disabled(accountManager.isLoading)
-                
-                Button("Sign Out") {
-                    onSignOut()
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.small)
-                .tint(.red)
                 .disabled(accountManager.isLoading)
             }
+            
+            Button("Sign Out") {
+                onSignOut()
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+            .tint(.red)
+            .disabled(accountManager.isLoading)
         }
         .padding(.vertical, 4)
     }

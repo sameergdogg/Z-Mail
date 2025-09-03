@@ -165,12 +165,9 @@ struct ClassificationCategoriesView: View {
     private func loadCategoryStatistics() async {
         isLoading = true
         
-        guard let modelContext = appDataManager.modelContext else {
-            isLoading = false
-            return
-        }
-        
-        do {
+        // For now, work directly with the email service since modelContext may not be available
+        // This is a temporary solution until the full framework migration is complete
+        await MainActor.run {
             let emails = emailService.emails // Get current emails from service
             var newCategoryStats: [EmailCategory: CategoryStats] = [:]
             
@@ -191,16 +188,8 @@ struct ClassificationCategoriesView: View {
                 }
             }
             
-            await MainActor.run {
-                self.categoryStats = newCategoryStats
-                self.isLoading = false
-            }
-            
-        } catch {
-            print("❌ Failed to load category statistics: \(error)")
-            await MainActor.run {
-                self.isLoading = false
-            }
+            self.categoryStats = newCategoryStats
+            self.isLoading = false
         }
     }
 }
