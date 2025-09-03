@@ -1,4 +1,0 @@
-module GoogleUtilities_Logger {
-umbrella "/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public"
-export *
-}

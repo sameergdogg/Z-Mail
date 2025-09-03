@@ -1,4 +1,0 @@
-module AppAuthCore {
-umbrella "/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore"
-export *
-}

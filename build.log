@@ -1,0 +1,1120 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project EmailClient.xcodeproj -scheme EmailClient -destination "platform=iOS Simulator,name=iPhone 16" build
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  GTMSessionFetcher: https://github.com/google/gtm-session-fetcher.git @ 3.5.0
+  GTMAppAuth: https://github.com/google/GTMAppAuth.git @ 5.0.0
+  Promises: https://github.com/google/promises.git @ 2.4.0
+  GoogleSignIn: https://github.com/google/GoogleSignIn-iOS @ 9.0.0
+  GoogleUtilities: https://github.com/google/GoogleUtilities.git @ 8.1.0
+  AppAuth: https://github.com/openid/AppAuth-iOS.git @ 2.0.0
+  AppCheck: https://github.com/google/app-check.git @ 11.2.0
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:7F9D582A-08AF-4855-BA55-BBB7A974C798, OS:18.6, name:iPhone 16 }
+{ platform:iOS Simulator, arch:x86_64, id:7F9D582A-08AF-4855-BA55-BBB7A974C798, OS:18.6, name:iPhone 16 }
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (33 targets)
+    Target 'EmailClient' in project 'EmailClient'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignInSwift' in project 'GoogleSignIn'
+    Target 'GoogleSignInSwift' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignInSwift' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignInSwift' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GoogleSignInSwift' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignInSwift' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GoogleSignIn_GoogleSignInSwift' in project 'GoogleSignIn' (no dependencies)
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher' (no dependencies)
+    Target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth' (no dependencies)
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'GULUserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+    Target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities' (no dependencies)
+    Target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'third-party-IsAppEncrypted' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities' (no dependencies)
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'Promises_FBLPromises' in project 'Promises' (no dependencies)
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth_AppAuthCore' in project 'AppAuth' (no dependencies)
+    Target 'AppAuth_AppAuth' in project 'AppAuth' (no dependencies)
+    Target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk /Users/scammy/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache
+    cd /Users/scammy/Documents/Projects/Z-Mail/EmailClient.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -o /Users/scammy/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache
+
+SwiftDriver EmailClient normal arm64 com.apple.xcode.tools.swift.compiler (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name EmailClient -Onone -enforce-exclusivity\=checked @/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios17.5-simulator -g -module-cache-path /Users/scammy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Index.noindex/DataStore -swift-version 5 -I /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64 -c -j8 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -output-file-map /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/scammy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient_const_extract_protocols.json -Xcc -iquote -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-generated-files.hmap -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-own-target-headers.hmap -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient-9cf4ec5a29cf2927e18d0a68616c8543-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-project-headers.hmap -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources-normal/arm64 -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources/arm64 -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient-Swift.h -working-directory /Users/scammy/Documents/Projects/Z-Mail -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ ContentView.swift,\ EmailClientApp.swift,\ AccountManagerFactory.swift,\ AccountModels.swift,\ AccountManagerImpl.swift,\ AccountManagerProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/ContentView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/EmailClientApp.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/PublicAPI/AccountModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/Impl/AccountManagerImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/PublicAPI/AccountManagerProtocol.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/ContentView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/EmailClientApp.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift:18:10: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    ) -> AccountManagerProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift:45:34: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    private var managerInstance: AccountManagerProtocol?
+                                 ^~~~~~~~~~~~~~~~~~~~~~
+                                 (any AccountManagerProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift:53:40: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func getAccountManager() -> AccountManagerProtocol {
+                                       ^~~~~~~~~~~~~~~~~~~~~~
+                                       any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift:69:39: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func setManager(_ manager: AccountManagerProtocol) {
+                                      ^~~~~~~~~~~~~~~~~~~~~~
+                                      any AccountManagerProtocol
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/PublicAPI/AccountModels.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/Impl/AccountManagerImpl.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/PublicAPI/AccountManagerProtocol.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 Compiling\ PersistenceModels.swift,\ EmailPersistenceStoreImpl.swift,\ SwiftDataModels.swift,\ SwiftDataContainer.swift,\ SwiftDataEmailPersistenceStoreImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/PublicAPI/PersistenceModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/EmailPersistenceStoreImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataContainer.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataEmailPersistenceStoreImpl.swift (in target 'EmailClient' from project 'EmailClient')
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/PublicAPI/PersistenceModels.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/EmailPersistenceStoreImpl.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataContainer.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataEmailPersistenceStoreImpl.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ EmailClient (in target 'EmailClient' from project 'EmailClient')
+
+EmitSwiftModule normal arm64 (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift:18:10: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    ) -> AccountManagerProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift:45:34: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    private var managerInstance: AccountManagerProtocol?
+                                 ^~~~~~~~~~~~~~~~~~~~~~
+                                 (any AccountManagerProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift:53:40: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func getAccountManager() -> AccountManagerProtocol {
+                                       ^~~~~~~~~~~~~~~~~~~~~~
+                                       any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift:69:39: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func setManager(_ manager: AccountManagerProtocol) {
+                                      ^~~~~~~~~~~~~~~~~~~~~~
+                                      any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/AccountManager.swift:22:31: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public static var shared: AccountManagerProtocol {
+                              ^~~~~~~~~~~~~~~~~~~~~~
+                              any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/AccountManager.swift:29:112: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public static func create(with dependencies: AccountManagerDependencies = AccountManagerDependencies()) -> AccountManagerProtocol {
+                                                                                                               ^~~~~~~~~~~~~~~~~~~~~~
+                                                                                                               any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/AccountManager.swift:39:10: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    ) -> AccountManagerProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailListView.swift:262:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailDetailView.swift:6:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/FilterView.swift:4:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/FilterView.swift:5:25: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    let accountManager: AccountManagerProtocol
+                        ^~~~~~~~~~~~~~~~~~~~~~
+                        any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SummaryView.swift:5:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:4:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:476:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:504:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailFilterScrollView.swift:5:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:7:16: warning: constant 'debugMessage' inferred to have type '()', which may be unexpected
+    static let debugMessage = { print("📧 SwiftDataEmail model loaded") }()
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:7:16: note: add an explicit type annotation to silence this warning
+    static let debugMessage = { print("📧 SwiftDataEmail model loaded") }()
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:85:16: warning: constant 'debugMessage' inferred to have type '()', which may be unexpected
+    static let debugMessage = { print("📧 SwiftDataAccount model loaded") }()
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:85:16: note: add an explicit type annotation to silence this warning
+    static let debugMessage = { print("📧 SwiftDataAccount model loaded") }()
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:118:16: warning: constant 'debugMessage' inferred to have type '()', which may be unexpected
+    static let debugMessage = { print("📎 SwiftDataEmailAttachment model loaded") }()
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:118:16: note: add an explicit type annotation to silence this warning
+    static let debugMessage = { print("📎 SwiftDataEmailAttachment model loaded") }()
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:161:16: warning: constant 'debugMessage' inferred to have type '()', which may be unexpected
+    static let debugMessage = { print("📊 SwiftDataDigest model loaded") }()
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:161:16: note: add an explicit type annotation to silence this warning
+    static let debugMessage = { print("📊 SwiftDataDigest model loaded") }()
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataEmailPersistenceStoreImpl.swift:497:5: warning: 'public' modifier conflicts with extension's default access of 'private'
+    public func hasDigest(for date: Date) throws -> Bool {
+    ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataEmailPersistenceStoreImpl.swift:501:5: warning: 'public' modifier conflicts with extension's default access of 'private'
+    public func fetchDigest(for date: Date) throws -> DailyDigest? {
+    ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataEmailPersistenceStoreImpl.swift:508:5: warning: 'public' modifier conflicts with extension's default access of 'private'
+    public func saveDigest(_ digest: DailyDigest, for date: Date, emailCount: Int, accountEmails: [String]) async throws {
+    ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataEmailPersistenceStoreImpl.swift:517:5: warning: 'public' modifier conflicts with extension's default access of 'private'
+    public func deleteDigest(for date: Date) async throws -> Bool {
+    ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:24:52: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public static func shared(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                   ^~~~~~~~~~~~~~~~~~~~~~
+                                                   any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:24:79: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public static func shared(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                                              ^~~~~~~~~~~~~~~~~~~~
+                                                                              any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:30:32: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public static var current: EmailServiceProtocol? {
+                               ^~~~~~~~~~~~~~~~~~~~
+                               (any EmailServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:37:79: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public static func create(with dependencies: EmailServiceDependencies) -> EmailServiceProtocol {
+                                                                              ^~~~~~~~~~~~~~~~~~~~
+                                                                              any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:44:52: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public static func create(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                   ^~~~~~~~~~~~~~~~~~~~~~
+                                                   any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:44:79: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public static func create(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                                              ^~~~~~~~~~~~~~~~~~~~
+                                                                              any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:50:66: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public static func updateAccountManager(_ newAccountManager: AccountManagerProtocol) {
+                                                                 ^~~~~~~~~~~~~~~~~~~~~~
+                                                                 any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:63:25: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        accountManager: AccountManagerProtocol,
+                        ^~~~~~~~~~~~~~~~~~~~~~
+                        any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:67:10: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~
+         any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/Impl/EmailServiceImpl.swift:24:33: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    private var accountManager: AccountManagerProtocol
+                                ^~~~~~~~~~~~~~~~~~~~~~
+                                any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/Impl/EmailServiceImpl.swift:180:59: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func updateAccountManager(_ newAccountManager: AccountManagerProtocol) {
+                                                          ^~~~~~~~~~~~~~~~~~~~~~
+                                                          any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/PublicAPI/EmailServiceProtocol.swift:64:52: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    func updateAccountManager(_ newAccountManager: AccountManagerProtocol)
+                                                   ^~~~~~~~~~~~~~~~~~~~~~
+                                                   any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:17:10: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~
+         any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:26:30: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        with accountManager: AccountManagerProtocol
+                             ^~~~~~~~~~~~~~~~~~~~~~
+                             any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:27:10: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~
+         any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:35:32: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public let accountManager: AccountManagerProtocol
+                               ^~~~~~~~~~~~~~~~~~~~~~
+                               any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:41:25: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        accountManager: AccountManagerProtocol,
+                        ^~~~~~~~~~~~~~~~~~~~~~
+                        any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:59:34: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    private var serviceInstance: EmailServiceProtocol?
+                                 ^~~~~~~~~~~~~~~~~~~~
+                                 (any EmailServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:67:54: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func getEmailService(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                     ^~~~~~~~~~~~~~~~~~~~~~
+                                                     any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:67:81: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public func getEmailService(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                                                ^~~~~~~~~~~~~~~~~~~~
+                                                                                any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:86:45: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public func getCurrentEmailService() -> EmailServiceProtocol? {
+                                            ^~~~~~~~~~~~~~~~~~~~
+                                            (any EmailServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:98:39: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public func setService(_ service: EmailServiceProtocol) {
+                                      ^~~~~~~~~~~~~~~~~~~~
+                                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:105:59: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func updateAccountManager(_ newAccountManager: AccountManagerProtocol) {
+                                                          ^~~~~~~~~~~~~~~~~~~~~~
+                                                          any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:127:25: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        accountManager: AccountManagerProtocol,
+                        ^~~~~~~~~~~~~~~~~~~~~~
+                        any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/LaunchClassificationManager.swift:15:40: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    private let classificationService: EmailClassificationServiceProtocol
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                       any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/ImplWiring/SettingsServiceFactory.swift:15:87: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    internal func createSettingsService(dependencies: SettingsServiceDependencies) -> SettingsServiceProtocol {
+                                                                                      ^~~~~~~~~~~~~~~~~~~~~~~
+                                                                                      any SettingsServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/ImplWiring/SettingsServiceFactory.swift:24:10: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> SettingsServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any SettingsServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/ImplWiring/SettingsServiceFactory.swift:42:10: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> SettingsServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any SettingsServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/ImplWiring/SettingsServiceFactory.swift:58:32: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    private var cachedService: SettingsServiceProtocol?
+                               ^~~~~~~~~~~~~~~~~~~~~~~
+                               (any SettingsServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/ImplWiring/SettingsServiceFactory.swift:68:10: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> SettingsServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any SettingsServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/ImplWiring/SettingsServiceFactory.swift:92:52: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    internal static func createForTesting(service: SettingsServiceProtocol) -> SettingsServiceContainer {
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~
+                                                   any SettingsServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:16:96: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    @MainActor internal func createAppDataService(dependencies: AppDataServiceDependencies) -> AppDataServiceProtocol {
+                                                                                               ^~~~~~~~~~~~~~~~~~~~~~
+                                                                                               any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:28:10: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> AppDataServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:52:10: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> AppDataServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:69:32: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    private var cachedService: AppDataServiceProtocol?
+                               ^~~~~~~~~~~~~~~~~~~~~~
+                               (any AppDataServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:79:10: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> AppDataServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:100:10: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> AppDataServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:127:52: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    internal static func createForTesting(service: AppDataServiceProtocol) -> AppDataServiceContainer {
+                                                   ^~~~~~~~~~~~~~~~~~~~~~
+                                                   any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:139:80: warning: use of protocol 'ClassificationManagerProtocol' as a type must be written 'any ClassificationManagerProtocol'; this will be an error in a future Swift language mode
+    @MainActor func createClassificationManager(modelContext: ModelContext) -> ClassificationManagerProtocol {
+                                                                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                                               any ClassificationManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:139:21: warning: main actor-isolated instance method 'createClassificationManager(modelContext:)' cannot be used to satisfy nonisolated requirement from protocol 'ClassificationManagerFactoryProtocol'; this is an error in the Swift 6 language mode
+    @MainActor func createClassificationManager(modelContext: ModelContext) -> ClassificationManagerProtocol {
+                    ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift:137:53: note: add '@preconcurrency' to the 'ClassificationManagerFactoryProtocol' conformance to defer isolation checking to run time
+internal class DefaultClassificationManagerFactory: ClassificationManagerFactoryProtocol {
+                                                    ^
+                                                    @preconcurrency 
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataModels.swift:16:10: note: mark the protocol requirement 'createClassificationManager(modelContext:)' 'async' to allow actor-isolated conformances
+    func createClassificationManager(modelContext: ModelContext) -> ClassificationManagerProtocol
+         ^
+                                                                 async
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift:14:63: warning: use of protocol 'ClassificationManagerProtocol' as a type must be written 'any ClassificationManagerProtocol'; this will be an error in a future Swift language mode
+    @Published public private(set) var classificationManager: ClassificationManagerProtocol?
+                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                              (any ClassificationManagerProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift:13:40: warning: main actor-isolated property 'isInitialized' cannot be used to satisfy nonisolated requirement from protocol 'AppDataServiceProtocol'; this is an error in the Swift 6 language mode
+    @Published public private(set) var isInitialized = false
+                                       ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift:9:36: note: add '@preconcurrency' to the 'AppDataServiceProtocol' conformance to defer isolation checking to run time
+internal class AppDataServiceImpl: AppDataServiceProtocol {
+                                   ^
+                                   @preconcurrency 
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataServiceProtocol.swift:9:9: note: requirement 'isInitialized' declared here
+    var isInitialized: Bool { get }
+        ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift:14:40: warning: main actor-isolated property 'classificationManager' cannot be used to satisfy nonisolated requirement from protocol 'AppDataServiceProtocol'; this is an error in the Swift 6 language mode
+    @Published public private(set) var classificationManager: ClassificationManagerProtocol?
+                                       ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataServiceProtocol.swift:12:9: note: requirement 'classificationManager' declared here
+    var classificationManager: ClassificationManagerProtocol? { get }
+        ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift:24:16: warning: main actor-isolated property 'modelContext' cannot be used to satisfy nonisolated requirement from protocol 'AppDataServiceProtocol'; this is an error in the Swift 6 language mode
+    public var modelContext: ModelContext? {
+               ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataServiceProtocol.swift:15:9: note: requirement 'modelContext' declared here
+    var modelContext: ModelContext? { get }
+        ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift:76:17: warning: main actor-isolated instance method 'provideModelContext()' cannot be used to satisfy nonisolated requirement from protocol 'AppDataServiceProtocol'; this is an error in the Swift 6 language mode
+    public func provideModelContext() -> ModelContext? {
+                ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift:76:17: note: add 'nonisolated' to 'provideModelContext()' to make this instance method not isolated to the actor
+    public func provideModelContext() -> ModelContext? {
+                ^
+    nonisolated 
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataServiceProtocol.swift:21:10: note: mark the protocol requirement 'provideModelContext()' 'async' to allow actor-isolated conformances
+    func provideModelContext() -> ModelContext?
+         ^
+                               async
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift:80:17: warning: main actor-isolated instance method 'save()' cannot be used to satisfy nonisolated requirement from protocol 'AppDataServiceProtocol'; this is an error in the Swift 6 language mode
+    public func save() throws {
+                ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift:80:17: note: add 'nonisolated' to 'save()' to make this instance method not isolated to the actor
+    public func save() throws {
+                ^
+    nonisolated 
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataServiceProtocol.swift:24:10: note: mark the protocol requirement 'save()' 'async' to allow actor-isolated conformances
+    func save() throws
+         ^
+                async 
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/PublicAPI/ServiceModels.swift:161:37: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    public static let defaultValue: ServiceRegistryProtocol? = nil
+                                    ^~~~~~~~~~~~~~~~~~~~~~~
+                                    (any ServiceRegistryProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/PublicAPI/ServiceModels.swift:165:33: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    public var serviceRegistry: ServiceRegistryProtocol? {
+                                ^~~~~~~~~~~~~~~~~~~~~~~
+                                (any ServiceRegistryProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/ImplWiring/EmailClassificationServiceFactory.swift:16:120: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    @MainActor internal func createEmailClassificationService(dependencies: EmailClassificationServiceDependencies) -> EmailClassificationServiceProtocol {
+                                                                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                                                                                       any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/ImplWiring/EmailClassificationServiceFactory.swift:28:10: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailClassificationServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/ImplWiring/EmailClassificationServiceFactory.swift:55:10: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailClassificationServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/ImplWiring/EmailClassificationServiceFactory.swift:72:42: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    private var cachedServices: [String: EmailClassificationServiceProtocol] = [:]
+                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                         any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/ImplWiring/EmailClassificationServiceFactory.swift:85:10: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailClassificationServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/Impl/EmailClassificationServiceImpl.swift:13:40: warning: main actor-isolated property 'isClassifying' cannot be used to satisfy nonisolated requirement from protocol 'EmailClassificationServiceProtocol'; this is an error in the Swift 6 language mode
+    @Published public private(set) var isClassifying = false
+                                       ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/Impl/EmailClassificationServiceImpl.swift:9:48: note: add '@preconcurrency' to the 'EmailClassificationServiceProtocol' conformance to defer isolation checking to run time
+internal class EmailClassificationServiceImpl: EmailClassificationServiceProtocol {
+                                               ^
+                                               @preconcurrency 
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/PublicAPI/EmailClassificationServiceProtocol.swift:9:9: note: requirement 'isClassifying' declared here
+    var isClassifying: Bool { get }
+        ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/Impl/EmailClassificationServiceImpl.swift:14:40: warning: main actor-isolated property 'classificationProgress' cannot be used to satisfy nonisolated requirement from protocol 'EmailClassificationServiceProtocol'; this is an error in the Swift 6 language mode
+    @Published public private(set) var classificationProgress: Double = 0.0
+                                       ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/PublicAPI/EmailClassificationServiceProtocol.swift:12:9: note: requirement 'classificationProgress' declared here
+    var classificationProgress: Double { get }
+        ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/Impl/EmailClassificationServiceImpl.swift:15:40: warning: main actor-isolated property 'classificationStatus' cannot be used to satisfy nonisolated requirement from protocol 'EmailClassificationServiceProtocol'; this is an error in the Swift 6 language mode
+    @Published public private(set) var classificationStatus = "Ready"
+                                       ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/PublicAPI/EmailClassificationServiceProtocol.swift:15:9: note: requirement 'classificationStatus' declared here
+    var classificationStatus: String { get }
+        ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/Impl/EmailClassificationServiceImpl.swift:130:17: warning: main actor-isolated instance method 'cancelClassification()' cannot be used to satisfy nonisolated requirement from protocol 'EmailClassificationServiceProtocol'; this is an error in the Swift 6 language mode
+    public func cancelClassification() {
+                ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/Impl/EmailClassificationServiceImpl.swift:130:17: note: add 'nonisolated' to 'cancelClassification()' to make this instance method not isolated to the actor
+    public func cancelClassification() {
+                ^
+    nonisolated 
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/PublicAPI/EmailClassificationServiceProtocol.swift:25:10: note: mark the protocol requirement 'cancelClassification()' 'async' to allow actor-isolated conformances
+    func cancelClassification()
+         ^
+                                async
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/EmailClassificationService.swift:28:10: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailClassificationServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/EmailClassificationService.swift:38:104: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    @MainActor public static func create(with dependencies: EmailClassificationServiceDependencies) -> EmailClassificationServiceProtocol {
+                                                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                                                                       any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/EmailClassificationService.swift:50:10: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailClassificationServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/EmailClassificationService.swift:79:10: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailClassificationServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ServiceRegistry.swift:25:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ServiceRegistry.swift:31:32: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    public static var current: ServiceRegistryProtocol? {
+                               ^~~~~~~~~~~~~~~~~~~~~~~
+                               (any ServiceRegistryProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ServiceRegistry.swift:38:82: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    public static func create(with dependencies: ServiceRegistryDependencies) -> ServiceRegistryProtocol {
+                                                                                 ^~~~~~~~~~~~~~~~~~~~~~~
+                                                                                 any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ServiceRegistry.swift:47:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ServiceRegistry.swift:64:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ServiceRegistry.swift:85:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ServiceRegistry.swift:108:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/SettingsService.swift:24:10: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> SettingsServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any SettingsServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/SettingsService.swift:30:32: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    public static var current: SettingsServiceProtocol? {
+                               ^~~~~~~~~~~~~~~~~~~~~~~
+                               (any SettingsServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/SettingsService.swift:37:82: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    public static func create(with dependencies: SettingsServiceDependencies) -> SettingsServiceProtocol {
+                                                                                 ^~~~~~~~~~~~~~~~~~~~~~~
+                                                                                 any SettingsServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/SettingsService.swift:46:10: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> SettingsServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any SettingsServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/SettingsService.swift:64:10: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> SettingsServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any SettingsServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataModels.swift:16:69: warning: use of protocol 'ClassificationManagerProtocol' as a type must be written 'any ClassificationManagerProtocol'; this will be an error in a future Swift language mode
+    func createClassificationManager(modelContext: ModelContext) -> ClassificationManagerProtocol
+                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                                    any ClassificationManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataModels.swift:43:37: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    public static let defaultValue: AppDataServiceProtocol? = nil
+                                    ^~~~~~~~~~~~~~~~~~~~~~
+                                    (any AppDataServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataModels.swift:47:32: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    public var appDataService: AppDataServiceProtocol? {
+                               ^~~~~~~~~~~~~~~~~~~~~~
+                               (any AppDataServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/AppDataService.swift:26:10: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> AppDataServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/AppDataService.swift:38:10: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> AppDataServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/AppDataService.swift:47:32: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    public static var current: AppDataServiceProtocol? {
+                               ^~~~~~~~~~~~~~~~~~~~~~
+                               (any AppDataServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/AppDataService.swift:55:92: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    @MainActor public static func create(with dependencies: AppDataServiceDependencies) -> AppDataServiceProtocol {
+                                                                                           ^~~~~~~~~~~~~~~~~~~~~~
+                                                                                           any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/AppDataService.swift:67:10: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> AppDataServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/AppDataService.swift:90:10: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> AppDataServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~
+         any AppDataServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataServiceProtocol.swift:12:32: warning: use of protocol 'ClassificationManagerProtocol' as a type must be written 'any ClassificationManagerProtocol'; this will be an error in a future Swift language mode
+    var classificationManager: ClassificationManagerProtocol? { get }
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                               (any ClassificationManagerProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataServiceProtocol.swift:117:39: warning: use of protocol 'ClassificationManagerProtocol' as a type must be written 'any ClassificationManagerProtocol'; this will be an error in a future Swift language mode
+    case classificationManagerCreated(ClassificationManagerProtocol)
+                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                      any ClassificationManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:16:87: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    internal func createServiceRegistry(dependencies: ServiceRegistryDependencies) -> ServiceRegistryProtocol {
+                                                                                      ^~~~~~~~~~~~~~~~~~~~~~~
+                                                                                      any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:25:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:49:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:66:33: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    private var cachedRegistry: ServiceRegistryProtocol?
+                                ^~~~~~~~~~~~~~~~~~~~~~~
+                                (any ServiceRegistryProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:76:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:100:53: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    internal static func createForTesting(registry: ServiceRegistryProtocol) -> ServiceRegistryContainer {
+                                                    ^~~~~~~~~~~~~~~~~~~~~~~
+                                                    any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:111:27: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    private let registry: ServiceRegistryProtocol
+                          ^~~~~~~~~~~~~~~~~~~~~~~
+                          any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:113:29: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    internal init(registry: ServiceRegistryProtocol) {
+                            ^~~~~~~~~~~~~~~~~~~~~~~
+                            any ServiceRegistryProtocol
+
+SwiftCompile normal arm64 Compiling\ EmailImageServiceProtocol.swift,\ ServiceRegistryProtocol.swift,\ ClassificationCategoriesView.swift,\ CategoryEmailsView.swift,\ GeneratedAssetSymbols.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailImageService/PublicAPI/EmailImageServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/PublicAPI/ServiceRegistryProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationCategoriesView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/CategoryEmailsView.swift /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'EmailClient' from project 'EmailClient')
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/scammy/Documents/Projects/Z-Mail/EmailClient/ContentView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/EmailClientApp.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/ImplWiring/AccountManagerFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/PublicAPI/AccountModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/Impl/AccountManagerImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/PublicAPI/AccountManagerProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/AccountManager.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailListView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailDetailView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/FilterView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Models/Email.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SettingsView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/GmailAPIService.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/PublicAPI/GmailAPIServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/PublicAPI/GmailDataModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/ImplWiring/GmailAPIServiceFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SummaryView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ClassificationModel/Impl/ClassificationModelImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ClassificationModel/ClassificationModel.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ClassificationModel/ImplWiring/ClassificationModelFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ClassificationModel/PublicAPI/ClassificationModelProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/Impl/GmailAPIServiceImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/Impl/GmailAPIServiceHelpers.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/EmailPersistenceStore.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/PublicAPI/EmailPersistenceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailFilterScrollView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/PublicAPI/PersistenceModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/ImplWiring/EmailPersistenceFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/EmailPersistenceStoreImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataContainer.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataEmailPersistenceStoreImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/Impl/EmailServiceImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/PublicAPI/EmailServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/SecureConfigurationManager.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationSettingsView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/LaunchClassificationManager.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/TempLegacyServices.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/ImplWiring/SettingsServiceFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/ImplWiring/AppDataServiceFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/AppDataServiceImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/PublicAPI/EmailClassificationServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/Impl/SwiftDataEmailRepository.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/Impl/SettingsServiceImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/PublicAPI/ServiceModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/Impl/ServiceRegistryImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/Impl/UserDefaultsPersistence.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/ImplWiring/EmailClassificationServiceFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/Impl/EmailClassificationServiceImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/EmailClassificationService.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/Impl/DefaultSchemaProvider.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/PublicAPI/SettingsServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ServiceRegistry.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/SettingsService.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/PublicAPI/EmailClassificationModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/PublicAPI/SettingsModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/AppDataService.swift -primary-file /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailImageService/PublicAPI/EmailImageServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AppDataService/PublicAPI/AppDataServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift -primary-file /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/PublicAPI/ServiceRegistryProtocol.swift -primary-file /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationCategoriesView.swift -primary-file /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/CategoryEmailsView.swift -primary-file /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources/GeneratedAssetSymbols.swift -supplementary-output-file-map /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/supplementaryOutputs-8 -emit-localized-strings -emit-localized-strings-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64 -target arm64-apple-ios17.5-simulator -Xllvm -aarch64-use-tbi -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -I /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator -no-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=4 -module-cache-path /Users/scammy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -swift-version 5 -enforce-exclusivity\=checked -Onone -D DEBUG -serialize-debugging-options -const-gather-protocols-file /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient_const_extract_protocols.json -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/scammy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/scammy/Documents/Projects/Z-Mail -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift -enable-anonymous-context-mangled-names -file-compilation-dir /Users/scammy/Documents/Projects/Z-Mail -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -Xcc -ivfsstatcache -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-generated-files.hmap -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-own-target-headers.hmap -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient-9cf4ec5a29cf2927e18d0a68616c8543-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-project-headers.hmap -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources-normal/arm64 -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources/arm64 -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources -Xcc -DDEBUG\=1 -module-name EmailClient -frontend-parseable-output -disable-clang-spi -target-sdk-version 18.5 -target-sdk-name iphonesimulator18.5 -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/local/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/lib/swift/host/plugins -o /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailImageServiceProtocol.o -o /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ServiceRegistryProtocol.o -o /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView.o -o /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView.o -o /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols.o -index-unit-output-path /EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailImageServiceProtocol.o -index-unit-output-path /EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ServiceRegistryProtocol.o -index-unit-output-path /EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/ClassificationCategoriesView.o -index-unit-output-path /EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/CategoryEmailsView.o -index-unit-output-path /EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/GeneratedAssetSymbols.o -index-store-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Index.noindex/DataStore -index-system-modules
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailImageService/PublicAPI/EmailImageServiceProtocol.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/PublicAPI/ServiceRegistryProtocol.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationCategoriesView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationCategoriesView.swift:168:49: error: value of type 'AppDataManager' has no member 'modelContext'
+        guard let modelContext = appDataManager.modelContext else {
+                                 ~~~~~~~~~~~~~~ ^~~~~~~~~~~~
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/CategoryEmailsView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 Compiling\ EmailService.swift,\ EmailServiceImpl.swift,\ EmailServiceProtocol.swift,\ EmailServiceFactory.swift,\ SecureConfigurationManager.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/Impl/EmailServiceImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/PublicAPI/EmailServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/SecureConfigurationManager.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:24:52: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public static func shared(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                   ^~~~~~~~~~~~~~~~~~~~~~
+                                                   any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:24:79: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public static func shared(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                                              ^~~~~~~~~~~~~~~~~~~~
+                                                                              any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:30:32: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public static var current: EmailServiceProtocol? {
+                               ^~~~~~~~~~~~~~~~~~~~
+                               (any EmailServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:37:79: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public static func create(with dependencies: EmailServiceDependencies) -> EmailServiceProtocol {
+                                                                              ^~~~~~~~~~~~~~~~~~~~
+                                                                              any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:44:52: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public static func create(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                   ^~~~~~~~~~~~~~~~~~~~~~
+                                                   any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:44:79: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public static func create(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                                              ^~~~~~~~~~~~~~~~~~~~
+                                                                              any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:50:66: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public static func updateAccountManager(_ newAccountManager: AccountManagerProtocol) {
+                                                                 ^~~~~~~~~~~~~~~~~~~~~~
+                                                                 any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:63:25: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        accountManager: AccountManagerProtocol,
+                        ^~~~~~~~~~~~~~~~~~~~~~
+                        any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/EmailService.swift:67:10: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~
+         any EmailServiceProtocol
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/Impl/EmailServiceImpl.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/Impl/EmailServiceImpl.swift:24:33: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    private var accountManager: AccountManagerProtocol
+                                ^~~~~~~~~~~~~~~~~~~~~~
+                                any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/Impl/EmailServiceImpl.swift:180:59: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func updateAccountManager(_ newAccountManager: AccountManagerProtocol) {
+                                                          ^~~~~~~~~~~~~~~~~~~~~~
+                                                          any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/Impl/EmailServiceImpl.swift:561:27: warning: reference to captured var 'allEmails' in concurrently-executing code; this is an error in the Swift 6 language mode
+            self.emails = allEmails
+                          ^
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/PublicAPI/EmailServiceProtocol.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/PublicAPI/EmailServiceProtocol.swift:64:52: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    func updateAccountManager(_ newAccountManager: AccountManagerProtocol)
+                                                   ^~~~~~~~~~~~~~~~~~~~~~
+                                                   any AccountManagerProtocol
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:17:10: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~
+         any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:26:30: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        with accountManager: AccountManagerProtocol
+                             ^~~~~~~~~~~~~~~~~~~~~~
+                             any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:27:10: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    ) -> EmailServiceProtocol {
+         ^~~~~~~~~~~~~~~~~~~~
+         any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:35:32: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public let accountManager: AccountManagerProtocol
+                               ^~~~~~~~~~~~~~~~~~~~~~
+                               any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:41:25: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        accountManager: AccountManagerProtocol,
+                        ^~~~~~~~~~~~~~~~~~~~~~
+                        any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:59:34: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    private var serviceInstance: EmailServiceProtocol?
+                                 ^~~~~~~~~~~~~~~~~~~~
+                                 (any EmailServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:67:54: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func getEmailService(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                     ^~~~~~~~~~~~~~~~~~~~~~
+                                                     any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:67:81: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public func getEmailService(with accountManager: AccountManagerProtocol) -> EmailServiceProtocol {
+                                                                                ^~~~~~~~~~~~~~~~~~~~
+                                                                                any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:86:45: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public func getCurrentEmailService() -> EmailServiceProtocol? {
+                                            ^~~~~~~~~~~~~~~~~~~~
+                                            (any EmailServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:98:39: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    public func setService(_ service: EmailServiceProtocol) {
+                                      ^~~~~~~~~~~~~~~~~~~~
+                                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:105:59: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+    public func updateAccountManager(_ newAccountManager: AccountManagerProtocol) {
+                                                          ^~~~~~~~~~~~~~~~~~~~~~
+                                                          any AccountManagerProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailService/ImplWiring/EmailServiceFactory.swift:127:25: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        accountManager: AccountManagerProtocol,
+                        ^~~~~~~~~~~~~~~~~~~~~~
+                        any AccountManagerProtocol
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/SecureConfigurationManager.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 Compiling\ ClassificationSettingsView.swift,\ LaunchClassificationManager.swift,\ TempLegacyServices.swift,\ EmailClassificationServiceProtocol.swift,\ SettingsServiceImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationSettingsView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/LaunchClassificationManager.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/TempLegacyServices.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/PublicAPI/EmailClassificationServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/Impl/SettingsServiceImpl.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationSettingsView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/LaunchClassificationManager.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/LaunchClassificationManager.swift:15:40: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+    private let classificationService: EmailClassificationServiceProtocol
+                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                       any EmailClassificationServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:7:16: warning: constant 'debugMessage' inferred to have type '()', which may be unexpected
+    static let debugMessage = { print("📧 SwiftDataEmail model loaded") }()
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/Impl/SwiftDataModels.swift:7:16: note: add an explicit type annotation to silence this warning
+    static let debugMessage = { print("📧 SwiftDataEmail model loaded") }()
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Services/TempLegacyServices.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailClassificationService/PublicAPI/EmailClassificationServiceProtocol.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/Impl/SettingsServiceImpl.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/SettingsService/Impl/SettingsServiceImpl.swift:110:27: warning: value 'self' was defined but never used; consider replacing with boolean test
+                guard let self = self else { return }
+                      ~~~~^~~~~~~
+                                      != nil
+
+SwiftCompile normal arm64 Compiling\ GmailAPIServiceHelpers.swift,\ EmailPersistenceStore.swift,\ EmailPersistenceProtocol.swift,\ SenderListView.swift,\ EmailFilterScrollView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/Impl/GmailAPIServiceHelpers.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/EmailPersistenceStore.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/PublicAPI/EmailPersistenceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailFilterScrollView.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/Impl/GmailAPIServiceHelpers.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/EmailPersistenceStore.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailPersistenceStore/PublicAPI/EmailPersistenceProtocol.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:4:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:476:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:504:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:22:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead.
+        .onChange(of: emailService.emails) { _ in
+         ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:25:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead.
+        .onChange(of: emailService.filteredEmails) { _ in
+         ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:28:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead.
+        .onChange(of: emailService.currentFilter) { _ in
+         ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:31:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead.
+        .onChange(of: searchText) { _ in
+         ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:34:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead.
+        .onChange(of: settingsManager.senderSortOrder) { _ in
+         ^
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SenderListView.swift:492:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead.
+        .onChange(of: emailService.emails) { _ in
+         ^
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailFilterScrollView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailFilterScrollView.swift:5:23: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+    let emailService: EmailServiceProtocol
+                      ^~~~~~~~~~~~~~~~~~~~
+                      any EmailServiceProtocol
+
+SwiftCompile normal arm64 Compiling\ GmailAPIService.swift,\ GmailAPIServiceProtocol.swift,\ GmailDataModels.swift,\ GmailAPIServiceFactory.swift,\ SummaryView.swift,\ GmailAPIServiceImpl.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/GmailAPIService.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/PublicAPI/GmailAPIServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/PublicAPI/GmailDataModels.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/ImplWiring/GmailAPIServiceFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SummaryView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/Impl/GmailAPIServiceImpl.swift (in target 'EmailClient' from project 'EmailClient')
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/GmailAPIService.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/PublicAPI/GmailAPIServiceProtocol.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/PublicAPI/GmailDataModels.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/ImplWiring/GmailAPIServiceFactory.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SummaryView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/GmailAPIService/Impl/GmailAPIServiceImpl.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 Compiling\ AccountManager.swift,\ EmailListView.swift,\ EmailDetailView.swift,\ FilterView.swift,\ Email.swift,\ SettingsView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/AccountManager.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailListView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailDetailView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/FilterView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Models/Email.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SettingsView.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/AccountManager/AccountManager.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailListView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/EmailDetailView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/FilterView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Models/Email.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/SettingsView.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling EmailService.swift, EmailServiceImpl.swift, EmailServiceProtocol.swift, EmailServiceFactory.swift, SecureConfigurationManager.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftCompile normal arm64 Compiling\ ServiceRegistryFactory.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:16:87: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    internal func createServiceRegistry(dependencies: ServiceRegistryDependencies) -> ServiceRegistryProtocol {
+                                                                                      ^~~~~~~~~~~~~~~~~~~~~~~
+                                                                                      any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:25:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:49:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:66:33: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    private var cachedRegistry: ServiceRegistryProtocol?
+                                ^~~~~~~~~~~~~~~~~~~~~~~
+                                (any ServiceRegistryProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:76:10: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    ) -> ServiceRegistryProtocol {
+         ^~~~~~~~~~~~~~~~~~~~~~~
+         any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:100:53: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    internal static func createForTesting(registry: ServiceRegistryProtocol) -> ServiceRegistryContainer {
+                                                    ^~~~~~~~~~~~~~~~~~~~~~~
+                                                    any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:111:27: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    private let registry: ServiceRegistryProtocol
+                          ^~~~~~~~~~~~~~~~~~~~~~~
+                          any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:113:29: warning: use of protocol 'ServiceRegistryProtocol' as a type must be written 'any ServiceRegistryProtocol'; this will be an error in a future Swift language mode
+    internal init(registry: ServiceRegistryProtocol) {
+                            ^~~~~~~~~~~~~~~~~~~~~~~
+                            any ServiceRegistryProtocol
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:122:49: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+        registry.register(settingsService, for: SettingsServiceProtocol.self)
+                                                ^~~~~~~~~~~~~~~~~~~~~~~
+                                                (any SettingsServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:126:48: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+        registry.register(appDataService, for: AppDataServiceProtocol.self)
+                                               ^~~~~~~~~~~~~~~~~~~~~~
+                                               (any AppDataServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:130:55: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+        registry.register(classificationService, for: EmailClassificationServiceProtocol.self)
+                                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                      (any EmailClassificationServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:134:48: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        registry.register(accountManager, for: AccountManagerProtocol.self)
+                                               ^~~~~~~~~~~~~~~~~~~~~~
+                                               (any AccountManagerProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:137:46: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+        registry.register(emailService, for: EmailServiceProtocol.self)
+                                             ^~~~~~~~~~~~~~~~~~~~
+                                             (any EmailServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:154:49: warning: use of protocol 'SettingsServiceProtocol' as a type must be written 'any SettingsServiceProtocol'; this will be an error in a future Swift language mode
+        registry.register(settingsService, for: SettingsServiceProtocol.self)
+                                                ^~~~~~~~~~~~~~~~~~~~~~~
+                                                (any SettingsServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:158:48: warning: use of protocol 'AppDataServiceProtocol' as a type must be written 'any AppDataServiceProtocol'; this will be an error in a future Swift language mode
+        registry.register(appDataService, for: AppDataServiceProtocol.self)
+                                               ^~~~~~~~~~~~~~~~~~~~~~
+                                               (any AppDataServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:165:55: warning: use of protocol 'EmailClassificationServiceProtocol' as a type must be written 'any EmailClassificationServiceProtocol'; this will be an error in a future Swift language mode
+        registry.register(classificationService, for: EmailClassificationServiceProtocol.self)
+                                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                      (any EmailClassificationServiceProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:169:48: warning: use of protocol 'AccountManagerProtocol' as a type must be written 'any AccountManagerProtocol'; this will be an error in a future Swift language mode
+        registry.register(accountManager, for: AccountManagerProtocol.self)
+                                               ^~~~~~~~~~~~~~~~~~~~~~
+                                               (any AccountManagerProtocol)
+/Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/ImplWiring/ServiceRegistryFactory.swift:172:46: warning: use of protocol 'EmailServiceProtocol' as a type must be written 'any EmailServiceProtocol'; this will be an error in a future Swift language mode
+        registry.register(emailService, for: EmailServiceProtocol.self)
+                                             ^~~~~~~~~~~~~~~~~~~~
+                                             (any EmailServiceProtocol)
+
+SwiftDriverJobDiscovery normal arm64 Compiling ClassificationSettingsView.swift, LaunchClassificationManager.swift, TempLegacyServices.swift, EmailClassificationServiceProtocol.swift, SettingsServiceImpl.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftDriverJobDiscovery normal arm64 Compiling GmailAPIServiceHelpers.swift, EmailPersistenceStore.swift, EmailPersistenceProtocol.swift, SenderListView.swift, EmailFilterScrollView.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftDriverJobDiscovery normal arm64 Compiling ContentView.swift, EmailClientApp.swift, AccountManagerFactory.swift, AccountModels.swift, AccountManagerImpl.swift, AccountManagerProtocol.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftDriverJobDiscovery normal arm64 Compiling ServiceRegistryFactory.swift (in target 'EmailClient' from project 'EmailClient')
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for EmailClient (in target 'EmailClient' from project 'EmailClient')
+
+SwiftDriver\ Compilation\ Requirements EmailClient normal arm64 com.apple.xcode.tools.swift.compiler (in target 'EmailClient' from project 'EmailClient')
+    cd /Users/scammy/Documents/Projects/Z-Mail
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name EmailClient -Onone -enforce-exclusivity\=checked @/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios17.5-simulator -g -module-cache-path /Users/scammy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Index.noindex/DataStore -swift-version 5 -I /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64 -c -j8 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -output-file-map /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/scammy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient_const_extract_protocols.json -Xcc -iquote -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-generated-files.hmap -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-own-target-headers.hmap -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient-9cf4ec5a29cf2927e18d0a68616c8543-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/EmailClient-project-headers.hmap -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources-normal/arm64 -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources/arm64 -Xcc -I/Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/Objects-normal/arm64/EmailClient-Swift.h -working-directory /Users/scammy/Documents/Projects/Z-Mail -experimental-emit-module-separately -disable-cmo
+
+** BUILD FAILED **
+
+
+The following build commands failed:
+	SwiftCompile normal arm64 Compiling\ EmailImageServiceProtocol.swift,\ ServiceRegistryProtocol.swift,\ ClassificationCategoriesView.swift,\ CategoryEmailsView.swift,\ GeneratedAssetSymbols.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/EmailImageService/PublicAPI/EmailImageServiceProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Frameworks/ServiceRegistry/PublicAPI/ServiceRegistryProtocol.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationCategoriesView.swift /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/CategoryEmailsView.swift /Users/scammy/Library/Developer/Xcode/DerivedData/EmailClient-duxgfwdgjizotabpagrmkpirjgow/Build/Intermediates.noindex/EmailClient.build/Debug-iphonesimulator/EmailClient.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'EmailClient' from project 'EmailClient')
+	SwiftCompile normal arm64 /Users/scammy/Documents/Projects/Z-Mail/EmailClient/Views/ClassificationCategoriesView.swift (in target 'EmailClient' from project 'EmailClient')
+	Building project EmailClient with scheme EmailClient
+(3 failures)

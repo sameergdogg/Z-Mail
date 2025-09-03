@@ -4,7 +4,7 @@ struct ContentView: View {
     @StateObject private var accountManager: AccountManagerImpl = {
         AccountManagerAPI.shared as! AccountManagerImpl
     }()
-    @StateObject private var settingsManager = SettingsManager()
+    @EnvironmentObject private var settingsManager: SettingsManager
     @State private var showingAccountSetup = false
     
     var body: some View {
