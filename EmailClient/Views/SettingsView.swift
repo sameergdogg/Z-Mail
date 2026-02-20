@@ -18,11 +18,15 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                emailDisplaySection
-                accountsSection
-                aiFeaturesSection
-                appInformationSection
+            ZStack {
+                Color.clear.background(.ultraThinMaterial)
+                List {
+                    emailDisplaySection
+                    accountsSection
+                    aiFeaturesSection
+                    appInformationSection
+                }
+                .scrollContentBackground(.hidden)
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
@@ -287,22 +291,26 @@ struct SettingsView: View {
     }
     
     private func runFullClassification() {
+        print("🧠 SettingsView.runFullClassification() — button tapped")
         Task { @MainActor in
             isRunningFullClassification = true
-            
+
             do {
+                print("🧠 SettingsView — calling appDataManager.forceFullClassification()")
                 await appDataManager.forceFullClassification()
-                
+                print("🧠 SettingsView — forceFullClassification() returned")
+
                 // Get statistics after classification
                 let stats = await appDataManager.getClassificationStatistics()
-                
+                print("🧠 SettingsView — stats: \(stats != nil ? "got stats, total=\(stats!.totalEmails)" : "nil")")
+
                 classificationResultMessage = stats != nil ?
                 "Successfully classified emails!" :
                 "Classification completed!"
-                
+
                 showingClassificationAlert = true
             }
-            
+
             isRunningFullClassification = false
         }
     }

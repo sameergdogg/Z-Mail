@@ -10,25 +10,28 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             if accountManager.accounts.isEmpty {
-                VStack(spacing: 20) {
-                    Image(systemName: "envelope")
-                        .font(.system(size: 60))
-                        .foregroundColor(.blue)
-                    
-                    Text("Welcome to Email Client")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    
-                    Text("Add your Gmail accounts to get started")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    
-                    Button("Add Gmail Account") {
-                        showingAccountSetup = true
+                ZStack {
+                    Color.clear.background(.ultraThinMaterial)
+                    VStack(spacing: 20) {
+                        Image(systemName: "envelope")
+                            .font(.system(size: 60))
+                            .foregroundColor(.blue)
+                        
+                        Text("Welcome to Email Client")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
+                        Text("Add your Gmail accounts to get started")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        
+                        Button("Add Gmail Account") {
+                            showingAccountSetup = true
+                        }
+                        .buttonStyle(.borderedProminent)
                     }
-                    .buttonStyle(.borderedProminent)
+                    .padding()
                 }
-                .padding()
             } else {
                 EmailListView()
                     .environmentObject(accountManager)
@@ -56,57 +59,60 @@ struct AccountSetupView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 30) {
-                VStack(spacing: 16) {
-                    Image(systemName: "envelope.badge")
-                        .font(.system(size: 50))
-                        .foregroundColor(.blue)
+            ZStack {
+                Color.clear.background(.ultraThinMaterial)
+                VStack(spacing: 30) {
+                    VStack(spacing: 16) {
+                        Image(systemName: "envelope.badge")
+                            .font(.system(size: 50))
+                            .foregroundColor(.blue)
+                        
+                        Text("Sign in with Google")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        Text("Connect your Gmail account to access your emails")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
                     
-                    Text("Sign in with Google")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    
-                    Text("Connect your Gmail account to access your emails")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                }
-                
-                VStack(spacing: 16) {
-                    Button(action: {
-                        Task {
-                            do {
-                                try await accountManager.signInWithGoogle()
-                                dismiss()
-                            } catch {
-                                errorMessage = error.localizedDescription
-                                showError = true
+                    VStack(spacing: 16) {
+                        Button(action: {
+                            Task {
+                                do {
+                                    try await accountManager.signInWithGoogle()
+                                    dismiss()
+                                } catch {
+                                    errorMessage = error.localizedDescription
+                                    showError = true
+                                }
                             }
+                        }) {
+                            HStack {
+                                Image(systemName: "globe")
+                                Text("Sign in with Google")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                         }
-                    }) {
-                        HStack {
-                            Image(systemName: "globe")
-                            Text("Sign in with Google")
+                        .disabled(accountManager.isLoading)
+                        
+                        if accountManager.isLoading {
+                            ProgressView("Signing in...")
+                                .progressViewStyle(CircularProgressViewStyle())
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
                     }
-                    .disabled(accountManager.isLoading)
+                    .padding(.horizontal)
                     
-                    if accountManager.isLoading {
-                        ProgressView("Signing in...")
-                            .progressViewStyle(CircularProgressViewStyle())
-                    }
+                    Spacer()
                 }
-                .padding(.horizontal)
-                
-                Spacer()
+                .padding()
             }
-            .padding()
             .navigationTitle("Add Account")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
