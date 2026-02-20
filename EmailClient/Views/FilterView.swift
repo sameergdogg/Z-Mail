@@ -8,11 +8,17 @@ struct FilterView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                statusFilterSection
-                accountFilterSection
-                emailSortSection
-                senderSortSection
+            ZStack {
+                // Liquid Glass background
+                Color.clear.background(.ultraThinMaterial)
+                List {
+                    statusFilterSection
+                    accountFilterSection
+                    categoryFilterSection
+                    emailSortSection
+                    senderSortSection
+                }
+                .scrollContentBackground(.hidden) // Hide default list background so glass shows through
             }
             .navigationTitle("Filters & Sorting")
             .navigationBarTitleDisplayMode(.inline)
@@ -47,6 +53,12 @@ struct FilterView: View {
                 isSelected: isSelected(.starred),
                 action: { emailService.applyFilter(.starred) }
             )
+
+            FilterOptionView(
+                title: "Security PIN Emails",
+                isSelected: isSelected(.label("security_pin")),
+                action: { emailService.applyFilter(.label("security_pin")) }
+            )
         }
     }
     
@@ -57,6 +69,25 @@ struct FilterView: View {
                     title: account.email,
                     isSelected: isSelected(.account(account.email)),
                     action: { emailService.applyFilter(.account(account.email)) }
+                )
+            }
+        }
+    }
+    
+    private var categoryFilterSection: some View {
+        Section("Filter by Category") {
+            FilterOptionView(
+                title: "All Categories",
+                isSelected: !isAnySpecificCategorySelected(),
+                action: { emailService.applyFilter(.all) }
+            )
+            
+            ForEach(availableClassifications(), id: \.self) { category in
+                CategoryFilterOptionView(
+                    category: category,
+                    emailCount: getCategoryEmailCount(category),
+                    isSelected: isSelected(.classification(category.rawValue)),
+                    action: { emailService.applyFilter(.classification(category.rawValue)) }
                 )
             }
         }
@@ -115,6 +146,22 @@ struct FilterView: View {
         
         // Return sorted categories that have emails
         return EmailCategory.allCases.filter { categoriesWithEmails.contains($0) }
+    }
+    
+    private func getCategoryEmailCount(_ category: EmailCategory) -> Int {
+        let allEmails = emailService.emails
+        return allEmails.filter { email in
+            email.isClassified && email.classificationCategory == category.rawValue
+        }.count
+    }
+    
+    private func isAnySpecificCategorySelected() -> Bool {
+        switch emailService.currentFilter {
+        case .classification:
+            return true
+        default:
+            return false
+        }
     }
     
     private func isSelected(_ filter: EmailFilter) -> Bool {
@@ -197,6 +244,53 @@ struct SenderSortOptionView: View {
                 
                 Text(title)
                     .foregroundColor(.primary)
+                
+                Spacer()
+                
+                if isSelected {
+                    Image(systemName: "checkmark")
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+    }
+}
+
+struct CategoryFilterOptionView: View {
+    let category: EmailCategory
+    let emailCount: Int
+    let isSelected: Bool
+    let action: () -> Void
+    
+    private var categoryColor: Color {
+        switch category.color {
+        case "orange": return .orange
+        case "brown": return .brown
+        case "green": return .green
+        case "blue": return .blue
+        case "purple": return .purple
+        case "red": return .red
+        case "yellow": return .yellow
+        default: return .gray
+        }
+    }
+    
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                Image(systemName: category.iconName)
+                    .font(.system(size: 16))
+                    .foregroundColor(categoryColor)
+                    .frame(width: 24)
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(category.displayName)
+                        .foregroundColor(.primary)
+                    
+                    Text("\(emailCount) email\(emailCount != 1 ? "s" : "")")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
                 
                 Spacer()
                 

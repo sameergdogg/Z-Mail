@@ -366,9 +366,13 @@ internal class GmailAPIServiceImpl: GmailAPIServiceProtocol {
         let (plainBody, htmlBody, isHTMLContent) = extractBodies(from: gmailMessage.payload)
         let attachments = extractAttachments(from: gmailMessage.payload, messageId: gmailMessage.id)
         
-        let isUnread = gmailMessage.labelIds?.contains(GmailLabels.unread) ?? false
-        let isStarred = gmailMessage.labelIds?.contains(GmailLabels.starred) ?? false
-        let labels = gmailMessage.labelIds ?? []
+        var labels = gmailMessage.labelIds ?? []
+        if EmailSecurityPinDetector.containsSecurityPin(in: plainBody) && !labels.contains("security_pin") {
+            labels.append("security_pin")
+        }
+        
+        let isUnread = labels.contains(GmailLabels.unread)
+        let isStarred = labels.contains(GmailLabels.starred)
         
         return Email(
             id: gmailMessage.id,
