@@ -31,8 +31,11 @@
 		080 /* SwiftDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081 /* SwiftDataModels.swift */; };
 		086 /* SwiftDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087 /* SwiftDataContainer.swift */; };
 		088 /* SwiftDataEmailPersistenceStoreImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089 /* SwiftDataEmailPersistenceStoreImpl.swift */; };
+		4DFC0EE58CA24AC183DA8668DCC46E1F /* TempLegacyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAD1C4D918E44FDA24AD9A44836C392 /* TempLegacyServices.swift */; };
 		A43077C62E6237E3001B94D9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C52E6237E3001B94D9 /* GoogleSignIn */; };
 		A43077C82E6237E3001B94D9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A43077C72E6237E3001B94D9 /* GoogleSignInSwift */; };
+		A450E0422EC9748D004467F2 /* EmailSecurityPinDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A450E0412EC9748C004467F2 /* EmailSecurityPinDetector.swift */; };
+		A450E0442EC97492004467F2 /* EmailSecurityPinDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A450E0432EC97492004467F2 /* EmailSecurityPinDetectorTests.swift */; };
 		A4B070DF2E63FF3C00E09916 /* AccountManagerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070D82E63FF3C00E09916 /* AccountManagerFactory.swift */; };
 		A4B070E02E63FF3C00E09916 /* AccountModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070DB2E63FF3C00E09916 /* AccountModels.swift */; };
 		A4B070E12E63FF3C00E09916 /* AccountManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B070D62E63FF3C00E09916 /* AccountManagerImpl.swift */; };
@@ -51,7 +54,6 @@
 		A4B071002E64A52000E09916 /* SecureConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B071012E64A52000E09916 /* SecureConfigurationManager.swift */; };
 		A4B071022E64A52000E09916 /* ClassificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B071032E64A52000E09916 /* ClassificationSettingsView.swift */; };
 		A4B071062E64A53000E09916 /* LaunchClassificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B071072E64A53000E09916 /* LaunchClassificationManager.swift */; };
-		4DFC0EE58CA24AC183DA8668DCC46E1F /* TempLegacyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAD1C4D918E44FDA24AD9A44836C392 /* TempLegacyServices.swift */; };
 		A4B0710A2E64A54000E09916 /* ClassificationCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0710B2E64A54000E09916 /* ClassificationCategoriesView.swift */; };
 		A4B0710C2E64A54000E09916 /* CategoryEmailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0710D2E64A54000E09916 /* CategoryEmailsView.swift */; };
 		A4B0710D2E66046100E09916 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0710C2E66046100E09916 /* SummaryView.swift */; };
@@ -109,7 +111,10 @@
 		081 /* SwiftDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataModels.swift; sourceTree = "<group>"; };
 		087 /* SwiftDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContainer.swift; sourceTree = "<group>"; };
 		089 /* SwiftDataEmailPersistenceStoreImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataEmailPersistenceStoreImpl.swift; sourceTree = "<group>"; };
+		3FAD1C4D918E44FDA24AD9A44836C392 /* TempLegacyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempLegacyServices.swift; sourceTree = "<group>"; };
 		A43077C92E623FFF001B94D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A450E0412EC9748C004467F2 /* EmailSecurityPinDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSecurityPinDetector.swift; sourceTree = "<group>"; };
+		A450E0432EC97492004467F2 /* EmailSecurityPinDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSecurityPinDetectorTests.swift; sourceTree = "<group>"; };
 		A4B070D62E63FF3C00E09916 /* AccountManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManagerImpl.swift; sourceTree = "<group>"; };
 		A4B070D82E63FF3C00E09916 /* AccountManagerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManagerFactory.swift; sourceTree = "<group>"; };
 		A4B070DA2E63FF3C00E09916 /* AccountManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManagerProtocol.swift; sourceTree = "<group>"; };
@@ -126,7 +131,6 @@
 		A4B070F82E64A51100E09916 /* ClassificationModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationModelProtocol.swift; sourceTree = "<group>"; };
 		A4B070FA2E64A51100E09916 /* ClassificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationModel.swift; sourceTree = "<group>"; };
 		A4B071012E64A52000E09916 /* SecureConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureConfigurationManager.swift; sourceTree = "<group>"; };
-		3FAD1C4D918E44FDA24AD9A44836C392 /* TempLegacyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempLegacyServices.swift; sourceTree = "<group>"; };
 		A4B071032E64A52000E09916 /* ClassificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationSettingsView.swift; sourceTree = "<group>"; };
 		A4B071072E64A53000E09916 /* LaunchClassificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchClassificationManager.swift; sourceTree = "<group>"; };
 		A4B0710B2E64A54000E09916 /* ClassificationCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationCategoriesView.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				A4B071032E64A52000E09916 /* ClassificationSettingsView.swift */,
 				A4B0710B2E64A54000E09916 /* ClassificationCategoriesView.swift */,
 				A4B0710D2E64A54000E09916 /* CategoryEmailsView.swift */,
+				A450E0412EC9748C004467F2 /* EmailSecurityPinDetector.swift */,
+				A450E0432EC97492004467F2 /* EmailSecurityPinDetectorTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -699,6 +705,7 @@
 			files = (
 				003 /* ContentView.swift in Sources */,
 				001 /* EmailClientApp.swift in Sources */,
+				A450E0422EC9748D004467F2 /* EmailSecurityPinDetector.swift in Sources */,
 				A4B070DF2E63FF3C00E09916 /* AccountManagerFactory.swift in Sources */,
 				A4B070E02E63FF3C00E09916 /* AccountModels.swift in Sources */,
 				A4B070E12E63FF3C00E09916 /* AccountManagerImpl.swift in Sources */,
@@ -723,6 +730,7 @@
 				070 /* EmailPersistenceStore.swift in Sources */,
 				072 /* EmailPersistenceProtocol.swift in Sources */,
 				A4B070F22E640B6600E09916 /* SenderListView.swift in Sources */,
+				A450E0442EC97492004467F2 /* EmailSecurityPinDetectorTests.swift in Sources */,
 				A4B070F32E640B6600E09916 /* EmailFilterScrollView.swift in Sources */,
 				074 /* PersistenceModels.swift in Sources */,
 				076 /* EmailPersistenceFactory.swift in Sources */,
@@ -897,6 +905,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EmailClient/Preview Content\"";
+				DEVELOPMENT_TEAM = 2T234H6MZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmailClient/Info.plist;
@@ -911,7 +920,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emailclient.EmailClient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emailclient.EmailClients;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -927,6 +936,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EmailClient/Preview Content\"";
+				DEVELOPMENT_TEAM = 2T234H6MZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmailClient/Info.plist;
@@ -941,7 +951,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emailclient.EmailClient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emailclient.EmailClients;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

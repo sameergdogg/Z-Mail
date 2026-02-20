@@ -104,7 +104,12 @@ struct ClassificationCategoriesView: View {
                         
                         Button("Refresh") {
                             Task {
-                                await loadCategoryStatistics()
+                                let emails = await appDataManager.fetchClassifiedEmails()
+                                if emails.isEmpty {
+                                    await loadCategoryStatistics()
+                                } else {
+                                    await loadCategoryStatistics(from: emails)
+                                }
                             }
                         }
                         .font(.body)
@@ -148,27 +153,57 @@ struct ClassificationCategoriesView: View {
         .onAppear {
             emailService.updateAccountManager(accountManager)
             hasClassificationEnabled = SecureConfigurationManager.shared.hasOpenAIAPIKey()
-            
+            print("📊 ClassificationCategoriesView.onAppear — hasClassificationEnabled: \(hasClassificationEnabled)")
+
             if hasClassificationEnabled {
                 Task {
-                    await loadCategoryStatistics()
+                    // Use the classification context directly to avoid stale emailService cache
+                    let classifiedEmails = await appDataManager.fetchClassifiedEmails()
+                    print("📊 ClassificationCategoriesView.onAppear — fetchClassifiedEmails returned \(classifiedEmails.count) emails")
+                    if classifiedEmails.isEmpty {
+                        // Fall back to emailService (may have unclassified emails to show empty state)
+                        await loadCategoryStatistics()
+                    } else {
+                        await loadCategoryStatistics(from: classifiedEmails)
+                    }
                 }
             }
         }
         .refreshable {
             if hasClassificationEnabled {
-                await loadCategoryStatistics()
+                let emails = await appDataManager.fetchClassifiedEmails()
+                if emails.isEmpty {
+                    await loadCategoryStatistics()
+                } else {
+                    await loadCategoryStatistics(from: emails)
+                }
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .classificationCompleted)) { _ in
+            print("📣 ClassificationCategoriesView — received classificationCompleted notification")
+            hasClassificationEnabled = SecureConfigurationManager.shared.hasOpenAIAPIKey()
+            print("📣 hasClassificationEnabled = \(hasClassificationEnabled)")
+            if hasClassificationEnabled {
+                Task {
+                    print("📣 ClassificationCategoriesView — fetching fresh classified emails from AppDataManager context")
+                    let freshEmails = await appDataManager.fetchClassifiedEmails()
+                    print("📣 ClassificationCategoriesView — got \(freshEmails.count) classified emails, reloading stats")
+                    await loadCategoryStatistics(from: freshEmails)
+                }
+            } else {
+                print("⚠️ ClassificationCategoriesView — skipping reload, no API key configured")
             }
         }
     }
-    
-    private func loadCategoryStatistics() async {
+
+    private func loadCategoryStatistics(from preloadedEmails: [Email]? = nil) async {
+        let source = preloadedEmails != nil ? "preloaded(\(preloadedEmails!.count))" : "emailService(\(emailService.emails.count))"
+        print("📊 loadCategoryStatistics() — source: \(source)")
         isLoading = true
-        
-        // For now, work directly with the email service since modelContext may not be available
-        // This is a temporary solution until the full framework migration is complete
+
         await MainActor.run {
-            let emails = emailService.emails // Get current emails from service
+            let emails = preloadedEmails ?? emailService.emails
+            print("📊 loadCategoryStatistics() — scanning \(emails.count) emails, classified count: \(emails.filter { $0.isClassified }.count)")
             var newCategoryStats: [EmailCategory: CategoryStats] = [:]
             
             for category in EmailCategory.allCases {
@@ -190,6 +225,8 @@ struct ClassificationCategoriesView: View {
             
             self.categoryStats = newCategoryStats
             self.isLoading = false
+            let populated = newCategoryStats.filter { $0.value.count > 0 }
+            print("📊 loadCategoryStatistics() — done. populated categories: \(populated.map { "\($0.key.rawValue)=\($0.value.count)" }.joined(separator: ", "))")
         }
     }
 }

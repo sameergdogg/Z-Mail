@@ -57,130 +57,134 @@ struct CategoryEmailsView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            // Category header
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(spacing: 12) {
-                    // Category icon
-                    Image(systemName: category.iconName)
-                        .font(.title)
-                        .foregroundColor(categoryColor)
-                        .frame(width: 44, height: 44)
-                        .background(categoryColor.opacity(0.1))
-                        .clipShape(Circle())
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(category.displayName)
-                            .font(.title2)
-                            .fontWeight(.bold)
+        ZStack {
+            Color.clear.background(.ultraThinMaterial)
+            VStack(spacing: 0) {
+                // Category header
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(spacing: 12) {
+                        // Category icon
+                        Image(systemName: category.iconName)
+                            .font(.title)
+                            .foregroundColor(categoryColor)
+                            .frame(width: 44, height: 44)
+                            .background(categoryColor.opacity(0.1))
+                            .clipShape(Circle())
                         
-                        Text(categoryDescription)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(category.displayName)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            
+                            Text(categoryDescription)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Spacer()
+                        
+                        // Filter button
+                        Button(action: {
+                            showingFilters.toggle()
+                        }) {
+                            HStack(spacing: 4) {
+                                Image(systemName: selectedFilter.icon)
+                                Text(selectedFilter.rawValue)
+                            }
                             .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Spacer()
-                    
-                    // Filter button
-                    Button(action: {
-                        showingFilters.toggle()
-                    }) {
-                        HStack(spacing: 4) {
-                            Image(systemName: selectedFilter.icon)
-                            Text(selectedFilter.rawValue)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(Color(UIColor.systemGray5))
+                            .cornerRadius(16)
                         }
-                        .font(.caption)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(Color(UIColor.systemGray5))
-                        .cornerRadius(16)
+                        .foregroundColor(.primary)
                     }
-                    .foregroundColor(.primary)
-                }
-                
-                // Stats row
-                HStack(spacing: 16) {
-                    StatView(
-                        icon: "envelope",
-                        value: "\(categoryEmails.count)",
-                        label: "Total"
-                    )
                     
-                    StatView(
-                        icon: "envelope.badge",
-                        value: "\(categoryEmails.filter { !$0.isRead }.count)",
-                        label: "Unread"
-                    )
-                    
-                    if let avgConfidence = averageConfidence {
+                    // Stats row
+                    HStack(spacing: 16) {
                         StatView(
-                            icon: "brain",
-                            value: String(format: "%.0f%%", avgConfidence * 100),
-                            label: "Confidence"
+                            icon: "envelope",
+                            value: "\(categoryEmails.count)",
+                            label: "Total"
                         )
-                    }
-                    
-                    Spacer()
-                }
-            }
-            .padding()
-            .background(Color(UIColor.systemGroupedBackground))
-            
-            // Emails list
-            if isLoading {
-                VStack {
-                    Spacer()
-                    ProgressView("Loading emails...")
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(UIColor.systemGroupedBackground))
-                
-            } else if filteredEmails.isEmpty {
-                VStack(spacing: 16) {
-                    Image(systemName: category.iconName)
-                        .font(.system(size: 50))
-                        .foregroundColor(categoryColor.opacity(0.6))
-                    
-                    Text("No emails found")
-                        .font(.title3)
-                        .fontWeight(.medium)
-                    
-                    Text(emptyStateMessage)
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(UIColor.systemGroupedBackground))
-                
-            } else {
-                List {
-                    ForEach(filteredEmails, id: \.id) { email in
-                        NavigationLink(destination: EmailDetailView(email: email, emailService: emailService).environmentObject(SettingsManager())) {
-                            CategoryEmailRowView(email: email, showConfidence: true)
+                        
+                        StatView(
+                            icon: "envelope.badge",
+                            value: "\(categoryEmails.filter { !$0.isRead }.count)",
+                            label: "Unread"
+                        )
+                        
+                        if let avgConfidence = averageConfidence {
+                            StatView(
+                                icon: "brain",
+                                value: String(format: "%.0f%%", avgConfidence * 100),
+                                label: "Confidence"
+                            )
                         }
-                        .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                        .listRowBackground(Color.clear)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            Button(email.isRead ? "Mark Unread" : "Mark Read") {
-                                toggleReadStatus(for: email)
-                            }
-                            .tint(email.isRead ? .orange : .blue)
-                        }
-                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                            Button(email.isStarred ? "Unstar" : "Star") {
-                                toggleStarStatus(for: email)
-                            }
-                            .tint(.yellow)
-                        }
+                        
+                        Spacer()
                     }
                 }
-                .listStyle(PlainListStyle())
+                .padding()
                 .background(Color(UIColor.systemGroupedBackground))
-                .refreshable {
-                    await loadCategoryEmails()
+                
+                // Emails list
+                if isLoading {
+                    VStack {
+                        Spacer()
+                        ProgressView("Loading emails...")
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color(UIColor.systemGroupedBackground))
+                    
+                } else if filteredEmails.isEmpty {
+                    VStack(spacing: 16) {
+                        Image(systemName: category.iconName)
+                            .font(.system(size: 50))
+                            .foregroundColor(categoryColor.opacity(0.6))
+                        
+                        Text("No emails found")
+                            .font(.title3)
+                            .fontWeight(.medium)
+                        
+                        Text(emptyStateMessage)
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color(UIColor.systemGroupedBackground))
+                    
+                } else {
+                    List {
+                        ForEach(filteredEmails, id: \.id) { email in
+                            NavigationLink(destination: EmailDetailView(email: email, emailService: emailService).environmentObject(SettingsManager())) {
+                                CategoryEmailRowView(email: email, showConfidence: true)
+                            }
+                            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                            .listRowBackground(Color.clear)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button(email.isRead ? "Mark Unread" : "Mark Read") {
+                                    toggleReadStatus(for: email)
+                                }
+                                .tint(email.isRead ? .orange : .blue)
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button(email.isStarred ? "Unstar" : "Star") {
+                                    toggleStarStatus(for: email)
+                                }
+                                .tint(.yellow)
+                            }
+                        }
+                    }
+                    .scrollContentBackground(.hidden)
+                    .listStyle(PlainListStyle())
+                    .background(Color(UIColor.systemGroupedBackground))
+                    .refreshable {
+                        await loadCategoryEmails()
+                    }
                 }
             }
         }

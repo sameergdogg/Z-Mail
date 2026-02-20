@@ -51,63 +51,66 @@ struct EmailListView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                // iPhone 16 optimized header
+            ZStack {
+                Color.clear.background(.ultraThinMaterial)
                 VStack(spacing: 0) {
-                    // Header with proper Dynamic Island spacing
-                    HStack(alignment: .center) {
-                        Button(action: { showingSettings = true }) {
-                            Image(systemName: "gearshape")
-                                .font(.system(size: 22, weight: .medium))
-                                .foregroundColor(.accentColor)
+                    // iPhone 16 optimized header
+                    VStack(spacing: 0) {
+                        // Header with proper Dynamic Island spacing
+                        HStack(alignment: .center) {
+                            Button(action: { showingSettings = true }) {
+                                Image(systemName: "gearshape")
+                                    .font(.system(size: 22, weight: .medium))
+                                    .foregroundColor(.accentColor)
+                            }
+                            .buttonStyle(.plain)
+                            
+                            Spacer()
+                            
+                            Text(navigationTitle)
+                                .font(.system(size: 34, weight: .bold, design: .default))
+                                .foregroundColor(.primary)
+                            
+                            Spacer()
+                            
+                            Button(action: { showingFilters = true }) {
+                                Image(systemName: "line.3.horizontal.decrease.circle")
+                                    .font(.system(size: 22, weight: .medium))
+                                    .foregroundColor(.accentColor)
+                            }
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.plain)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 12)
+                        .padding(.bottom, 16)
+                        .background(Color(UIColor.systemBackground))
                         
-                        Spacer()
-                        
-                        Text(navigationTitle)
-                            .font(.system(size: 34, weight: .bold, design: .default))
-                            .foregroundColor(.primary)
-                        
-                        Spacer()
-                        
-                        Button(action: { showingFilters = true }) {
-                            Image(systemName: "line.3.horizontal.decrease.circle")
-                                .font(.system(size: 22, weight: .medium))
-                                .foregroundColor(.accentColor)
-                        }
-                        .buttonStyle(.plain)
+                        // Filter pills optimized for iPhone 16
+                        EmailFilterScrollView(
+                            selectedFilter: $selectedTopFilter,
+                            emailService: emailService
+                        )
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 12)
-                    .padding(.bottom, 16)
                     .background(Color(UIColor.systemBackground))
+                    .shadow(color: .black.opacity(0.05), radius: 1, x: 0, y: 1)
                     
-                    // Filter pills optimized for iPhone 16
-                    EmailFilterScrollView(
-                        selectedFilter: $selectedTopFilter,
-                        emailService: emailService
-                    )
-                }
-                .background(Color(UIColor.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: 1, x: 0, y: 1)
-                
-                // Content area with proper iPhone 16 spacing
-                Group {
-                    switch selectedTopFilter {
-                    case .inbox:
-                        inboxContentView
-                    case .senders:
-                        SenderListView(emailService: emailService)
-                    case .categories:
-                        ClassificationCategoriesView()
-                            .environmentObject(accountManager)
-                            .environmentObject(settingsManager)
-                    case .summary:
-                        SummaryView(emailService: emailService)
+                    // Content area with proper iPhone 16 spacing
+                    Group {
+                        switch selectedTopFilter {
+                        case .inbox:
+                            inboxContentView
+                        case .senders:
+                            SenderListView(emailService: emailService)
+                        case .categories:
+                            ClassificationCategoriesView()
+                                .environmentObject(accountManager)
+                                .environmentObject(settingsManager)
+                        case .summary:
+                            SummaryView(emailService: emailService)
+                        }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .navigationBarHidden(true)
             .background(Color(.systemGroupedBackground))
@@ -139,97 +142,98 @@ struct EmailListView: View {
     @ViewBuilder
     private var inboxContentView: some View {
         VStack {
-                if emailService.isLoading {
-                    ProgressView("Loading emails...")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else if let errorMessage = emailService.errorMessage {
-                    VStack(spacing: 16) {
-                        Image(systemName: hasAuthenticationErrors ? "person.crop.circle.badge.exclamationmark" : "exclamationmark.triangle")
-                            .font(.system(size: 50))
-                            .foregroundColor(hasAuthenticationErrors ? .blue : .orange)
-                        
-                        Text(hasAuthenticationErrors ? "Authentication Required" : "Unable to Load Emails")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                        
-                        Text(errorMessage)
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
-                        
-                        if hasAuthenticationErrors {
-                            VStack(spacing: 12) {
-                                Button("Sign In Again") {
-                                    Task {
-                                        await reauthenticateAccounts()
-                                    }
-                                }
-                                .buttonStyle(.borderedProminent)
-                                
-                                Button("Retry") {
-                                    Task {
-                                        await emailService.refreshEmails()
-                                    }
-                                }
-                                .buttonStyle(.bordered)
-                            }
-                        } else {
-                            Button("Retry") {
-                                Task {
-                                    await emailService.refreshEmails()
-                                }
-                            }
-                            .buttonStyle(.borderedProminent)
-                        }
-                    }
+            if emailService.isLoading {
+                ProgressView("Loading emails...")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else if emailService.filteredEmails.isEmpty {
-                    VStack(spacing: 16) {
-                        Image(systemName: accountManager.accounts.isEmpty ? "person.badge.plus" : "tray")
-                            .font(.system(size: 50))
-                            .foregroundColor(accountManager.accounts.isEmpty ? .blue : .gray)
-                        
-                        Text(accountManager.accounts.isEmpty ? "No Accounts Connected" : "No Emails")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                        
-                        Text(accountManager.accounts.isEmpty ? 
-                             "Connect your Gmail account to see your emails" : 
-                             "Pull to refresh or check your filter settings")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                        
-                        if accountManager.accounts.isEmpty {
-                            Button("Add Gmail Account") {
-                                showingSettings = true
+            } else if let errorMessage = emailService.errorMessage {
+                VStack(spacing: 16) {
+                    Image(systemName: hasAuthenticationErrors ? "person.crop.circle.badge.exclamationmark" : "exclamationmark.triangle")
+                        .font(.system(size: 50))
+                        .foregroundColor(hasAuthenticationErrors ? .blue : .orange)
+                    
+                    Text(hasAuthenticationErrors ? "Authentication Required" : "Unable to Load Emails")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    
+                    Text(errorMessage)
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    
+                    if hasAuthenticationErrors {
+                        VStack(spacing: 12) {
+                            Button("Sign In Again") {
+                                Task {
+                                    await reauthenticateAccounts()
+                                }
                             }
                             .buttonStyle(.borderedProminent)
-                        } else {
-                            Button("Refresh") {
+                            
+                            Button("Retry") {
                                 Task {
                                     await emailService.refreshEmails()
                                 }
                             }
                             .buttonStyle(.bordered)
                         }
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    List {
-                        ForEach(emailService.filteredEmails) { email in
-                            NavigationLink(destination: EmailDetailView(email: email, emailService: emailService).environmentObject(settingsManager)) {
-                                EmailRowView(email: email, emailService: emailService)
+                    } else {
+                        Button("Retry") {
+                            Task {
+                                await emailService.refreshEmails()
                             }
                         }
-                    }
-                    .refreshable {
-                        await emailService.refreshEmails()
+                        .buttonStyle(.borderedProminent)
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if emailService.filteredEmails.isEmpty {
+                VStack(spacing: 16) {
+                    Image(systemName: accountManager.accounts.isEmpty ? "person.badge.plus" : "tray")
+                        .font(.system(size: 50))
+                        .foregroundColor(accountManager.accounts.isEmpty ? .blue : .gray)
+                    
+                    Text(accountManager.accounts.isEmpty ? "No Accounts Connected" : "No Emails")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    
+                    Text(accountManager.accounts.isEmpty ? 
+                         "Connect your Gmail account to see your emails" : 
+                         "Pull to refresh or check your filter settings")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                    
+                    if accountManager.accounts.isEmpty {
+                        Button("Add Gmail Account") {
+                            showingSettings = true
+                        }
+                        .buttonStyle(.borderedProminent)
+                    } else {
+                        Button("Refresh") {
+                            Task {
+                                await emailService.refreshEmails()
+                            }
+                        }
+                        .buttonStyle(.bordered)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                List {
+                    ForEach(emailService.filteredEmails) { email in
+                        NavigationLink(destination: EmailDetailView(email: email, emailService: emailService).environmentObject(settingsManager)) {
+                            EmailRowView(email: email, emailService: emailService)
+                        }
+                    }
+                }
+                .refreshable {
+                    await emailService.refreshEmails()
+                }
+                .scrollContentBackground(.hidden)
             }
         }
+    }
     
     private func setupEmailService() {
         if !hasInitialized {
@@ -270,6 +274,14 @@ struct EmailRowView: View {
                             .font(.headline)
                             .fontWeight(email.isRead ? .regular : .semibold)
                         
+                        if email.labels.contains("security_pin") {
+                            Image(systemName: "lock.fill")
+                                .font(.caption)
+                                .foregroundColor(.blue)
+                                .padding(.leading, 2)
+                                .accessibilityLabel("Security PIN present")
+                        }
+                        
                         Spacer()
                         
                         if email.isStarred {
@@ -287,11 +299,6 @@ struct EmailRowView: View {
                         .font(.subheadline)
                         .fontWeight(email.isRead ? .regular : .medium)
                         .lineLimit(1)
-                    
-                    Text(email.body)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .lineLimit(2)
                 }
                 
                 if !email.isRead {
