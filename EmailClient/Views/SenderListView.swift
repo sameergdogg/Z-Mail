@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SenderListView: View {
-    let emailService: EmailServiceProtocol
+    let emailService: EmailServiceImpl
     @State private var senders: [EmailSender] = []
     @State private var filteredSenders: [EmailSender] = []
     @State private var searchText = ""
@@ -473,7 +473,7 @@ enum SenderType {
 
 struct SenderEmailListView: View {
     let sender: EmailSender
-    let emailService: EmailServiceProtocol
+    let emailService: EmailServiceImpl
     @State private var senderEmails: [Email] = []
     
     var body: some View {
@@ -501,7 +501,7 @@ struct SenderEmailListView: View {
 
 struct SenderEmailRowView: View {
     let email: Email
-    let emailService: EmailServiceProtocol
+    let emailService: EmailServiceImpl
     
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
@@ -573,6 +573,6 @@ struct SenderEmailRowView: View {
 
 #Preview {
     NavigationView {
-        SenderListView(emailService: EmailServiceAPI.createForTesting(accountManager: AccountManagerAPI.shared))
+        SenderListView(emailService: EmailServiceImpl(accountManager: AccountManagerImpl.shared))
     }
 }

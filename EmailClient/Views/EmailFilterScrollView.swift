@@ -2,7 +2,7 @@ import SwiftUI
 
 struct EmailFilterScrollView: View {
     @Binding var selectedFilter: TopLevelFilter
-    let emailService: EmailServiceProtocol
+    let emailService: EmailServiceImpl
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -71,6 +71,6 @@ enum TopLevelFilter: String, CaseIterable {
 #Preview {
     EmailFilterScrollView(
         selectedFilter: .constant(.inbox),
-        emailService: EmailServiceAPI.createForTesting(accountManager: AccountManagerAPI.shared)
+        emailService: EmailServiceImpl(accountManager: AccountManagerImpl.shared)
     )
 }

@@ -3,7 +3,7 @@ import WebKit
 
 struct EmailDetailView: View {
     let email: Email
-    let emailService: EmailServiceProtocol
+    let emailService: EmailServiceImpl
     @EnvironmentObject var settingsManager: SettingsManager
     
     var body: some View {
@@ -562,7 +562,7 @@ struct AttachmentRowView: View {
                 ],
                 isHTMLContent: true
             ),
-            emailService: EmailServiceAPI.create(with: AccountManagerAPI.shared)
+            emailService: EmailServiceImpl(accountManager: AccountManagerImpl.shared)
         )
         .environmentObject(SettingsManager())
     }

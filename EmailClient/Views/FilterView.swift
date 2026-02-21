@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct FilterView: View {
-    let emailService: EmailServiceProtocol
-    let accountManager: AccountManagerProtocol
+    let emailService: EmailServiceImpl
+    let accountManager: AccountManagerImpl
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var settingsManager: SettingsManager
     
@@ -306,8 +306,8 @@ struct CategoryFilterOptionView: View {
 #Preview {
     // Use testing API for preview
     FilterView(
-        emailService: EmailServiceAPI.createForTesting(accountManager: AccountManagerAPI.shared),
-        accountManager: AccountManagerAPI.shared
+        emailService: EmailServiceImpl(accountManager: AccountManagerImpl.shared),
+        accountManager: AccountManagerImpl.shared
     )
     .environmentObject(SettingsManager())
 }

@@ -17,7 +17,7 @@ struct ClassificationCategoriesView: View {
     
     init() {
         // Initialize with a temporary AccountManager - will be updated in onAppear
-        self._emailService = StateObject(wrappedValue: EmailServiceAPI.create(with: AccountManagerAPI.shared) as! EmailServiceImpl)
+        self._emailService = StateObject(wrappedValue: EmailServiceImpl(accountManager: AccountManagerImpl.shared))
     }
     
     var body: some View {
@@ -398,7 +398,7 @@ struct EmptyCategoryRowView: View {
 #Preview {
     NavigationStack {
         ClassificationCategoriesView()
-            .environmentObject(AccountManagerAPI.shared as! AccountManagerImpl)
+            .environmentObject(AccountManagerImpl.shared)
             .environmentObject(SettingsManager())
     }
 }

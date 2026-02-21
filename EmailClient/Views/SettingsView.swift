@@ -390,6 +390,6 @@ struct RenderingPreviewView: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(AccountManagerAPI.shared as! AccountManagerImpl)
+        .environmentObject(AccountManagerImpl.shared)
         .environmentObject(SettingsManager())
 }

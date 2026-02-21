@@ -416,7 +416,7 @@ struct FilterSelectionSheet: View {
     NavigationStack {
         CategoryEmailsView(
             category: .work,
-            emailService: EmailServiceAPI.shared(with: AccountManagerAPI.shared) as! EmailServiceImpl
+            emailService: EmailServiceImpl(accountManager: AccountManagerImpl.shared)
         )
     }
 }

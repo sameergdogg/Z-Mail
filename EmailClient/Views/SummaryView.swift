@@ -2,7 +2,7 @@ import SwiftUI
 import Foundation
 
 struct SummaryView: View {
-    let emailService: EmailServiceProtocol
+    let emailService: EmailServiceImpl
     @State private var selectedDate: Date = Date()
     @State private var dailyDigest: DailyDigest?
     @State private var isLoading = false
@@ -161,30 +161,22 @@ struct SummaryView: View {
     
     private func generateDigest(for date: Date, dayEmails: [Email], apiKey: String) async {
         do {
-            let classificationModel = ClassificationModelAPI.shared
-            
-            // Separate emails into classified and unclassified
-            let (classifiedEmails, unclassifiedEmails) = dayEmails.reduce(into: ([Email](), [Email]())) { result, email in
-                if email.isClassified {
-                    result.0.append(email)
-                } else {
-                    result.1.append(email)
-                }
+            guard let context = AppDataManager.shared.modelContext else {
+                throw ClassificationError.classificationFailed("ModelContext not available")
             }
-            
-            // Create ClassifiedEmail objects from already classified emails
-            var finalClassifiedEmails: [ClassifiedEmail] = classifiedEmails.compactMap { email in
+            let classificationService = ClassificationService(modelContext: context)
+
+            // Build ClassifiedEmail list from already-classified emails
+            var finalClassifiedEmails: [ClassifiedEmail] = dayEmails.compactMap { email in
                 guard let category = email.classificationCategory,
-                      let confidence = email.classificationConfidence else {
-                    return nil
-                }
-                
-                let domain = email.sender.email.components(separatedBy: "@").last ?? ""
+                      let confidence = email.classificationConfidence else { return nil }
+
+                let domain = email.senderEmail.components(separatedBy: "@").last ?? ""
                 let bodyExcerpt = String(email.body.prefix(200))
-                
+
                 return ClassifiedEmail(
                     id: email.id,
-                    sender: email.sender.email,
+                    sender: email.senderEmail,
                     domain: domain,
                     subject: email.subject,
                     date: ISO8601DateFormatter().string(from: email.date),
@@ -196,31 +188,23 @@ struct SummaryView: View {
                     entities: nil
                 )
             }
-            
-            // Classify any unclassified emails
-            if !unclassifiedEmails.isEmpty {
-                let unclassifiedEmailData = unclassifiedEmails.map { EmailData(from: $0) }
-                let classificationResults = try await classificationModel.classifyEmails(unclassifiedEmailData, apiKey: apiKey, batchSize: 3)
-                let newlyClassifiedEmails = classificationModel.convertToClassifiedEmails(unclassifiedEmailData, with: classificationResults)
-                finalClassifiedEmails.append(contentsOf: newlyClassifiedEmails)
-            }
-            
+
             // Generate digest
             let calendar = Calendar.current
             let period = calendar.isDateInToday(date) ? "today" : "on \(DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none))"
-            let digest = try await classificationModel.generateDailyDigest(finalClassifiedEmails, period: period, apiKey: apiKey)
-            
+            let digest = try await classificationService.generateDailyDigest(finalClassifiedEmails, period: period, apiKey: apiKey)
+
             // Save digest to persistence
             let accountEmails = Set(dayEmails.map { $0.accountEmail }).sorted()
-            try await emailService.saveDigest(digest, for: date, emailCount: dayEmails.count, accountEmails: accountEmails)
-            
+            try emailService.saveDigest(digest, for: date, emailCount: dayEmails.count, accountEmails: accountEmails)
+
             await MainActor.run {
                 dailyDigest = digest
                 isLoading = false
             }
-            
-            print("✅ Generated and saved digest for \(date)")
-            
+
+            print("Generated and saved digest for \(date)")
+
         } catch {
             await MainActor.run {
                 errorMessage = error.localizedDescription
@@ -933,5 +917,5 @@ struct DateGroup {
 }
 
 #Preview {
-    SummaryView(emailService: EmailServiceAPI.createForTesting(accountManager: AccountManagerAPI.shared))
+    SummaryView(emailService: EmailServiceImpl(accountManager: AccountManagerImpl.shared))
 }

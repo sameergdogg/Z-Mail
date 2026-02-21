@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var accountManager: AccountManagerImpl = {
-        AccountManagerAPI.shared as! AccountManagerImpl
-    }()
+    @StateObject private var accountManager: AccountManagerImpl = AccountManagerImpl.shared
     @EnvironmentObject private var settingsManager: SettingsManager
     @State private var showingAccountSetup = false
     

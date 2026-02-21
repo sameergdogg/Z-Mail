@@ -72,36 +72,6 @@ class SecureConfigurationManager {
     }
 }
 
-// MARK: - Classification Integration
-
-extension SecureConfigurationManager {
-    /// Gets a configured ClassificationModel instance with the stored API key
-    /// - Parameter configuration: Optional custom configuration
-    /// - Returns: Configured ClassificationModel or nil if no API key is stored
-    func getClassificationModel(with configuration: ClassificationConfiguration = ClassificationConfiguration()) -> ClassificationModelProtocol? {
-        guard hasOpenAIAPIKey() else {
-            print("⚠️ No OpenAI API key found. Please configure the API key first.")
-            return nil
-        }
-        
-        return ClassificationModelAPI.shared(with: configuration)
-    }
-    
-    /// Classifies an email using the stored API key
-    /// - Parameters:
-    ///   - email: The email to classify
-    ///   - configuration: Optional custom configuration
-    /// - Returns: Classification result
-    /// - Throws: ClassificationError if API key is missing or classification fails
-    func classifyEmail(_ email: EmailData, configuration: ClassificationConfiguration = ClassificationConfiguration()) async throws -> EmailClassificationResult {
-        guard let apiKey = getOpenAIAPIKey() else {
-            throw ClassificationError.invalidAPIKey
-        }
-        
-        let classifier = ClassificationModelAPI.shared(with: configuration)
-        return try await classifier.classifyEmail(email, apiKey: apiKey)
-    }
-}
 
 // MARK: - Settings View Integration
 
@@ -142,29 +112,29 @@ class ClassificationSettings: ObservableObject, ClassificationSettingsProtocol {
     }
     
     func testAPIConnection() async -> Bool {
+        guard let apiKey = secureConfig.getOpenAIAPIKey(), !apiKey.isEmpty else {
+            print("API connection test: no API key stored")
+            return false
+        }
+
         do {
-            // Test with a simple email
-            let testEmail = EmailData(
-                id: "test",
-                from: "test@example.com",
-                subject: "Test Classification",
-                date: ISO8601DateFormatter().string(from: Date()),
-                body: "This is a test email for classification."
-            )
-            
-            _ = try await secureConfig.classifyEmail(testEmail, configuration: ClassificationConfiguration.debug)
-            return true
+            // Simple HTTP check against OpenAI's models endpoint with the stored key
+            let url = URL(string: "https://api.openai.com/v1/models")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+
+            let (_, response) = try await URLSession.shared.data(for: request)
+            if let httpResponse = response as? HTTPURLResponse {
+                let success = httpResponse.statusCode == 200
+                if !success {
+                    print("API connection test failed with HTTP \(httpResponse.statusCode)")
+                }
+                return success
+            }
+            return false
         } catch {
-            print("🚨 API connection test failed with detailed error:")
-            print("Error type: \(type(of: error))")
-            print("Error description: \(error.localizedDescription)")
-            if let classificationError = error as? ClassificationError {
-                print("Classification error: \(classificationError)")
-            }
-            if let urlError = error as? URLError {
-                print("URL error code: \(urlError.code)")
-                print("URL error description: \(urlError.localizedDescription)")
-            }
+            print("API connection test failed: \(error.localizedDescription)")
             return false
         }
     }
