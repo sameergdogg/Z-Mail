@@ -122,8 +122,13 @@ class EmailServiceImpl: ObservableObject {
         await loadEmailsFromPersistence()
         applyCurrentFilter()
 
-        await loadEmailsFromPersistence()
-        applyCurrentFilter()
+        // Auto-sync from Gmail if DB is empty (e.g. first launch or after schema migration)
+        if emails.isEmpty && !accountManager.accounts.isEmpty {
+            print("loadEmailsOnLaunch: DB empty, auto-syncing from Gmail...")
+            await forceSyncFromServer()
+            await loadEmailsFromPersistence()
+            applyCurrentFilter()
+        }
 
         print("loadEmailsOnLaunch: total=\(emails.count) filtered=\(filteredEmails.count)")
     }

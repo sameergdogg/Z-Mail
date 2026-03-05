@@ -201,6 +201,14 @@ class EmailPersistenceService {
         return true
     }
 
+    func deleteAllDigests() throws -> Int {
+        let descriptor = FetchDescriptor<SwiftDataDigest>()
+        let all = try modelContext.fetch(descriptor)
+        for digest in all { modelContext.delete(digest) }
+        if modelContext.hasChanges { try modelContext.save() }
+        return all.count
+    }
+
     func hasDigest(for date: Date) throws -> Bool {
         return try fetchSwiftDataDigest(for: date) != nil
     }

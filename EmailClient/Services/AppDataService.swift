@@ -82,6 +82,11 @@ class AppDataManager: ObservableObject {
         return await classificationService?.getClassificationStatistics()
     }
 
+    func clearAllSummaries() throws -> Int {
+        guard let context = modelContext else { return 0 }
+        return try EmailPersistenceService(modelContext: context).deleteAllDigests()
+    }
+
     /// Fetches all classified emails from the shared model context.
     @MainActor
     func fetchClassifiedEmails() async -> [Email] {

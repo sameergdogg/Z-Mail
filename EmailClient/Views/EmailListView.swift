@@ -3,6 +3,7 @@ import SwiftUI
 struct EmailListView: View {
     @EnvironmentObject var accountManager: AccountManagerImpl
     @EnvironmentObject var settingsManager: SettingsManager
+    @EnvironmentObject var appDataManager: AppDataManager
     @StateObject private var emailService: EmailServiceImpl
     @State private var showingFilters = false
     @State private var showingSettings = false
@@ -122,6 +123,13 @@ struct EmailListView: View {
             }
             .onAppear {
                 setupEmailService()
+            }
+            .onChange(of: appDataManager.isInitialized) { _, isReady in
+                if isReady && emailService.emails.isEmpty {
+                    Task {
+                        await emailService.loadEmailsOnLaunch()
+                    }
+                }
             }
         }
     }

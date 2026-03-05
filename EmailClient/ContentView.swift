@@ -34,6 +34,7 @@ struct ContentView: View {
                 EmailListView()
                     .environmentObject(accountManager)
                     .environmentObject(settingsManager)
+                    .environmentObject(AppDataManager.shared)
                     .onAppear {
                         print("📱 ContentView: EmailListView appearing with \(accountManager.accounts.count) accounts")
                         for account in accountManager.accounts {
