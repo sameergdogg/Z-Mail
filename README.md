@@ -1,36 +1,37 @@
 # Z-Mail
 **A Generation Z Email Client** 📧✨
 
-A modern, native iOS email client built with SwiftUI, designed with clean architecture principles and focused on Gmail integration.
+A modern, native iOS email client built with SwiftUI, designed for Gmail integration with AI-powered email classification and daily digest summaries.
 
 ## 📱 Features
 
 - **Multi-Account Gmail Support**: Connect and manage multiple Gmail accounts
+- **AI Email Classification**: Automatically categorize emails into smart categories using Claude AI
+- **Daily Digest Summaries**: AI-generated daily email summaries for quick overviews
 - **Rich Email Rendering**: Toggle between plain text and rich HTML email display
 - **Smart Email Management**: Mark emails as read, star/unstar, and organize with labels
-- **Responsive Design**: Native iOS interface optimized for all screen sizes
+- **Sender Filtering**: Filter emails by sender for focused views
+- **Auto-Sync on Launch**: Automatically syncs from Gmail when the local database is empty
 - **Modern Authentication**: Secure OAuth 2.0 integration with Google Sign-In
-- **Offline-Ready Architecture**: Robust error handling and authentication management
 
 ## 🏗️ Architecture Overview
 
-Z-Mail is built using **Clean Architecture** principles with a modular, framework-based approach that ensures maintainability, testability, and scalability.
+Z-Mail uses **MVVM + Service Layer** architecture with flat, co-located service files for simplicity and maintainability.
 
 ### High-Level Architecture
 
 ```
 ┌─────────────────────────────────────────────────┐
 │                  UI Layer                       │
-│  SwiftUI Views + ViewModels (ObservableObject) │
+│  SwiftUI Views (ObservableObject / @Published) │
 ├─────────────────────────────────────────────────┤
 │                Service Layer                    │
-│     EmailService, AccountManager, Settings     │
-├─────────────────────────────────────────────────┤
-│              Framework Layer                    │
-│    GmailAPIService & EmailPersistenceStore     │
+│   EmailService, AccountService, AppDataService  │
+│   ClassificationService, GmailAPIService        │
+│   EmailPersistenceService, SettingsManager      │
 ├─────────────────────────────────────────────────┤
 │                 Data Layer                      │
-│     Models, APIs, Smart Persistence Layer      │
+│     SwiftData Models, Gmail REST API            │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -45,187 +46,53 @@ EmailClient/
 │   ├── EmailListView.swift           # Main inbox interface
 │   ├── EmailDetailView.swift         # Email reading interface
 │   ├── FilterView.swift              # Email filtering options
-│   └── SettingsView.swift            # App settings and account management
+│   ├── SettingsView.swift            # App settings and account management
+│   ├── ClassificationCategoriesView.swift  # AI category browser
+│   ├── CategoryEmailsView.swift      # Emails within a category
+│   ├── SummaryView.swift             # Daily digest summaries
+│   ├── SenderListView.swift          # Sender-based filtering
+│   └── ClassificationSettingsView.swift    # AI classification config
 ├── 🔧 Services/
 │   ├── EmailService.swift            # Email data management and filtering
-│   ├── AccountManager.swift          # Gmail account authentication and management
+│   ├── AccountService.swift          # Gmail account authentication
+│   ├── AppDataService.swift          # App-wide data manager (SwiftData)
+│   ├── ClassificationService.swift   # AI email classification
+│   ├── EmailPersistenceService.swift # SwiftData persistence layer
+│   ├── GmailAPIService.swift         # Gmail REST API client
+│   ├── SecureConfigurationManager.swift  # API key management
+│   ├── LaunchClassificationManager.swift # Background classification on launch
 │   └── SettingsManager.swift         # User preferences persistence
-├── 📊 Models/
-│   └── Email.swift                   # Data models (Email, EmailAddress, GmailAccount)
-└── 🏗️ Frameworks/
-    ├── GmailAPIService/              # Modular Gmail API framework
-    │   ├── GmailAPIService.swift     # Framework entry point and exports
-    │   ├── PublicAPI/                # External interface contracts
-    │   │   ├── GmailAPIServiceProtocol.swift
-    │   │   └── GmailDataModels.swift
-    │   ├── ImplWiring/               # Dependency injection and factory
-    │   │   └── GmailAPIServiceFactory.swift
-    │   └── Impl/                     # Internal implementation
-    │       ├── GmailAPIServiceImpl.swift
-    │       └── GmailAPIServiceHelpers.swift
-    └── EmailPersistenceStore/        # Smart persistence framework
-        ├── EmailPersistenceStore.swift  # Framework entry point and exports
-        ├── PublicAPI/                # External interface contracts
-        │   └── EmailPersistenceProtocol.swift
-        ├── ImplWiring/               # Dependency injection and factory
-        │   └── EmailPersistenceFactory.swift
-        └── Impl/                     # Internal implementation
-            ├── EmailPersistenceStoreImpl.swift
-            ├── SwiftDataContainer.swift
-            ├── SwiftDataEmailPersistenceStoreImpl.swift
-            └── SwiftDataModels.swift
+└── 📊 Models/
+    └── Email.swift                   # Data models (Email, EmailAddress, GmailAccount)
 ```
 
-## 🏛️ Framework Architecture
+## 🤖 AI Classification
 
-Both major frameworks (GmailAPIService and EmailPersistenceStore) follow a **three-layer framework pattern** for maximum modularity:
+Z-Mail uses Claude AI to automatically classify incoming emails into smart categories:
 
-### 🏛️ GmailAPIService Framework
+- Emails are classified on launch via `LaunchClassificationManager`
+- Results are persisted locally via SwiftData
+- The classification settings (API key, model, categories) are configurable in Settings
+- API keys are stored securely via `SecureConfigurationManager`
 
-The Gmail API Service provides a clean interface for all Gmail operations:
+## 📅 Daily Digest Summaries
 
-### 📋 PublicAPI Layer
-**Purpose**: Defines the contract that external consumers depend on
-```swift
-// Protocol defining all Gmail operations
-public protocol GmailAPIServiceProtocol {
-    func fetchMessages(for user: GIDGoogleUser, maxResults: Int) async throws -> [GmailMessage]
-    func convertGmailMessageToEmail(_ gmailMessage: GmailMessage, accountEmail: String) -> Email
-    func markMessageAsRead(messageId: String, user: GIDGoogleUser) async throws
-    func toggleMessageStar(messageId: String, user: GIDGoogleUser, isStarred: Bool) async throws
-    func fetchAttachment(messageId: String, attachmentId: String, user: GIDGoogleUser) async throws -> String
-}
-```
+Z-Mail generates AI-powered daily digest summaries:
 
-### 🔧 ImplWiring Layer
-**Purpose**: Provides dependency injection and factory patterns
-```swift
-// Factory for creating service instances
-public class GmailAPIServiceFactory {
-    public static let shared = GmailAPIServiceFactory()
-    public func createGmailAPIService(dependencies: GmailAPIServiceDependencies) -> GmailAPIServiceProtocol
-}
-
-// Dependency injection container
-public class GmailAPIServiceContainer {
-    public static let shared = GmailAPIServiceContainer()
-    public func getGmailAPIService() -> GmailAPIServiceProtocol
-}
-```
-
-### ⚙️ Impl Layer
-**Purpose**: Contains the actual implementation details
-- `GmailAPIServiceImpl.swift`: Core API implementation
-- `GmailAPIServiceHelpers.swift`: Email parsing, attachment handling, utility functions
-
-### 🏛️ EmailPersistenceStore Framework
-
-The Email Persistence Store provides intelligent caching and offline capabilities:
-
-### 📋 PublicAPI Layer
-**Purpose**: Defines the persistence contract with smart sync strategies
-```swift
-// Protocol defining all persistence operations
-public protocol EmailPersistenceProtocol {
-    func fetchEmails(for accountEmail: String, filter: EmailFilter?) async throws -> [Email]
-    func saveEmails(_ emails: [Email], for accountEmail: String) async throws
-    func determineSyncStrategy(for accountEmail: String) async -> SyncStrategy
-    func hasEmails(for accountEmail: String) async -> Bool
-    func getLastSyncDate(for accountEmail: String) async -> Date?
-    func updateLastSyncDate(_ date: Date, for accountEmail: String) async throws
-}
-
-// Smart sync strategies for optimal performance
-public enum SyncStrategy {
-    case cacheOnly                    // Use cached data (recent sync)
-    case fullSync                     // Fetch all emails (first time/old data)
-    case incrementalSync(since: Date) // Fetch only new emails since date
-}
-```
-
-### 🔧 ImplWiring Layer
-**Purpose**: Factory and dependency injection for persistence
-```swift
-// Factory for creating persistence instances
-public class EmailPersistenceFactory {
-    public static let shared = EmailPersistenceFactory()
-    public func createEmailPersistenceStore(dependencies: EmailPersistenceDependencies) -> EmailPersistenceProtocol
-}
-
-// Dependency injection container with SwiftData
-public class EmailPersistenceDependencies {
-    public let configuration: PersistenceConfiguration
-}
-```
-
-### ⚙️ Impl Layer
-**Purpose**: Thread-safe persistence implementation with intelligent caching
-- `EmailPersistenceStoreImpl.swift`: Core persistence logic with concurrent access
-- `SwiftDataContainer.swift`: SwiftData container management
-- `SwiftDataEmailPersistenceStoreImpl.swift`: SwiftData-based persistence implementation
-- `SwiftDataModels.swift`: SwiftData model definitions for offline storage
-
-### 🎯 Usage Examples
-```swift
-// Using the shared persistence store
-let persistenceStore = EmailPersistenceAPI.shared
-
-// Smart sync strategy determination
-let strategy = await persistenceStore.determineSyncStrategy(for: "user@example.com")
-switch strategy {
-case .cacheOnly:
-    // Use cached data, skip API calls
-case .fullSync:
-    // Fetch all emails from API
-case .incrementalSync(let since):
-    // Fetch only emails since last sync
-}
-
-// Using in EmailService with dependency injection
-let emailService = EmailService(
-    accountManager: accountManager,
-    gmailAPIService: GmailAPI.shared,
-    persistenceStore: EmailPersistenceAPI.shared
-)
-
-// Real-time updates with Combine
-persistenceStore.emailChanges
-    .sink { event in
-        // Handle email changes (added, updated, deleted)
-    }
-```
-
-## 🔄 Data Flow with Smart Persistence
-
-The application uses intelligent caching to provide optimal performance:
-
-### 📥 Email Loading Flow
-1. **User Opens App** → EmailService.refreshEmails()
-2. **Smart Sync Decision** → EmailPersistenceStore.determineSyncStrategy()
-   - **Recent data (< 5 min)**: `cacheOnly` - Use cached emails, skip API
-   - **First time/no data**: `fullSync` - Fetch all emails from Gmail API
-   - **Moderate age**: `incrementalSync` - Fetch only new emails since last sync
-3. **Data Loading** → Load from persistence store
-4. **API Sync** (if needed) → GmailAPIService.fetchMessages()
-5. **Data Persistence** → Save new emails to EmailPersistenceStore
-6. **UI Updates** → Real-time updates via Combine publishers
-
-### 🔄 User Action Flow
-1. **User Interaction** → SwiftUI Views (mark read, star, etc.)
-2. **Local Update** → Immediate UI feedback
-3. **Persistence Update** → Save to EmailPersistenceStore
-4. **Change Broadcasting** → Combine publisher notifies subscribers
-5. **UI Refresh** → Automatic updates across all views
+- Summaries are stored as `SwiftDataDigest` records in the local SwiftData store
+- Accessible via the Summary view
+- Can be cleared from Settings → AI Features → Clear All Summaries
 
 ## 🛠️ Technical Stack
 
 - **UI Framework**: SwiftUI with MVVM pattern
 - **Authentication**: Google Sign-In SDK with OAuth 2.0
 - **Networking**: URLSession with async/await
-- **Data Persistence**: Core Data with smart caching strategies
-- **Architecture Pattern**: Clean Architecture with Dependency Injection
-- **Concurrency**: Swift Concurrency (async/await) with thread-safe concurrent access
-- **Reactive Programming**: Combine framework for real-time updates
+- **Data Persistence**: SwiftData for local email and digest storage
+- **AI Integration**: Claude API for email classification and summarization
+- **Architecture Pattern**: MVVM + flat Service Layer
+- **Concurrency**: Swift Concurrency (async/await)
+- **Reactive Programming**: Combine framework for real-time UI updates
 - **Package Management**: Swift Package Manager
 
 ## 📋 Dependencies
@@ -261,24 +128,15 @@ dependencies: [
    - Update `Info.plist` with your OAuth client ID
    - Configure URL scheme in Xcode project settings
 
-4. **Build and Run**
+4. **Configure AI Features (Optional)**
+   - Open Settings → AI Features → Classification Settings
+   - Enter your Anthropic API key to enable email classification and summaries
+
+5. **Build and Run**
    ```bash
    open EmailClient.xcodeproj
    # Build and run in Xcode
    ```
-
-## 🧪 Testing
-
-The modular architecture enables comprehensive testing:
-
-```swift
-// Example: Testing with mock dependencies
-let mockDependencies = GmailAPIServiceDependencies(
-    urlSession: MockURLSession(),
-    jsonDecoder: JSONDecoder()
-)
-let testService = GmailAPI.create(with: mockDependencies)
-```
 
 ## 🔐 Security Features
 
@@ -286,35 +144,26 @@ let testService = GmailAPI.create(with: mockDependencies)
 - **Token Management**: Automatic token refresh and secure storage
 - **Scoped Permissions**: Minimal required Gmail permissions (read-only)
 - **Network Security**: HTTPS-only API communications
-
-## 🎨 Design Principles
-
-- **Clean Architecture**: Separation of concerns with clear layer boundaries
-- **Dependency Injection**: Testable and maintainable code structure
-- **Protocol-Oriented Programming**: Interface segregation and abstraction
-- **Single Responsibility**: Each class/module has one clear purpose
-- **Open/Closed Principle**: Extensible without modifying existing code
+- **Secure Key Storage**: API keys stored via Keychain through `SecureConfigurationManager`
 
 ## ✨ Current Features & Architecture Highlights
 
-- ✅ **Smart Persistence**: Intelligent caching with automatic sync strategies
-- ✅ **Thread-Safe Operations**: Concurrent data access with DispatchQueue
-- ✅ **Real-Time Updates**: Combine publishers for live UI updates
-- ✅ **Clean Architecture**: Modular framework design with dependency injection
-- ✅ **Modern Swift**: Async/await concurrency patterns throughout
-- ✅ **Offline Capabilities**: Core Data integration for local storage
+- ✅ **AI Email Classification**: Claude-powered categorization on launch
+- ✅ **Daily Digest Summaries**: AI-generated summaries with local persistence
 - ✅ **Multi-Account Support**: Seamless management of multiple Gmail accounts
+- ✅ **Sender Filtering**: Filter inbox by sender
+- ✅ **Auto-Sync**: Automatic Gmail sync when local DB is empty
+- ✅ **SwiftData Persistence**: Modern local storage for emails and digests
+- ✅ **Real-Time Updates**: Combine publishers for live UI updates
+- ✅ **Flat Service Architecture**: Simplified, maintainable service layer
 
 ## 🔮 Future Enhancements
 
 - [ ] Email composition and sending
 - [ ] Advanced search and filtering
 - [ ] Push notifications
-- [ ] Dark mode theme
 - [ ] Attachment preview and download
-- [ ] Email templates
 - [ ] Multiple email provider support (Outlook, Yahoo, etc.)
-- [ ] Enhanced Core Data queries and indexing
 
 ## 📄 License
 
