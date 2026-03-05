@@ -3,6 +3,7 @@ import SwiftUI
 struct EmailListView: View {
     @EnvironmentObject var accountManager: AccountManagerImpl
     @EnvironmentObject var settingsManager: SettingsManager
+    @EnvironmentObject var appDataManager: AppDataManager
     @StateObject private var emailService: EmailServiceImpl
     @State private var showingFilters = false
     @State private var showingSettings = false
@@ -11,7 +12,7 @@ struct EmailListView: View {
     
     init() {
         // Initialize with a temporary AccountManager - will be updated in onAppear
-        self._emailService = StateObject(wrappedValue: EmailServiceAPI.create(with: AccountManagerAPI.shared) as! EmailServiceImpl)
+        self._emailService = StateObject(wrappedValue: EmailServiceImpl(accountManager: AccountManagerImpl.shared))
     }
     
     private var hasAuthenticationErrors: Bool {
@@ -122,6 +123,13 @@ struct EmailListView: View {
             }
             .onAppear {
                 setupEmailService()
+            }
+            .onChange(of: appDataManager.isInitialized) { _, isReady in
+                if isReady && emailService.emails.isEmpty {
+                    Task {
+                        await emailService.loadEmailsOnLaunch()
+                    }
+                }
             }
         }
     }
@@ -263,7 +271,7 @@ struct EmailListView: View {
 
 struct EmailRowView: View {
     let email: Email
-    let emailService: EmailServiceProtocol
+    let emailService: EmailServiceImpl
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -357,6 +365,6 @@ struct EmailRowView: View {
 
 #Preview {
     EmailListView()
-        .environmentObject(AccountManagerAPI.shared as! AccountManagerImpl)
+        .environmentObject(AccountManagerImpl.shared)
         .environmentObject(SettingsManager())
 }

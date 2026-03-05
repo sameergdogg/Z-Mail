@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var accountManager: AccountManagerImpl = {
-        AccountManagerAPI.shared as! AccountManagerImpl
-    }()
+    @StateObject private var accountManager: AccountManagerImpl = AccountManagerImpl.shared
     @EnvironmentObject private var settingsManager: SettingsManager
     @State private var showingAccountSetup = false
     
@@ -36,6 +34,7 @@ struct ContentView: View {
                 EmailListView()
                     .environmentObject(accountManager)
                     .environmentObject(settingsManager)
+                    .environmentObject(AppDataManager.shared)
                     .onAppear {
                         print("📱 ContentView: EmailListView appearing with \(accountManager.accounts.count) accounts")
                         for account in accountManager.accounts {

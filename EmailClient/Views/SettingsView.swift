@@ -15,6 +15,9 @@ struct SettingsView: View {
     @State private var showingClassificationAlert = false
     @State private var addAccountError: String?
     @State private var showingAddAccountAlert = false
+    @State private var showingClearSummariesAlert = false
+    @State private var clearSummariesMessage: String?
+    @State private var showingClearSummariesResult = false
     
     var body: some View {
         NavigationView {
@@ -55,6 +58,19 @@ struct SettingsView: View {
             Button("OK") { }
         } message: {
             Text(addAccountError ?? "Unknown error")
+        }
+        .alert("Clear All Summaries", isPresented: $showingClearSummariesAlert) {
+            Button("Cancel", role: .cancel) { }
+            Button("Clear", role: .destructive) {
+                clearAllSummaries()
+            }
+        } message: {
+            Text("This will permanently delete all saved daily digests. This cannot be undone.")
+        }
+        .alert("Summaries Cleared", isPresented: $showingClearSummariesResult) {
+            Button("OK") { }
+        } message: {
+            Text(clearSummariesMessage ?? "All summaries have been deleted.")
         }
     }
     
@@ -163,6 +179,7 @@ struct SettingsView: View {
         Section("AI Features") {
             classificationSettingsLink
             fullClassificationButton
+            clearSummariesButton
         }
     }
     
@@ -230,6 +247,27 @@ struct SettingsView: View {
         }
     }
     
+    private var clearSummariesButton: some View {
+        Button(action: {
+            showingClearSummariesAlert = true
+        }) {
+            HStack {
+                Image(systemName: "text.badge.minus")
+                    .foregroundColor(.red)
+                    .font(.title2)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Clear All Summaries")
+                        .font(.body)
+                        .foregroundColor(.primary)
+                    Text("Delete all saved daily digests")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .padding(.vertical, 2)
+        }
+    }
+
     private var appInformationSection: some View {
         Section("App Information") {
             versionRow
@@ -290,6 +328,18 @@ struct SettingsView: View {
         }
     }
     
+    private func clearAllSummaries() {
+        do {
+            let count = try appDataManager.clearAllSummaries()
+            clearSummariesMessage = count == 0
+                ? "No summaries were found to delete."
+                : "Deleted \(count) saved \(count == 1 ? "summary" : "summaries")."
+        } catch {
+            clearSummariesMessage = "Failed to clear summaries: \(error.localizedDescription)"
+        }
+        showingClearSummariesResult = true
+    }
+
     private func runFullClassification() {
         print("🧠 SettingsView.runFullClassification() — button tapped")
         Task { @MainActor in
@@ -390,6 +440,6 @@ struct RenderingPreviewView: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(AccountManagerAPI.shared as! AccountManagerImpl)
+        .environmentObject(AccountManagerImpl.shared)
         .environmentObject(SettingsManager())
 }
