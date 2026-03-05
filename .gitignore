@@ -12,6 +12,7 @@ DerivedData/
 *.ipa
 *.dSYM.zip
 *.dSYM
+*.log
 
 # macOS
 .DS_Store
@@ -24,3 +25,6 @@ DerivedData/
 
 # CocoaPods
 Pods/
+
+# Claude Code local settings
+.claude/settings.local.json
